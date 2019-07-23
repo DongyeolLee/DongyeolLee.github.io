@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>11. PIC 컨트롤러와 인터럽트 핸들러를 이용해 인터럽트를 처리하자 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="os">
+    
+    <meta name="description" content="들어가기PIC 컨트롤러로 인터럽트를 프로세서에 전달하고 실행 중이던 코드로의 복귀를 구현해보자. 본론11.1 PIC 컨트롤러 소개11.1.1 PIC 컨트롤러란 PIC 컨트롤러는 인터럽트 처리에 관련된 세부기능을 프로그래밍할 수 있는 컨트롤러. 마스터-슬레이브 방식으로 연결해 15개의 인터럽트를 처리. PIC 컨트롤러는 각각 8개의 핀으로 총 16개를 구성하">
+<meta name="keywords" content="os">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11. PIC 컨트롤러와 인터럽트 핸들러를 이용해 인터럽트를 처리하자">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/01/27/OS/Project/PIC-controllerAndInterruptHandler/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기PIC 컨트롤러로 인터럽트를 프로세서에 전달하고 실행 중이던 코드로의 복귀를 구현해보자. 본론11.1 PIC 컨트롤러 소개11.1.1 PIC 컨트롤러란 PIC 컨트롤러는 인터럽트 처리에 관련된 세부기능을 프로그래밍할 수 있는 컨트롤러. 마스터-슬레이브 방식으로 연결해 15개의 인터럽트를 처리. PIC 컨트롤러는 각각 8개의 핀으로 총 16개를 구성하">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/operating-system.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11. PIC 컨트롤러와 인터럽트 핸들러를 이용해 인터럽트를 처리하자">
+<meta name="twitter:description" content="들어가기PIC 컨트롤러로 인터럽트를 프로세서에 전달하고 실행 중이던 코드로의 복귀를 구현해보자. 본론11.1 PIC 컨트롤러 소개11.1.1 PIC 컨트롤러란 PIC 컨트롤러는 인터럽트 처리에 관련된 세부기능을 프로그래밍할 수 있는 컨트롤러. 마스터-슬레이브 방식으로 연결해 15개의 인터럽트를 처리. PIC 컨트롤러는 각각 8개의 핀으로 총 16개를 구성하">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/operating-system.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/01/27/os/project/pic-controllerandinterrupthandler/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/project/">project</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/">정리</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/os/">os</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-OS/Project/PIC-controllerAndInterruptHandler" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        11. PIC 컨트롤러와 인터럽트 핸들러를 이용해 인터럽트를 처리하자
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/27/OS/Project/PIC-controllerAndInterruptHandler/" class="article-date">
+            <time datetime="2018-01-27T05:56:03.000Z" itemprop="datePublished">2018-01-27</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/os/">os</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>PIC 컨트롤러로 인터럽트를 프로세서에 전달하고 실행 중이던 코드로의 복귀를 구현해보자.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="11-1-PIC-컨트롤러-소개"><a href="#11-1-PIC-컨트롤러-소개" class="headerlink" title="11.1 PIC 컨트롤러 소개"></a>11.1 PIC 컨트롤러 소개</h2><h3 id="11-1-1-PIC-컨트롤러란"><a href="#11-1-1-PIC-컨트롤러란" class="headerlink" title="11.1.1 PIC 컨트롤러란"></a>11.1.1 PIC 컨트롤러란</h3><ul>
+<li>PIC 컨트롤러는 인터럽트 처리에 관련된 세부기능을 프로그래밍할 수 있는 컨트롤러.</li>
+<li>마스터-슬레이브 방식으로 연결해 15개의 인터럽트를 처리.</li>
+<li>PIC 컨트롤러는 각각 8개의 핀으로 총 16개를 구성하지만 핀 하나는 슬레이브와 연결.</li>
+</ul>
+<h3 id="11-1-2-PIC-컨트롤러의-구조와-동작-방식"><a href="#11-1-2-PIC-컨트롤러의-구조와-동작-방식" class="headerlink" title="11.1.2 PIC 컨트롤러의 구조와 동작 방식"></a>11.1.2 PIC 컨트롤러의 구조와 동작 방식</h3><ul>
+<li>PIC 컨트롤러는 내부에 8비트 크기의 IRR, ISR, IMR 레지스터가 존재.<ul>
+<li>IRR, 인터럽트가 발생한 핀의 정보를 관리</li>
+<li>ISR, 현재 인터럽트 핸들러가 실행 중인 인터럽트 정보를 저장.</li>
+<li>IMR, 비트가 1로 설정된 인터럽트 핀에서 발생한 요청을 무시하는 역할.</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-2-PIC-컨트롤러-제어"><a href="#11-2-PIC-컨트롤러-제어" class="headerlink" title="11.2 PIC 컨트롤러 제어"></a>11.2 PIC 컨트롤러 제어</h2><h3 id="11-2-1-PIC-컨트롤러-초기화"><a href="#11-2-1-PIC-컨트롤러-초기화" class="headerlink" title="11.2.1 PIC 컨트롤러 초기화"></a>11.2.1 PIC 컨트롤러 초기화</h3><ul>
+<li>PIC 컨트롤러는 I/O 포트 방식으로 연결</li>
+<li>마스터 PIC 컨트롤러는 0x20, 0x21을 사용하고 슬레이브 PIC 컨트롤러는 0xA0과 0xA1을 사용.</li>
+<li>PIC 컨트롤러는 크게 두가지 타입의 커맨드를 제공.<ul>
+<li>ICW, 초기화와 관련된 명령.</li>
+<li>OCW, 제어와 관련된 명령.</li>
+</ul>
+</li>
+<li>해당 포트로 ICW1을 보내면 해당 포트에 쓰는 데이터는 ICW2, ICW3, ICW4 순서대로 해석.</li>
+</ul>
+<h3 id="11-2-2-인터럽트-입력-선택"><a href="#11-2-2-인터럽트-입력-선택" class="headerlink" title="11.2.2 인터럽트 입력 선택"></a>11.2.2 인터럽트 입력 선택</h3><pre><code class="cpp">void kMaskPICInterrupt(WORD wIRQBitmask) {
+    // 마스터 PIC 컨트로러에 IMR 설정.
+    kOutPortByte(PIC_MASTER_PORT2, (BYTE) wIRQBitmask);
+    // 슬레이브 PIC 컨트롤러에 IMR 설정.
+    kOutPortByte(PIC_MASTER_PORT2, (BYTE) (wIRQBitmask >> 8));
+}</code></pre>
+
+<ul>
+<li>PIC 컨트롤러는 IRQ를 특정 벡터에 매핑하는 기능 외에 특정 인터럽트를 선택할 수 있는 기능도 있음.</li>
+<li>OCW1를 이용해, IMR 레지스터에 무시할 인터럽트를 1로 설정.</li>
+</ul>
+<h3 id="11-2-3-인터럽트-종료-처리"><a href="#11-2-3-인터럽트-종료-처리" class="headerlink" title="11.2.3 인터럽트 종료 처리"></a>11.2.3 인터럽트 종료 처리</h3><pre><code class="cpp">void kSendEOIToPIC(int iIRQNumber) {
+    kOutPortByte(PIC_MASTER_PORT1, 0x20);
+
+    if(iIRQNumber >= 8) {
+        kOutPortByte(PIC_SLAVE_PORT1, 0x20);
+    }
+}</code></pre>
+
+<ul>
+<li>프로세서는 핸들러를 실행하여 인터럽트 처리를 완료한 후 다시 PIC 컨트롤러에 알려줘야 함.</li>
+<li>프로세서가 알려주지 않으면 PIC 컨르롤러는 핸들러가 수행중인 것으로 간주, 해당 인터럽트보다 우선순귀가 낮은 인터럽트를 실행하지 않음.</li>
+</ul>
+<h2 id="11-3-인터럽트-예외-핸들러-콘텍스트"><a href="#11-3-인터럽트-예외-핸들러-콘텍스트" class="headerlink" title="11.3 인터럽트, 예외 핸들러, 콘텍스트"></a>11.3 인터럽트, 예외 핸들러, 콘텍스트</h2><h3 id="11-3-1-임시-핸들러의-문제점"><a href="#11-3-1-임시-핸들러의-문제점" class="headerlink" title="11.3.1 임시 핸들러의 문제점"></a>11.3.1 임시 핸들러의 문제점</h3><ul>
+<li>임시 핸들러는 인터럽트나 예외처리 후 코드로 복귀했을 때 두 가지 문제로 정상적으로 코드를 수행할 수 없음.<ul>
+<li>복귀할 때 사용하는 명령어를 사용하지 않음.</li>
+<li>프로세서의 상태를 완정히 저장 및 복원하지 않았다는 점.</li>
+</ul>
+</li>
+</ul>
+<h3 id="11-3-2-콘텍스트-저장과-복원"><a href="#11-3-2-콘텍스트-저장과-복원" class="headerlink" title="11.3.2 콘텍스트 저장과 복원"></a>11.3.2 콘텍스트 저장과 복원</h3><ul>
+<li>인터럽트 또는 예외로 인해 핸들러가 수행되거나 어떤 이유로 현재 수행 중인 코드를 중단하고 나서 다시 수행해야 한다면 전후 콘텍스트를 동일하게 유지해야 가능.</li>
+<li>스택에 프로세서가 저장하는 레지스터를 제외하고 저장.</li>
+</ul>
+<h3 id="11-3-3-인터럽트와-예외-핸들러-업그레이드"><a href="#11-3-3-인터럽트와-예외-핸들러-업그레이드" class="headerlink" title="11.3.3 인터럽트와 예외 핸들러 업그레이드"></a>11.3.3 인터럽트와 예외 핸들러 업그레이드</h3><pre><code class="asm">; 콘텍스트를 저장하고 셀렉터를 교체하는 매크로
+%macro KSAVECONTEXT 0       ; 파라미터를 전달받지 않는 KSAVECONTEXT 매크로 정의
+    ; RBP 레지스터부터 GS 세그먼트 셀렉터까지 모두 스택에 삽입
+    push rbp
+    mov rbp, rsp
+    push rax
+    push rbx
+    push rcx
+    push rdx
+    push rdi
+    push rsi
+    push r8
+    push r9
+    push r10
+    push r11
+    push r12
+    push r13
+    push r14
+    push r15
+
+    mov ax, ds      ; DS 세그먼트 셀렉터와 ES 세그먼트 셀렉터는 스택에 직접
+    push rax        ; 삽입할 수 없으므로, RAX 레지스터에 저장한 후 스택에 삽입
+    mov ax, es
+    push rax
+    push fs
+    push gs
+
+    ; 세그먼트 셀렉터 교체
+    mov ax, 0x10    ; AX 레지스터에 커널 데이터 세그먼트 디스크립터 저장
+    mov ds, ax      ; DS 세그먼트 셀렉터부터 FS 세그먼트 셀렉터까지 모두
+    mov es, ax      ; 커널 데이터 세그먼트로 교체
+    mov gs, ax
+    mov fs, ax
+%endmacro           ; 매크로 끝
+
+; 콘텍스트를 복원하는 매크로
+%macro KLOADCONTEXT 0   ; 파라미터를 전달받지 않는 KSAVECONTEXT 매크로 정의
+    ; GS 세그먼트 셀렉터부터 RBP 레지스터까지 모두 스택에서 꺼내 복원
+    pop gs
+    pop fs
+    pop rax
+    mov es, ax      ; ES 세그먼트 셀렉터와 DS 세그먼트 셀렉터는 스택에서 직접
+    pop rax         ; 꺼내 복원할 수 없으므로, RAX 레지스터에 저장한 뒤에 복원
+    mov ds, ax
+
+    pop r15
+    pop r14
+    pop r13
+    pop r12
+    pop r11
+    pop r10
+    pop r9
+    pop r8
+    pop rsi
+    pop rdi
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+    pop rbp
+%endmacro       ; 매크로 끝</code></pre>
+
+<ul>
+<li>ISR 함수는 인터럽트 처리를 위해 모두 16개를 작성해야하는데, 이를 위해 nasm에서 매크로를 정의.</li>
+</ul>
+<h3 id="11-3-4-IDT-테이블-수정"><a href="#11-3-4-IDT-테이블-수정" class="headerlink" title="11.3.4 IDT 테이블 수정"></a>11.3.4 IDT 테이블 수정</h3><ul>
+<li>이전 코드의 kDummyHandler 부분을 추가한 핸들러로 대체.</li>
+</ul>
+<h2 id="11-4-PIC-컨트롤러-제어-코드와-핸들러-코드의-통합과-빌드"><a href="#11-4-PIC-컨트롤러-제어-코드와-핸들러-코드의-통합과-빌드" class="headerlink" title="11.4 PIC 컨트롤러 제어 코드와 핸들러 코드의 통합과 빌드"></a>11.4 PIC 컨트롤러 제어 코드와 핸들러 코드의 통합과 빌드</h2><h3 id="11-4-1-PIC-컨트롤러-파일-추가"><a href="#11-4-1-PIC-컨트롤러-파일-추가" class="headerlink" title="11.4.1 PIC 컨트롤러 파일 추가"></a>11.4.1 PIC 컨트롤러 파일 추가</h3><p><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/PIC.c&quot;"><strong><em>PIC.c 코드 보기</em></strong></a>;<br><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/PIC.h&quot;"><strong><em>PIC.h 코드 보기</em></strong></a>;</p>
+<h3 id="11-4-2-ISR-파일-추가"><a href="#11-4-2-ISR-파일-추가" class="headerlink" title="11.4.2 ISR 파일 추가"></a>11.4.2 ISR 파일 추가</h3><p><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/ISR.asm&quot;"><strong><em>ISR.asm 코드 보기</em></strong></a>;<br><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/ISR.h&quot;"><strong><em>ISR.h 코드 보기</em></strong></a>;</p>
+<h3 id="11-4-3-인터럽트-핸들러-파일-추가"><a href="#11-4-3-인터럽트-핸들러-파일-추가" class="headerlink" title="11.4.3 인터럽트 핸들러 파일 추가"></a>11.4.3 인터럽트 핸들러 파일 추가</h3><p><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/InterruptHandler.c&quot;"><strong><em>InterruptHandler.c 코드 보기</em></strong></a>;<br><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/InterruptHandler.h&quot;"><strong><em>InterruptHandler.h 코드 보기</em></strong></a>;</p>
+<h3 id="11-4-4-어셈블리어-유틸리티-파일-수정"><a href="#11-4-4-어셈블리어-유틸리티-파일-수정" class="headerlink" title="11.4.4 어셈블리어 유틸리티 파일 수정"></a>11.4.4 어셈블리어 유틸리티 파일 수정</h3><p><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/AssemblyUtility.asm&quot;"><strong><em>AssemblyUtility.asm 코드 보기</em></strong></a>;<br><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/AssemblyUtility.h&quot;"><strong><em>AssemblyUtility.h 코드 보기</em></strong></a>;</p>
+<h3 id="11-4-5-디스크립터-파일-수정"><a href="#11-4-5-디스크립터-파일-수정" class="headerlink" title="11.4.5 디스크립터 파일 수정"></a>11.4.5 디스크립터 파일 수정</h3><p><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/Descriptor.c&quot;"><strong><em>Descriptor.c 코드 보기</em></strong></a>;</p>
+<h3 id="11-4-6-C-언어-커널-엔트리-포인트-파일-수정"><a href="#11-4-6-C-언어-커널-엔트리-포인트-파일-수정" class="headerlink" title="11.4.6 C 언어 커널 엔트리 포인트 파일 수정"></a>11.4.6 C 언어 커널 엔트리 포인트 파일 수정</h3><p><a href="&quot;https://github.com/DongyeolLee/OS-project/blob/e649e9cf05e7a6b522c7ab2a9b2bab29e57de4fa/02.Kernel64/Source/Main.c&quot;"><strong><em>Main.c 코드 보기</em></strong></a>;</p>
+<h3 id="11-4-7-빌드와-실행"><a href="#11-4-7-빌드와-실행" class="headerlink" title="11.4.7 빌드와 실행"></a>11.4.7 빌드와 실행</h3><p><img src="/images/OS/11/1.png" width="600"></p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>끝</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/01/27/OS/Project/PIC-controllerAndInterruptHandler/" data-id="cjyffibcx00k24oweveg0qotg" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/30/OS/Project/UpgradeKeyboardDeviceDriver/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            12. 키보드 디바이스 드라이버를 업그레이드하자
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/25/Al/14863/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[14863] - 서울에서 경산까지</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/01/27/OS/Project/PIC-controllerAndInterruptHandler/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

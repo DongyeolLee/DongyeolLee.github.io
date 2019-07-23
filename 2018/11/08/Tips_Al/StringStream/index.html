@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>stringstream을 활용하여 문자열 처리하기 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="algorithms,tips,cpp">
+    
+    <meta name="description" content="들어가기cpp로 알고리즘 문제를 풀다보면 가끔 까다로운 input으로 시간이 오래 걸릴 경우가 있습니다. 그중 최근 겪었던 까다로운 input을 쉽게 해결하는 방법을 알아보겠습니다. 본론문자열을 쉽게 핸들링하는 방법으로 stringstream이 있습니다. 이를 활용하여 입력받은 string input을 구분하여 저장할 수 있습니다. 예를 들어 다음과 같은">
+<meta name="keywords" content="algorithms,tips,cpp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stringstream을 활용하여 문자열 처리하기">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기cpp로 알고리즘 문제를 풀다보면 가끔 까다로운 input으로 시간이 오래 걸릴 경우가 있습니다. 그중 최근 겪었던 까다로운 input을 쉽게 해결하는 방법을 알아보겠습니다. 본론문자열을 쉽게 핸들링하는 방법으로 stringstream이 있습니다. 이를 활용하여 입력받은 string input을 구분하여 저장할 수 있습니다. 예를 들어 다음과 같은">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/cpp.jpg">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="stringstream을 활용하여 문자열 처리하기">
+<meta name="twitter:description" content="들어가기cpp로 알고리즘 문제를 풀다보면 가끔 까다로운 input으로 시간이 오래 걸릴 경우가 있습니다. 그중 최근 겪었던 까다로운 input을 쉽게 해결하는 방법을 알아보겠습니다. 본론문자열을 쉽게 핸들링하는 방법으로 stringstream이 있습니다. 이를 활용하여 입력받은 string input을 구분하여 저장할 수 있습니다. 예를 들어 다음과 같은">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/cpp.jpg">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/11/08/tips_al/stringstream/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/computer-science/">computer science</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/computer-science/algorithms/">algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/computer-science/algorithms/tips/">tips</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Tips_Al/StringStream" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        stringstream을 활용하여 문자열 처리하기
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/08/Tips_Al/StringStream/" class="article-date">
+            <time datetime="2018-11-08T12:19:47.000Z" itemprop="datePublished">2018-11-08</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/algorithms/">algorithms</a>, <a class="tag-link" href="/tags/cpp/">cpp</a>, <a class="tag-link" href="/tags/tips/">tips</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>cpp로 알고리즘 문제를 풀다보면 가끔 까다로운 input으로 시간이 오래 걸릴 경우가 있습니다.</p>
+<p>그중 최근 겪었던 까다로운 input을 쉽게 해결하는 방법을 알아보겠습니다.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><p>문자열을 쉽게 핸들링하는 방법으로 <strong><code>stringstream</code></strong>이 있습니다. 이를 활용하여 입력받은 string input을 구분하여 저장할 수 있습니다.</p>
+<p>예를 들어 다음과 같은 상황을 고려해보겠습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 lee 3학년 19살</span><br><span class="line">2 kim 2학년 18살</span><br><span class="line">3 choi 1학년 17살</span><br></pre></td></tr></table></figure>
+<p>예시와 같이 3명의 학생이 입력이 됩니다. 하지만 모든 입력은 띄어쓰기를 구분되어 번호, 이름, 학년, 나이가 입력됩니다. 이름과 학년, 나이의 길이 제한은 없습니다.</p>
+<p>즉, 이름이 100자인 학생이 들어올수도 있고 나이가 100살인 학생이 들어올수 있습니다.</p>
+<p>이럴 경우 단순히 input을 처리하기에는 다소 많은 시간을 들여야 합니다. 이때 유용하게 사용할 수 있는 방법이 바로 <strong><code>stringstream</code></strong>입니다.</p>
+<p>이 역시 코드를 보며 확인해 보겠습니다.</p>
+<pre><code class="cpp">#include &ltiostream>
+#include &ltsstream>
+using namespace std;
+
+int main() {
+    string input;
+    for(int i = 0; i < 3; i ++) {
+        getline(cin, input);
+        stringstream ss(input);
+
+        string v;
+        while((ss >> v)) {
+            cout << v << endl;
+        }
+        cout << endl;
+    }
+    return 0;
+}</code></pre>
+
+<p>일단 입력받은 문자열을 통째로 input에 저장합니다. 이럴 경우 input에 저장되는 값은 아래와 같습니다.</p>
+<p><img src="/images/Tips_Al/1/1.png" width="500"></p>
+<p>input에 저장된 문자열을 이제 <strong><code>stringstream</code></strong>을 생성하며 문자열을 전달합니다.</p>
+<p>이렇게 되면 ss에도 input 값과 같은 문자열이 가지고 있게 됩니다.</p>
+<p><strong><code>stringstream</code></strong>에 저장된 값을 12번 줄에서 보이는 것 같이 내부적으로 다시 string 단위로 뽑아 다음과 같은 출력을 얻을 수 있습니다.</p>
+<p><img src="/images/Tips_Al/1/2.png" width="300"></p>
+<p>중간에 <strong><code>stringstream</code></strong>을 바꿔야 한다면 다음과 같이 사용하시면 됩니다. </p>
+<pre><code class="cpp">ss.str("바꿔야 할 문자열");</code></pre>
+
+<p><strong><code>stringstream</code></strong>을 사용하면서 한가지 주의할 점은 바로 값의 type입니다.</p>
+<p>코드 예시에서 볼수 있듯이 <strong><code>stringstream</code></strong>에서 연산자를 활용하여 string type의 v에 값을 저장하고 있습니다.</p>
+<p>하지만 이 type이 맞지 않는다면 <strong><code>stringstream</code></strong>은 값을 저장하지 않고 바로 종료합니다.</p>
+<p><img src="/images/Tips_Al/1/3.png" width="400"></p>
+<p><strong>즉, 위와 같은 input이 들어왔을 경우 해당 값을 저장할 변수 type이 int로 설정되어 있다면 출력 n의 바로 앞인 8까지 출력후 종료됩니다.</strong></p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>이번에 알게된 <strong><code>stringstream</code></strong>을 통해 모든 분들이 예상치 못한 input에 당황하는 일이 줄어들었으면 합니다… </p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/" data-id="cjyffibc000hy4oweembztt1h" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/14/Al/1916/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[1916] - 최소비용 구하기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/07/Al/2644/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[2644] - 촌수계산</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

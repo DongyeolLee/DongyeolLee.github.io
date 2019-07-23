@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>9. 키보드 디바이스 드라이버를 추가하자 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="os">
+    
+    <meta name="description" content="들어가기키보드를 제어하는 방법에 대해서 알아보고 스캔 코드를 ASCII 코드로 변환해보자 본론9.1 키보드 컨트롤러의 구조와 기능9.1.1 키보드 컨트롤러, I/O 포트, 레지스터  할당된 포트는 두 개이지만 포트에서 데이터를 읽을 때와 쓸 때 접근하는 레지스터가 다름. 그중 상태 레지스터는 키보드 컨트롤러의 상태를 표시하는 레지스터.  9.2 키보드 컨트">
+<meta name="keywords" content="os">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9. 키보드 디바이스 드라이버를 추가하자">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/01/21/OS/Project/AddKeyboardDriver/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기키보드를 제어하는 방법에 대해서 알아보고 스캔 코드를 ASCII 코드로 변환해보자 본론9.1 키보드 컨트롤러의 구조와 기능9.1.1 키보드 컨트롤러, I/O 포트, 레지스터  할당된 포트는 두 개이지만 포트에서 데이터를 읽을 때와 쓸 때 접근하는 레지스터가 다름. 그중 상태 레지스터는 키보드 컨트롤러의 상태를 표시하는 레지스터.  9.2 키보드 컨트">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/operating-system.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9. 키보드 디바이스 드라이버를 추가하자">
+<meta name="twitter:description" content="들어가기키보드를 제어하는 방법에 대해서 알아보고 스캔 코드를 ASCII 코드로 변환해보자 본론9.1 키보드 컨트롤러의 구조와 기능9.1.1 키보드 컨트롤러, I/O 포트, 레지스터  할당된 포트는 두 개이지만 포트에서 데이터를 읽을 때와 쓸 때 접근하는 레지스터가 다름. 그중 상태 레지스터는 키보드 컨트롤러의 상태를 표시하는 레지스터.  9.2 키보드 컨트">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/operating-system.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/01/21/os/project/addkeyboarddriver/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/project/">project</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/">정리</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/os/">os</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-OS/Project/AddKeyboardDriver" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        9. 키보드 디바이스 드라이버를 추가하자
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/21/OS/Project/AddKeyboardDriver/" class="article-date">
+            <time datetime="2018-01-21T13:09:55.000Z" itemprop="datePublished">2018-01-21</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/os/">os</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>키보드를 제어하는 방법에 대해서 알아보고 스캔 코드를 ASCII 코드로 변환해보자</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="9-1-키보드-컨트롤러의-구조와-기능"><a href="#9-1-키보드-컨트롤러의-구조와-기능" class="headerlink" title="9.1 키보드 컨트롤러의 구조와 기능"></a>9.1 키보드 컨트롤러의 구조와 기능</h2><h3 id="9-1-1-키보드-컨트롤러-I-O-포트-레지스터"><a href="#9-1-1-키보드-컨트롤러-I-O-포트-레지스터" class="headerlink" title="9.1.1 키보드 컨트롤러, I/O 포트, 레지스터"></a>9.1.1 키보드 컨트롤러, I/O 포트, 레지스터</h3><p><img src="/images/OS/9/1.png" width="600"></p>
+<ul>
+<li>할당된 포트는 두 개이지만 포트에서 데이터를 읽을 때와 쓸 때 접근하는 레지스터가 다름.</li>
+<li>그중 상태 레지스터는 키보드 컨트롤러의 상태를 표시하는 레지스터.</li>
+</ul>
+<h2 id="9-2-키보드-컨트롤러-제어"><a href="#9-2-키보드-컨트롤러-제어" class="headerlink" title="9.2 키보드 컨트롤러 제어"></a>9.2 키보드 컨트롤러 제어</h2><h3 id="9-2-1-키보드와-키보드-컨트롤러-활성화"><a href="#9-2-1-키보드와-키보드-컨트롤러-활성화" class="headerlink" title="9.2.1 키보드와 키보드 컨트롤러 활성화"></a>9.2.1 키보드와 키보드 컨트롤러 활성화</h3><ul>
+<li>BIOS에 의해 키보드는 활성화된 상태이지만 만약을 대비해 직접 활성화.</li>
+<li>키보드 컨트롤러에서 키보드 디바이스를 활성화하려면 <strong>커맨드(OxAE)</strong> 전송.</li>
+<li>키보드 컨트롤러에서 키보드 데이터를 받을 준비가 된 것이므로 따로 키보드도 활성화 시킴.<ul>
+<li>입력 버퍼에 키보드로 보낼 커맨드를 직접 입력.</li>
+<li>정상적으로 처리한 경우 <strong>응답(0xFA)</strong> 전송.</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-2-2-IA-32e-모드의-호출-규약"><a href="#9-2-2-IA-32e-모드의-호출-규약" class="headerlink" title="9.2.2 IA-32e 모드의 호출 규약"></a>9.2.2 IA-32e 모드의 호출 규약</h3><ul>
+<li>IA-32e 모드의 C 호출 규약과 보호 모드의 C 호출 규약을 비교하면 3가지 차이.<ol>
+<li>파라미터를 전달할 때 레지스터 우선 사용.</li>
+<li>레지스터 또는 스택에 파라미터를 삽입하는 순서가 다름.</li>
+<li>반환 값을 사용하는 레지스터의 차이.</li>
+</ol>
+</li>
+</ul>
+<h3 id="9-2-3-키보드-컨트롤러에서-키-값-읽기"><a href="#9-2-3-키보드-컨트롤러에서-키-값-읽기" class="headerlink" title="9.2.3 키보드 컨트롤러에서 키 값 읽기"></a>9.2.3 키보드 컨트롤러에서 키 값 읽기</h3><pre><code class="cpp"> BYTE kGetKeyboardScanCode(void) {
+    // 출력 버퍼에 데이터가 있을 때까지 대기.
+    while(kIsOutBufferFull() == FALSE) {
+        ;
+    }
+    // 출력 버퍼에서 키 값을 읽어서 반환.
+    return kInPortByte(0x60);
+}
+</code></pre>
+
+<ul>
+<li>키보드의 키가 눌리거나 떨어질 때마가 키 별로 할당된 <strong>스캔 코드</strong>가 출력 버퍼에 쌓임.</li>
+<li>상태 레지스터를 읽어서 출력 버퍼에 데이터를 확인한 후, 읽어서 저장.</li>
+</ul>
+<h3 id="9-2-4-A20-게이트-활성화와-프로세서-리셋"><a href="#9-2-4-A20-게이트-활성화와-프로세서-리셋" class="headerlink" title="9.2.4 A20 게이트 활성화와 프로세서 리셋"></a>9.2.4 A20 게이트 활성화와 프로세서 리셋</h3><ul>
+<li>A20 게이트 비트와 프로세서 리셋 비트는 출력 포트의 비트를 변경하면서 적용.</li>
+<li>출력 포트는 0xD0, 0xD1 커맨드로 접근.</li>
+<li>프로세서를 리셋하는 방법은 출력 포트의 데이터를 0으로 설정.</li>
+<li>A20 게이트를 활성화하는 방법은 0xD0으로 데이터를 읽고 비트 1을 1로 설정 후, 0xD1으로 전달.</li>
+</ul>
+<h3 id="9-2-5-키보드-LED-상태-제어"><a href="#9-2-5-키보드-LED-상태-제어" class="headerlink" title="9.2.5 키보드 LED 상태 제어"></a>9.2.5 키보드 LED 상태 제어</h3><ul>
+<li>키보드의 LED 상태를 변경하려면 입력 버퍼로 0xED 커맨드 전송해 LED 정보가 전송 될 것을 알림.</li>
+<li>ACK을 확인한 후, LED 상태 정보 전송.</li>
+</ul>
+<h2 id="9-3-스캔-코드와-간단한-쉘"><a href="#9-3-스캔-코드와-간단한-쉘" class="headerlink" title="9.3 스캔 코드와 간단한 쉘"></a>9.3 스캔 코드와 간단한 쉘</h2><h3 id="9-3-1-키보드와-스캔-코드"><a href="#9-3-1-키보드와-스캔-코드" class="headerlink" title="9.3.1 키보드와 스캔 코드"></a>9.3.1 키보드와 스캔 코드</h3><ul>
+<li>키보드의 모든 키는 각자의 고유 코드를 가지고 있으며, 키보드는 키가 눌리거나 떨어질 때마다 그 <strong>상태에 해당하는 키 값</strong>을 키보드 컨트롤러에 전달.</li>
+<li>일반적으로 떨어졌을 때의 키 값은 눌러졌을 때의 값에 비트 7을 1로 설정한 것.</li>
+<li>스캔 코드와 우리가 사용하는 ASCII 코드는 일치하지 않아 스캔 코드의 변경이 필요.</li>
+</ul>
+<h3 id="9-3-2-스캔-코드를-ASCII-문자로-변환"><a href="#9-3-2-스캔-코드를-ASCII-문자로-변환" class="headerlink" title="9.3.2 스캔 코드를 ASCII 문자로 변환"></a>9.3.2 스캔 코드를 ASCII 문자로 변환</h3><ul>
+<li>확장 키를 제외한 스캔 코드를 테이블을 사용해 변환.</li>
+</ul>
+<pre><code class="cpp">typedef struct kKeyMappingEntryStruct {
+    // 조합되지 않은 일반 키.
+    BYTE bNormalCode;
+    // 조합된 키.
+    BYTE bCombinedCode;
+} KEYMAPPINGENTRY
+</code></pre>
+
+<ul>
+<li>매핑 테이블을 만들기 전 엔트리 자료구조 정의.</li>
+</ul>
+<h2 id="9-4-키보드-디바이스-드라이버의-통합과-빌드"><a href="#9-4-키보드-디바이스-드라이버의-통합과-빌드" class="headerlink" title="9.4 키보드 디바이스 드라이버의 통합과 빌드"></a>9.4 키보드 디바이스 드라이버의 통합과 빌드</h2><h3 id="9-4-1-키보드-디바이스-드라이버-파일-추가"><a href="#9-4-1-키보드-디바이스-드라이버-파일-추가" class="headerlink" title="9.4.1 키보드 디바이스 드라이버 파일 추가"></a>9.4.1 키보드 디바이스 드라이버 파일 추가</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/c5e7b7b69a534481f6bffa838ae347839272126b/02.Kernel64/Source/Keyboard.h" target="_blank" rel="noopener"><strong><em>Keyboard.h 코드 보기</em></strong></a><br><a href="https://github.com/DongyeolLee/OS-project/blob/c5e7b7b69a534481f6bffa838ae347839272126b/02.Kernel64/Source/Keyboard.c" target="_blank" rel="noopener"><strong><em>Keyboard.c 코드 보기</em></strong></a></p>
+<h3 id="9-4-2-어셈블리어-유틸리티-파일-추가"><a href="#9-4-2-어셈블리어-유틸리티-파일-추가" class="headerlink" title="9.4.2 어셈블리어 유틸리티 파일 추가"></a>9.4.2 어셈블리어 유틸리티 파일 추가</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/c5e7b7b69a534481f6bffa838ae347839272126b/02.Kernel64/Source/AssemblyUtility.asm" target="_blank" rel="noopener"><strong><em>AssemblyUtility.asm 코드 보기</em></strong></a><br><a href="https://github.com/DongyeolLee/OS-project/blob/c5e7b7b69a534481f6bffa838ae347839272126b/02.Kernel64/Source/AssemblyUtility.h" target="_blank" rel="noopener"><strong><em>AssemblyUtility.h 코드 보기</em></strong></a></p>
+<h3 id="9-4-3-C-언어-커널-엔트리-포인트-파일-수정"><a href="#9-4-3-C-언어-커널-엔트리-포인트-파일-수정" class="headerlink" title="9.4.3 C 언어 커널 엔트리 포인트 파일 수정"></a>9.4.3 C 언어 커널 엔트리 포인트 파일 수정</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/c5e7b7b69a534481f6bffa838ae347839272126b/02.Kernel64/Source/Main.c" target="_blank" rel="noopener"><strong><em>C 언어 커널 코드 보기</em></strong></a></p>
+<h3 id="9-4-4-빌드와-실행"><a href="#9-4-4-빌드와-실행" class="headerlink" title="9.4.4 빌드와 실행"></a>9.4.4 빌드와 실행</h3><p><img src="/images/OS/9/2.png" width="500"></p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>끝!</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/01/21/OS/Project/AddKeyboardDriver/" data-id="cjyffibcs00jp4owet9lr94ym" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/23/OS/Project/PrepareForInterrupt/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            10. GDT, IDT 테이블, TSS 세그먼트를 추가해 인터럽트에 대비하자
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/20/OS/Project/ConvertTo64bitMode/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">8. 64비트 모드로 전환하자</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/01/21/OS/Project/AddKeyboardDriver/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

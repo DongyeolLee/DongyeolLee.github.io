@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dy:1992</title>
+  
+  <subtitle>Dy&#39;s 포크레인 삽질기</subtitle>
+  <link href="/feed.xml" rel="self"/>
+  
+  <link href="http://DongyeolLee.github.io/"/>
+  <updated>2019-07-22T07:42:38.505Z</updated>
+  <id>http://DongyeolLee.github.io/</id>
+  
+  <author>
+    <name>Dy</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018년도 NHN 채용 - 서류부터 최종면접까지 후기</title>
+    <link href="http://DongyeolLee.github.io/2019/05/23/Review/nhn/"/>
+    <id>http://DongyeolLee.github.io/2019/05/23/Review/nhn/</id>
+    <published>2019-05-23T12:44:48.000Z</published>
+    <updated>2019-07-22T07:42:38.505Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>지난 번 <strong><em><a href="https://dongyeollee.github.io/2019/05/21/Review/11st/">11번가 후기</a></em></strong>에 이어서 이번에는 NHN(NHN 엔터테인먼트)의 후기를 생각나는대로 써보려한다.</p><h1 id="서류-평가"><a href="#서류-평가" class="headerlink" title="서류 평가"></a>서류 평가</h1><p>NHN은 서류 평가가 그렇게 어렵지 않다고 어디서 주워 들은 것 같다. 실제로 주변 많은 사람들이 서류를 합격했다. 문항 역시 2개로 심플했다.</p><ul><li>재학 중 가장 자신 있는 전공과목을 적고(최대 3가지), 그 이유를 설명해주세요.(제한 없음)</li><li>가장 자신있는 프로그래밍 언어를 사용하여 성취한 대표적인 프로젝트 또는 개발산출물 한 가지를 설명해주세요. 그리고 개발과정에서 가장 중요하게 생각한 것은 무엇인지 설명해주세요.(제한 없음)</li></ul><p>정말 부담없이 자기소개서를 작성했던 걸로 기억한다. SW 개발 직군에 지원하면서 이전 자소서와 비슷한 문항이였기에 작성하는데는 크게 어려움이 없었다. 그리고 글자수 역시 그렇게 많이 채우지는 않고 800자, 1300자 정도 작성 후 제출했다.</p><h1 id="코딩-테스트"><a href="#코딩-테스트" class="headerlink" title="코딩 테스트"></a>코딩 테스트</h1><p>누구나 걱정하는 온라인 코딩 테스트!! 후기도 많이 없고 자료도 없어서 다들 걱정하는 것 같았다. 시험 당시 문제는 4~5문제 였던 걸로 기억한다.</p><p>난이도 역시 뒤로 갈수록 까다롭고 오래 걸리는 문제들이 나왔다. 1번과 2번 문제는 비교적 쉬웠던 거로 기억한다. 구조체 정렬과 배열을 이용하는 문제 정도??</p><p>3번은 구현하기 귀찮으면서 예외처리가 많았던 문제로 기억하며 완탐도 1문제 나왔다.</p><p>평소 알고리즘을 준비했다면 무난하게 4문제 정도는 풀었지 않았나 싶다. 근데 난 3문제 풀었나?? 시간도 3시간?? 정도 진행했다. </p><h1 id="오프라인-필기-시험"><a href="#오프라인-필기-시험" class="headerlink" title="오프라인 필기 시험"></a>오프라인 필기 시험</h1><p>NHN 오프라인 필기시험이 많이 어렵다는 후기를 보았기에 나름대로 열심히 준비했다. 운영체제, 네트워크, DB, 자료구조를 중점으로 공부했다. 또 실무적인 것보다는 전공에 관해서 많이 출제된다고 예고를 했기에 그 부분을 중점적으로 봤다.</p><p>판교역에 위치한 경기창조혁신센터?? 에서 시험을 봤다. 총 응시자는 약 900명 정도 됐다. 이 사람들을 뚫고 내가 면접을 갈 수 있을까 살짝 겁도 났지만 그래도 시험 보는 데 집중했다. 정말 좁은 책상에 앉아서 문제를 풀었고 2시간 정도 진행했다.</p><p>문제는 객관식 + 주관식으로 나왔으며 정말 대학 시험처럼 나왔다. 조금 어려운 용어나 내용 같은 것은 먼저 예시를 주고 풀게 했으며 영어 레퍼런스를 읽고 문제를 해결하는 유형도 있었다. ‘와 엄청 어렵다.’ 이 정도 수준은 아니었으나 헷갈리고 정확하게 모르겠는 문제투성이였다.</p><p>객관식에서 주관식 순으로 문제를 풀었고 객관식 약 19문제 중 5문제 정도 찍었던 것 같다. 주관식도 약 소 문제 포함 20문제 정도였는데 약 60% 정도 풀고 나머지는 그냥 느낌에 맡겼다. 시간이 부족하진 않았지만 그렇다고 남지도 않았다.</p><p>시험이 끝나고 같이 간 친구들이랑 서로 적은 답을 비교하고 공유하고 설명하면서 갔는데 답이 다 달라서 조금 많이 불안했다. </p><h1 id="1차-면접"><a href="#1차-면접" class="headerlink" title="1차 면접"></a>1차 면접</h1><p>친구 8명이 같이 필기시험을 봤는데 나만 살아남았다. 뭔가 뿌듯하기도 했는데 1차 면접에서 다시 코딩 테스트를 본다고 해서 살짝 걱정됐다. 1차 면접은 NHN 사옥에서 진행됐고 여기는 복장 제한이 없었다.</p><p>또 면접을 보기 위해 아침 9시까지 가야 했는데 도착하니 후드티를 나눠주며 입으라고 했다. 다들 똑같은 옷을 입고 면접을 진행했다. 9시 30분??정도부터 면접 일정이 시작된다. 먼저 알고리즘 문제 풀기를 약 2시간에서 3시간 정도 진행하고 이후 조별로 움직이며 면접 절차를 진행했다.</p><p>알고리즘 문제는 온라인 코딩 테스트보다 살짝 더 난도가 있는 듯했다. 사실 난 풀지 못했다. 코딩 테스트가 끝나고 바로 점심을 다 같이 먹는데 입맛도 없었다. 이건 진짜 떨어졌다는 생각이 앞서 밥이 안 들어갔다.</p><p>점심 식사가 끝나면 1시 정도부터 회사 사옥 투어 &gt; 오전에 풀었던 코딩 테스트 코드 리뷰 면접 &gt; 기술 면접 &gt; NHN 선배 직원과의 대화가 진행되고 각 일정은 조별로 다르게 진행된다.</p><p>나는 사옥 투어 &gt; 선배 NHN 직원과의 대화 &gt; 기술 면접 &gt; 코드 리뷰 순으로 진행되는 조에 편성됐고 먼저 가볍게 사옥 투어를 하면서 긴장을 풀었다. 사옥 투어를 하면서 NHN의 좋은 점을 인사팀에서 잘 설명해줬다. 인사팀이 건물 지하에서 커피도 사주면서 편안한 분위기에서 면접자들과 대화를 했다.</p><p>선배 직원과의 대화 시간에는 그냥 궁금한 것들 다 물어보면 대답해주는 시간이었다. 누군가 연봉이 얼마냐, 여기는 보너스 얼마 주냐 이런 걸 물어봤는데 그냥 아무렇지도 않게 대답해주셨다.</p><p>여기서부터가 진짜다. 기술 면접의 비중이 가장 크다고 들었기에 오전에 망했던 것을 여기서 만회해야만 했다. 면접관 2명이 앉아 있었고 들어가니 1분 자기소개 이런 것도 없이 쓱 종이 하나를 들이밀었다.</p><p>대충 읽어보니 이것도 알고리즘이었다. 읽어보고 손으로 코딩하라고 했고 손 코딩 도중에 약간 이상한 방향으로 가거나 틀린 방향으로 가는 것 같으면 계속 힌트를 던져주셨다. 느끼기에는 어떻게 해결하는지 감이 안 오더라도 면접관들과 커뮤니케이션을 진행하면서 해결해 나아가는 능력을 많이 평가하는 것 같았다. </p><p>1시간 정도의 면접 시간 중 25분?? 이지나 손 코딩을 제출했다. “빨리 풀었나?? 된 건가??” 이런 생각을 했지만 아녔다 다른 문제 하나가 또 있었고 그것은 진짜 수학 문제였다. 고등 수학의 문제 유형은 아니었고 쉬우면서도 어렵다고 느낄 수 있는 문제였으며 규칙성을 찾는 수학 문제였다. 이 역시 면접관들과 대화를 해 나가며 해결하려고 노력했다.</p><p>문제를 풀던 중 시간이 다 돼서 면접관이 이 문제는 어떤 문제였는지 설명해주셨고 지금 어디까지 내가 풀었는지 알려주셨다. 그냥 느낌에는 반 정도 풀었던 것 같다. 기술 면접이 끝나고 나와서 다른 면접자들한테 잘 봤는지 물어봤는데 다들 나랑 비슷한 상황이었다.</p><p>그리고 마지막으로 오전에 알고리즘을 풀고 제출했던 코드의 코드 리뷰가 남아있었다. 이는 면접관 2명이 면접자 3명의 코드를 보면서 동시에 진행됐다. 한 명당 약 10분 정도 생각한 알고리즘과 어떤 방식으로 풀려고 했는지 설명했다.</p><p>나는 문제를 풀지도 못했고 코드가 정상적으로 돌아가지도 않았기에 면접관들한테 내가 생각한 알고리즘은 무엇이고 어떤 자료 구조를 선택헀고 지금 이 코드가 왜 동작하지 않는 것 같은지를 설명했다. 또 개선 방향까지 설명하니 딱 10분 정도가 지났다. </p><h1 id="2차-면접"><a href="#2차-면접" class="headerlink" title="2차 면접"></a>2차 면접</h1><p>2차 면접은 1차 면접과 달리 짧은 시간 내에 끝났다. 다대다 면접이 진행됐고 면접관 2명, 면접자 3명이었다. 면접에 들어가기 전 30분 정도 4개의 전공 문제를 풀고 면접에 들어갔다.</p><p>답이 있는 문제도 있었고 생각을 묻는 문제도 있었다. 2차 면접은 기술과 인성 7 대 3 정도로 진행됐다. 먼저 기술 면접은 풀었던 문제를 화이트보드에 작성하면서 답을 설명하고 왜 그렇게 생각하는지 설명하는 식으로 진행됐다.</p><p>답이 있는 문제이지만 틀려도 크게 뭐라 하지 않았다. 면접관이 계속 답을 유도하고 생각을 물어보기 때문에 그냥 면접관의 질문에 대답하다 보면 답이 떠오른다. 즉, 문제를 풀 때는 모를 수도 있지만, 면접관들과 대화를 하다 보면 내가 작성한 답은 이런 오류가 있었다는 것을 깨닫고 수정할 수 있게 된다.</p><p>나 역시 틀렸지만 계속 대화를 하면서 작성했던 답의 오류를 발견하고 어떻게 수정할 수 있을지 설명했더니 면접관이 고개를 끄덕였다.</p><p>기술 면접이 끝나면 그 자리에서 바로 인성 면접이 진행되는데 이건 정말 다른 회사랑 똑같이 진행된다. 지원동기, 하고 싶은 일 등등</p><p>솔직히 1차 면접에서 떨어질 줄 알았지만 어쩌다 보니 내가 2차 면접까지 보고 있었다. </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;지난 번 &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://dongyeollee.github.io/2019/0
+      
+    
+    </summary>
+    
+      <category term="review" scheme="http://DongyeolLee.github.io/categories/review/"/>
+    
+      <category term="job" scheme="http://DongyeolLee.github.io/categories/review/job/"/>
+    
+    
+      <category term="review" scheme="http://DongyeolLee.github.io/tags/review/"/>
+    
+      <category term="recruiting" scheme="http://DongyeolLee.github.io/tags/recruiting/"/>
+    
+      <category term="job" scheme="http://DongyeolLee.github.io/tags/job/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2018년도 11번가 채용 - 서류부터 최종면접까지 후기</title>
+    <link href="http://DongyeolLee.github.io/2019/05/21/Review/11st/"/>
+    <id>http://DongyeolLee.github.io/2019/05/21/Review/11st/</id>
+    <published>2019-05-21T12:24:11.000Z</published>
+    <updated>2019-07-22T07:42:38.505Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>지금에 와서야 작년(2018) 하반기에 했던 취업 준비 과정을 정리하는 것이 이상한 것 같다. 하지만 이번 정리?? 후기??로 인해 조금이나마 정보를 얻으려는 분들께 도움이 됐으면 한다.</p><h1 id="서류-평가"><a href="#서류-평가" class="headerlink" title="서류 평가"></a>서류 평가</h1><p>11번가 서비스 개발 분야에 지원했다. 역시 sk 회사답게 자기소개서에 써야 하는 내용과 문항이 예사롭지 않았다. 문항들은 다음과 같았다. </p><ul><li>본인의 개발 역량을 보여줄 수 있는 대표적 프로젝트 1가지에 대해 구체적으로 기술하고, 다룰수 있는 프로그래밍언어나 기술에 대해 적어주세요.(2000)</li><li>지원분야와 관련되어 경험한 활동을 적어주세요.(2000자)</li><li>지원분야와 관련성은 없으나 관심을 갖고 있는 영역과 이것을 향상시켜온 경험에 대해 적어주세요.(2000자)</li><li>향후 11번가에 입사하게 되면 하고 싶은 업무 영역과 궁극적 본인의 Career Goal은 무엇이며 이유는 무엇인지 적어주세요.(2000자)</li></ul><p>총 8000자라니… 아직 그때 상황을 기억한다. 상당히 쓰기 싫어서 미루고 미루다가 결국 이전 자소서를 복사해 붙여넣어서 냈던 걸로… 글자수도 완벽하게 채우지 못했다.<br>대략 1400자, 1900자, 1600자, 900자 정도 썼던 것 같다.</p><p>전체적으로 토 나오는 분량이었지만 최대한 관련 경험을 쓰려고 노력했다. </p><p><strong>1번 문항</strong>에는  스타트업 인턴 당시 수행했던 프로젝트를 이야기하면서 삽질했던 내용을 상세히 썻다. 결국 ‘별거 아니었는데 이런 실수를 했더라’는 느낌으로 썼다. 그리고 내가 왜 그런 실수를 했는지 이로써 얻은 경험은 무엇인지를 적었다. </p><p><strong>2번 문항</strong>에는 2가지 이야기를 풀어 썼다. 먼저 연합 동아리 활동을 하며 해커톤에 참가한 경험을 썼다. 다른 이야기로 개인 프로젝트를 만들었던 이야기를 쓰면서 내가 왜 개인 프로젝트를 진행했는지를 서술했다. </p><p><strong>3번 문항</strong>에는 내가 기술 블로그를 시작한 이유와 이로써 얻은 긍정적인 효과를 자기소개서에 담아냈다. </p><p><strong>마지막 문항</strong>에는 11번가에서 무슨 업무를 수행하고 싶은지 그 업무를 수행하기 위해 어떤 노력을 했는지 어필했다. 더 나아가 해당 업무를 수행하여 어떻게 11번가 기여할 수 있는지를 적었다. </p><h1 id="코딩-테스트"><a href="#코딩-테스트" class="headerlink" title="코딩 테스트"></a>코딩 테스트</h1><p>특이하게 서류를 제출하고 나면 이메일로 코딩 테스트를 볼 수 있는 URL을 보내줬다. 이메일을 받고 1일?? 3일?? 이내에 코딩 테스트를 제출해야 했다. 문제는 총 4문제로 2시간의 시간이 주어졌다.</p><p>문제는 그렇게 어렵지 않았다. 문제가 영어라 당황만 하지 않으면 누구나 풀 수 있는 그런 수준이다. 배열을 sorting 하는 문제, 배열에서 몇 번째 요소를 찾는 문제 약간 이런 형식의 문제가 주를 이뤘다. 그리고 특이하게 SQL을 묻는 문제가 1개 있었는데 이 역시 그렇게 난도가 있다고 생각하지는 않았다.</p><p>코딩 테스트를 제출하고 나면 바로 코딩 테스트 점수를 보여준다. 근데 이 결과가 그렇게 합격 여부의 큰 비중을 차지하지 않는 것 같았다. 누구는 100점을 맞고 떨어지는 반면 누구는 50점을 받았는데 서류 합격한 사람들도 있었다. </p><h1 id="SKCT"><a href="#SKCT" class="headerlink" title="SKCT"></a>SKCT</h1><p>좀 걱정을 많이 했던 인·적성 문제였지만 10일? 정도 되는 시간에 2권 정도를 풀고 갔다. 영역당 약 20문제 정도 된다. 이 중 시간 내에 13개는 풀자는 마인드로 시험장에 갔지만, 실전은 그것보다 못한 것 같다.</p><p>평균 11문제? 10문제? 정도 풀었다. 실제 문제 난이도는 시중에서 구매한 책이 훨씬 더 어려웠지만 뭔가 모르게 긴장을 해서 그런지 생각보다 많이 풀지는 못했다.</p><p>아침 일찍부터 동국대학교로 가서 시험을 보는 만큼 문제를 풀다가 집중력을 잃을 수도 있다. 또, 기억하기로는 개인용품은 최소한으로 사용했던 것 같다. 시계도 사용 못 하고 감독관이 계속 시간을 알려준다. </p><h1 id="1차-면접"><a href="#1차-면접" class="headerlink" title="1차 면접"></a>1차 면접</h1><p>편안한 복장으로 면접을 보러 갔다. 진짜 편하게 니트를 입고 갔는데.. 주변이 다 양복이었다. 뭔가 망한 느낌이 살짝 났지만 당황하지 않은 척했다.</p><p>1차 면접에 들어가기 전 50분가량 문제를 풀고 들어간다. 2가지 종류의 문제가 있고 이 중 하나를 선택하면 그에 관한 3~4가지 문제가 있었다.</p><p>그리고 약간 특이한 점이 있었는데 문제를 푸는 동안 핸드폰으로 검색이 가능했다. 하지만 문제에 대한 답을 1도 모른 채 검색으로 답만 찾으려고 한다면 시간이 부족했을 것 같다.</p><p>상당히 포괄적인 것을 물어보고 어디까지 아는지 확인하는 듯한 문제??? 약간 인터넷을 설명해봐라. 이런 느낌이다. 이걸 전공과 연결해서 답안을 작성해야 한다. 참고로 문제지는 다시 제출해야 했으므로 나는 문제를 요약해 차례대로 답안지에 적었다.</p><p>50분이 지나면 바로 면접으로 들어간다. 2:1 면접으로 진행하고 그렇게 압박하는 분위기는 아니다. 간단한 아이스브레이킹이 끝난 뒤 바로 풀었던 문제를 설명해보라고 한다. 어떤 면접자는 답은 적었는데 문제가 기억나지 않아 당황했다고 하니 미리 문제를 적어간 나는 뭔가 운이 좋았다.</p><p>40분 내외의 면접 중 10분 정도를 어떻게 문제를 풀었는지 또 내가 생각하는 답은 무엇인지를 그림을 그리면서 설명했다. 뭔가 설명을 잘했는지 면접관이 이 문제 말고 혹시 선택하지 않았던 다른 문제를 기억하고 있는지 물었고 그 문제에 관해 추상적으로라도 좋으니 설명해보라고 했다.</p><p>그 문제는 실무 경험이 있으면 유리한 문제여서 아는 범위내에서 설명하니 살짝 미소를 보였다. 해당 문제 설명을 마치면 정말 자소서 기반으로 질문을 하고 답을 하는 면접이였다. 기술적인 질문이 50% 였고 이 동아리는 무엇인지 왜 11번가에 지원했는지와 같은 질문이 50% 였다. </p><h1 id="2차-면접"><a href="#2차-면접" class="headerlink" title="2차 면접"></a>2차 면접</h1><p>1차 면접과 달리 문제도 풀지 않고 그냥 앉아 있다가 바로 들어간다. 임원 면접이라고 해서 기술 관련 질문은 물어보지 않을 것 같았지만 예상은 빗나갔다. 이 역시 2대1 면접이었는데 1명이 기술 임뭔 다른 한 분은 그냥 임원이었다. 기술 임원이 계속 웃으면서 기술적인 질문을 던졌고 대답을 못 하는 것 같으면 힌트를 던져주셨다.</p><p>힌트를 듣고 정답을 이야기하면 계속 추임새로 ‘아시네요’, ‘잘하시네요’ 등 계속 칭찬을 해주며 편하게 해주려는 것 같았다. 2차 면접 역시 압박은 하나도 없었고 그냥 동네 아저씨랑 이야기하는 느낌이 들었다. 2차 면접은 기술 질문과 인성 질문이 60 대 40 정도였던 것 같다.</p><p>한 가지 당황했던 점이 기술면접관이 내 개인 기술 블로그에 들어와 특정 포스팅에 대해 질문을 던졌다. 진짜 들어와서 볼 줄은 몰랐는데… 대충 대답은 했지만 엄청나게 당황했다. 그리고 또 임원 면접에서 느낀 점은 2명 임원 모두 나의 자소서와 포트폴리오를 전날 확인한 것 같았다. 세세한 부분까지 알고 있었고 질문 또한 겉핥기 수준으로 대충 물어보지 않았다. </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;지금에 와서야 작년(2018) 하반기에 했던 취업 준비 과정을 정리하는 것이 이상한 것 같다. 하지만 이번 정리
+      
+    
+    </summary>
+    
+      <category term="review" scheme="http://DongyeolLee.github.io/categories/review/"/>
+    
+      <category term="job" scheme="http://DongyeolLee.github.io/categories/review/job/"/>
+    
+    
+      <category term="review" scheme="http://DongyeolLee.github.io/tags/review/"/>
+    
+      <category term="recruiting" scheme="http://DongyeolLee.github.io/tags/recruiting/"/>
+    
+      <category term="job" scheme="http://DongyeolLee.github.io/tags/job/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>자바 8 - lambda(람다) 더 알아보기</title>
+    <link href="http://DongyeolLee.github.io/2019/04/30/JAVA/lambda-more/"/>
+    <id>http://DongyeolLee.github.io/2019/04/30/JAVA/lambda-more/</id>
+    <published>2019-04-30T07:42:42.000Z</published>
+    <updated>2019-07-22T07:42:38.505Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>지난 <strong><a href="https://dongyeollee.github.io/2019/04/14/JAVA/lambda/">포스트</a></strong>에서는 람다(lambda)가 왜 사용되면 편리한지 또 어떻게 사용될 수 있을지에 대해 아주 간단하게 알아보았습니다.<br>이번 포스트에서는 람다(lambda)를 다시 한 번 정리하고 조금 더 심화된 내용을 알아보려고 합니다.</p><h1 id="람다란-무엇인가"><a href="#람다란-무엇인가" class="headerlink" title="람다란 무엇인가"></a>람다란 무엇인가</h1><p><strong>람다 표현식</strong>은 메서드로 전달할 수 있는 익명 함수를 간단하게 표현한 것입니다. 람다 표현식은 익명 함수와 비슷하게 이름은 없지만, 파라미터, 바디, 반환 형식, 예외 리스트를 가질 수 있습니다.<br>즉, 보통의 메서드와는 달리 이름이 없으므로 <strong>익명</strong>이라 표현하고 특정 메서드에 종속되지 않은 독립적인 것이므로 메서드가 아닌 함수라고 부릅니다.<br>하지만 람다가 기술적으로 자바8 이전의 자바로 할 수 없었던 일을 제공하는 것은 아닙니다. 다만 람다는 동작 파라미터 형식의 코드를 더 쉽게 구현하고 보기 쉬운 코드를 작성하는데 큰 도움이 됩니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Apple&gt; byWeight = <span class="keyword">new</span> Comparator&lt;apple&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Apple a1, Apple a2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a1.getWeight().compareTo(a2.getWeight());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>위와 같은 코드를 람다를 이용하면 훨씬 간단한 코드로 작성할 수 있습니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Apple&gt; byWeight = (Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight());</span><br></pre></td></tr></table></figure><p>즉, compare 메서드의 바디를 직접 전달하는 것처럼 코드를 전달할 수 있으면 이전 코드에 비해 훨씬 가독성 또한 높아졌습니다.<br>확인한 것처럼 람다 표현식의 기본 문법은 간단합니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 유효</span></span><br><span class="line">() -&gt; &#123;&#125;</span><br><span class="line"><span class="comment">// 유효</span></span><br><span class="line">() -&gt; <span class="string">"Raoul"</span></span><br><span class="line"><span class="comment">// 유효</span></span><br><span class="line">() -&gt; &#123;<span class="keyword">return</span> <span class="string">"Lee"</span>;&#125;</span><br><span class="line"><span class="comment">// 유효하지 않음</span></span><br><span class="line">(Integer i) -&gt; <span class="keyword">return</span> <span class="string">"Alan"</span> + i;</span><br><span class="line"><span class="comment">// 유효하지 않음</span></span><br><span class="line">(String s) -&gt; &#123;<span class="string">"Iron Man"</span>&#125;</span><br></pre></td></tr></table></figure><p>(parameters) -&gt; expression 또는 (parameters) -&gt; {statement;} 형식으로 람다 표현식을 작성할 수 있습니다.</p><h1 id="어디에-어떻게-람다를-사용할까"><a href="#어디에-어떻게-람다를-사용할까" class="headerlink" title="어디에, 어떻게 람다를 사용할까"></a>어디에, 어떻게 람다를 사용할까</h1><h2 id="함수형-인터페이스"><a href="#함수형-인터페이스" class="headerlink" title="함수형 인터페이스"></a>함수형 인터페이스</h2><p>함수형 인터페이스는 오직 하나의 추상 메서드를 지정하는 인터페이스 입니다.</p> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.util.Comparator</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(T o1, T o2)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// java.lang.Runnable</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// java.util.concurrent.Callable</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>과연 이런 함수형 인터페이스로 무엇을 할 수 있을까요? 함수형 인터페이스의 추상 메서드 구현을 직접 전달할 수 있으므로 전체 표현식을 함수형 인터페이스의 인스턴스로 취급할 수 있습니다.<br>또, 함수형 인터페이스보다는 덜 깔끔하지만 익명 내부 클래스로도 같은 기능을 구현할 수 있습니다.</p><p>다음과 같은 코드는 모두 올바른 코드입니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 람다 사용</span></span><br><span class="line">Runnable r1 = () -&gt; System.out.println(<span class="string">"Hello"</span>);</span><br><span class="line"><span class="comment">// 익명 클래스 사용</span></span><br><span class="line">Runnable r2 = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Runnable r)</span> </span>&#123;</span><br><span class="line">    r.run();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">process(r1);</span><br><span class="line">process(r2);</span><br><span class="line">process(() -&gt; System.out.println(<span class="string">"Hello 3"</span>));</span><br></pre></td></tr></table></figure><h2 id="함수-디스크립터"><a href="#함수-디스크립터" class="headerlink" title="함수 디스크립터"></a>함수 디스크립터</h2><p>람다 표현식의 시그니처를 서술하는 메서드를 <strong>함수 디스크립터</strong>라고 부릅니다. 예를 들어 Runnable 인터페이스의 유일한 추상 메서드 run은 인수와 반환값이 없으므로 Runnable 인터페이스는 인수와 반환값이 없는 시그니처로 생각할 수 있습니다.<br>즉, Runnable 인터페이스의 run은 () -&gt; void과 같이 표현될 수 있습니다. 그리고 이에 대응하는 람다의 함수 디스크립터 역시 () -&gt; void로 표현되어야 합니다.</p><h1 id="함수형-인터페이스-사용"><a href="#함수형-인터페이스-사용" class="headerlink" title="함수형 인터페이스 사용"></a>함수형 인터페이스 사용</h1><h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><p> java.util.function.Predicate&lt; T &gt; 인터페이스는 test라는 추상메서드를 정의하며 test는 제네릭 형식의 t의 객체를 인수로 받아 Boolean을 반환합니다. 즉, 따로 Predicate를 만들 필요없이 필요에 따라 바로 Predicate 인터페이스를 사용할 수 있습니다.</p> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">filter</span><span class="params">(List&lt;T&gt; list, Predicate&lt;T&gt; p)</span> </span>&#123;</span><br><span class="line">    List&lt;T&gt; results = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(T s : list) &#123;</span><br><span class="line">        <span class="keyword">if</span>(p.test(s)) &#123;</span><br><span class="line">            results.add(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Predicate&lt;String&gt; nonEmptyStringPredicate = (String s) -&gt; !s.isEmpty();</span><br><span class="line">List&lt;String&gt; nonEmpty = filter(listOfString, nonEmptyStringPredicate)</span><br></pre></td></tr></table></figure><h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><p>java.util.function.Consumer&lt; T &gt; 인터페이스는 제네릭 형식 T 객체를 받아서 void를 반환하는 accept라는 추상 메서드를 정의합니다. T 형식의 객체를 인수로 받아서 어떤 동작을 수행하고 싶을 때 Consumer 인터페이스를 사용할 수 있습니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">forEach</span><span class="params">(List&lt;T&gt; list, Consumer&lt;T&gt; c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(T i : list) &#123;</span><br><span class="line">        c.accept(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; i = map(Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>), (Integer i) -&gt; System.out.println(i));</span><br></pre></td></tr></table></figure><h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>java.util.function.Function&lt; T, R &gt; 인터페이스는 제네릭 형식 T를 인수로 받아서 제네릭 형식 R 객체를 반환하는 apply라는 추상 메서드를 정의하며 이를 활용하여 입력을 출력으로 매핑하는 형식으로 사용할 수 있습니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Function</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">R <span class="title">apply</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T, R&gt; <span class="function">List&lt;R&gt; <span class="title">map</span><span class="params">(List&lt;T&gt; list, Function&lt;T, R&gt; f)</span> </span>&#123;</span><br><span class="line">    List&lt;R&gt; = result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(T s : list) &#123;</span><br><span class="line">        result.add(f.apply(s));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4, 2, 3</span></span><br><span class="line">List&lt;Integer&gt; i = map(Array.asList(<span class="string">"test"</span>, <span class="string">"dy"</span>, <span class="string">"lee"</span>), (String s) -&gt; s.length());</span><br></pre></td></tr></table></figure><h2 id="기본형-특화"><a href="#기본형-특화" class="headerlink" title="기본형 특화"></a>기본형 특화</h2><p>자바에는 기본형과 참조형이 존재하지만 제네릭 파라미터에는 참조형만 사용할 수 있습니다. 이에 따라 자바에서는 기본형을 참조형으로 변환할 수 있는 기능을 제공하고 이 기능을 <strong>박싱</strong>이라고 부릅니다.<br>또 이와 반대로 참조형을 기본형으로 변환하는 작업을 <strong>언박싱</strong>이라고 부릅니다. 더 나아가 자바에서는 박싱과 언박싱이 자동으로 이루어지는 오토 박싱이라는 기능도 제공합니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">300</span>; i &lt; <span class="number">400</span>; i ++) &#123;</span><br><span class="line">    list.add(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>예시와 같은 코드는 동작하는데는 무리가 없지만 기본형이 참조형으로 변환하는 과정에서 어쩔수 없는 비용이 소모됩니다. 박싱한 값은 기본형을 감싸는 래퍼이며 힙에 저장됩니다. 따라서 박싱한 값은 메모리를 더 소비하며 기본형을 가져올 때도 메모리를 탐색하는 과정이 필요합니다.<br>자바 8에서는 오토박싱 동작을 피할 수 있도록 특별한 버전의 함수형 인터페이스를 제공합니다. 예를 들어 아래 예제에서 IntPredicate는 1000이라는 값을 박싱하지 않지만, Predicate&lt; Integer &gt;는 1000이라는 값을 Integer로 박싱합니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IntPredicate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 박싱 없음</span></span><br><span class="line">IntPredicate evenNumbers = (<span class="keyword">int</span> i) -&gt; i % <span class="number">2</span> == <span class="number">0</span>;</span><br><span class="line">evenNumbers.test(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 박싱</span></span><br><span class="line">Predicate&lt;Integer&gt; oddNumbers = (Integer i) -&gt; i % <span class="number">2</span> == <span class="number">1</span>;</span><br><span class="line">oddNumbers.test(<span class="number">1000</span>);</span><br></pre></td></tr></table></figure><h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>자바 8에서 중요한 요소인 람다의 정리를 마치겠습니다. 질문은 언제든지 자유롭게 달아주시면 찾아서라도 답 달아보도록 노력할게요~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;지난 &lt;strong&gt;&lt;a href=&quot;https://dongyeollee.github.io/2019/04/14/J
+      
+    
+    </summary>
+    
+      <category term="programming" scheme="http://DongyeolLee.github.io/categories/programming/"/>
+    
+      <category term="java" scheme="http://DongyeolLee.github.io/categories/programming/java/"/>
+    
+    
+      <category term="java" scheme="http://DongyeolLee.github.io/tags/java/"/>
+    
+      <category term="lambda" scheme="http://DongyeolLee.github.io/tags/lambda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>자바 8 - lambda(람다) 함수</title>
+    <link href="http://DongyeolLee.github.io/2019/04/14/JAVA/lambda/"/>
+    <id>http://DongyeolLee.github.io/2019/04/14/JAVA/lambda/</id>
+    <published>2019-04-14T05:15:55.000Z</published>
+    <updated>2019-04-30T07:24:41.162Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>어떤 상황에서 일을 하든 소비자 요구사항은 항상 바뀔 가능성이 높습니다. 따라서 변화하는 요구사항은 소프트웨어에서는 피할 수 없는 문제입니다.<br>이런 상황에서 조금 더 가독성있게 편리하게 사용할 수 있는 것이 <strong><code>Lambda(람다)</code></strong>라는 자바 8에서 추가된 기능이라고 할 수 있습니다. </p><p><strong><code>lambda</code></strong>를 이해하기 전 우리는 먼저 시시각각 변하는 사용자 요구사항에 어떻게 대응해야 할까 생각을 해보아야 합니다. 새로 추가되거나 변경되는 기능이 쉽게 구현 가능하며 장기적인 관점에서는 유지 보수가 쉬워야 합니다.</p><h1 id="동작-파라미터화"><a href="#동작-파라미터화" class="headerlink" title="동작 파라미터화"></a>동작 파라미터화</h1><p><strong>동작 파라미터화</strong>를 이용하면 자주 바뀌는 요구사항을 효과적으로 대응할 수 있습니다. <strong>동작 파라미터화</strong>란 아직은 어떻게 실행할 것인지 결정하지 않은 코드 블록을 의미합니다.<br>글로만 보려하니 잘 이해가 가지 않을 수도 있습니다. 한번 예시를 살펴보겠습니다.</p><p>사과가 담긴 리스트에서 녹색 사과만 필터링 하는 기능을 구현하는 코드를 한번 보겠습니다.</p><pre><code class="java">public class filterGreenApples {    public static List<apple> filterGreenApples(List<apple> inventory) {        List<apple> result = new ArrayList<apple>();        for (Apple apple : inventory) {            if ("green".equals(apple.getColor()) {                result.add(apple);            }        }        return result;    }}</apple></apple></apple></apple></code></pre><p>위와 같은 코드에서 과연 초록 사과 뿐만이 아닌 빨간 사과도 필터링 하고 싶으면 어떤 식으로 코드를 수정해야 할까요?<br>물론 코드 자체를 복사해서 “green” 부분만 “red”로 수정해도 문제는 없습니다. 하지만 나중에 다양한 색으로 필터링 하기는 어려운 관계로 조금 더 변화에 적절하게 바꿔 보겠습니다.</p><pre><code class="java">public class filterApplesByColor {    public static List<apple> filterApplesByColor(List<apple> inventory, String color) {        List<apple> result = new ArrayList<apple>();        for(Apple apple : inventory) {            if (apple.getColor().equals(color)) {                result.add(apple);            }        }        return result;    }}</apple></apple></apple></apple></code></pre><p>이제 모든 색의 사과를 필터링 할 수 있게 됐습니다. 하지만 더 나아가 특정 색을 가진 사과를 다시 무게로 필터링을 하려면 어떻게 수정할 수 있을까요? 여러가지 방법이 있을 수 있겠지만 가장 쉽게 생각할 수 있는 방법은 다음과 같습니다.</p><pre><code class="java">public class filterApplesByWeight {    // 특정 무게보다 무거운 사과만 담기    public static List<apple> filterApplesByWeight(List<apple> inventory, int weight) {        List<apple> result = new ArrayList<apple>();        for(Apple apple : inventory) {            if (apple.getWeight() > weight) {                result.add(apple);            }        }        return result;    }}</apple></apple></apple></apple></code></pre><p>지금까지 세개의 예시 코드를 보았습니다. 무엇가 느껴지시지 않으신가요? 검색 조건이 추가될 때마다 파라미터가 증가한다거나 또 색으로만 검색하고 싶은 경우는 별도의 중복된 함수를 따로 둬야 한다는 문제가 있습니다.<br>어떤 식으로 변경을 하면 조금 더 유연하게 변경이 가능할까요? 먼저 검색 조건을 추상화 해보겠습니다.</p><pre><code class="java">public interface ApplePredicate {    boolean test (Apple apple);}public class filterApplesWithPredicate {    public static List<apple> filterApplesWithPredicate(List<apple> inventory, ApplePredicate p) {        List<apple> result = new ArrayList<apple>();        for(Apple apple : inventory) {            if(p.test(apple)) {                result.add(apple);            }        }        return result;    }    public class AppleHeavyWeightPredicate implements ApplePredicate {        @Override        public boolean test(Apple apple) {            return apple.getWeight() > 150;        }    }}</apple></apple></apple></apple></code></pre><p>위와 같은 코드는 어떤가요? 전략 패턴을 사용하여 메서드가 다양한 동작을 받아서 내부적으로 수행할 수 있게되어 훨씬 유연한 코드로 변화하였습니다. ApplePredicate를 적절하게 구현하는 클래스를 만들면 다양한 요구사항에 맞게 기능을 추가할 수 있습니다.<br><strong>즉, 우리가 전달한 ApplePredicate 객체에 의해 filterApplesWithPredicate 메서드의 동작을 파라미터화 한 것입니다.</strong></p><p>자! 오래 기다리셨습니다. 이제 <strong><code>lambda(람다)</code></strong>를 이야기 할때가 된 것 같습니다. 바로 직전 본 코드에서 filter 함수를 어떤 식으로 호출할 수 있을까요?<br>아마 다음과 같이 호출할 수 있습니다.</p><pre><code class="java">public class FilteringApples {    public static void main(String...args) {        List<apple> inventory = Arrays.asList(new Apple(90, "green"),                                       new Apple(200, "red"),                                       new Apple(90, "red"));        List<apple> heavyApples = filterApplesWithPredicate(inventory,                                                       new AppleHeavyWeightPredicate);    }}</apple></apple></code></pre><p>또 실제로 AppleHeavyWeightPredicate 메서드를 활용하지 않고 익명 함수로 처리할 수도 있습니다.</p><pre><code class="java">public class FilteringApples {    public static void main(String...args) {        List<apple> inventory = Arrays.asList(new Apple(90, "green"),                                       new Apple(200, "red"),                                       new Apple(90, "red"));        List<apple> heavyApples = filterApplesWithPredicate(inventory, new ApplePredicate() {            @Override            public boolean test(Apple apple) {                return apple.getWeight() > 150;            }        });    }}</apple></apple></code></pre><p>하지만 다음과 같은 익명 클래스에서도 다소 고치고 싶은 부분이 있습니다. 바로 중복되는 부분의 코드입니다. 익명 클래스로 <strong>ApplePredicate()</strong>를 넘겨 줄 때마다 명시적으로 public boolean test까지 표현해야해 여전히 많은 공간을 차지 합니다.<br>또, 익명 클래스에 익숙하지 않으면 사용하기 어렵다는 문제도 발생할 수 있습니다. </p><p>이런 코드의 장황함과 익숙하지 않음을 해결해 줄 수 있는 방법이 바로 <strong><code>lambda(람다)</code></strong>입니다. 즉, <strong><code>lambda(람다)</code></strong>는 한눈에 이해할 수 있는 코드를 구현하는 데 많은 도움을 줄 수 있습니다.<br>명시적으로 익명 클래스처럼 객체를 만들고 새로운 동작을 정의하는 메서드를 구현하는데는 변하지 않지만 훨씬 가독성이 뛰어난 것을 확인할 수 있습니다. </p><p>이제 <strong><code>lambda(람다)</code></strong>를 활용하여 앞에서 본 예제가 어떻게 변화했는지 확인 해보겠습니다.</p><pre><code class="java">public class FilteringApples { public static void main(String...args) {     List<apple> inventory = Arrays.asList(new Apple(90, "green"),                                    new Apple(200, "red"),                                    new Apple(90, "red"));     List<apple> heavyApples = filterApplesWithPredicate(inventory,         // 람다 표현식        (Apple apple) -> apple.getWeight() > 150); }}</apple></apple></code></pre><p>이전 보다 훨씬 코드가 간결해지지 않았나요? 코드가 간결해지면서 가독성 또한 많이 높아졌습니다. 즉, <strong><code>lambda(람다)</code></strong>는 코드의 장황성을 배제하고 프로그래머로 하여금 훨씬 좋은 코드를 짤 수 있도록 많이 사용되고 있습니다.<br>다시 한번 정리하자면 <strong><code>lambda(람다)</code></strong>는 익명 클래스처럼 이름이 없는 함수면서 메서드를 간결하고 장황하지 않게 인수로 전달할 수 있는 코드 블록를 의미합니다.</p><h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p><strong><code>lambda(람다)</code></strong>를 설명하기에는 다소 부족한 점이 많이 있었을 것이라 생각됩니다. 틀린 부분이 있거나 이해가 잘 가지 않는 부분이 있다면 언제든지 comment 달아주세요~<br>이번은 겉핥기식으로 정리를 해보았지만 이후 조금 더 심화된 내용의 <strong><code>lambda(람다)</code></strong>를 정리해볼까합니다.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;어떤 상황에서 일을 하든 소비자 요구사항은 항상 바뀔 가능성이 높습니다. 따라서 변화하는 요구사항은 소프트웨어에
+      
+    
+    </summary>
+    
+      <category term="programming" scheme="http://DongyeolLee.github.io/categories/programming/"/>
+    
+      <category term="java" scheme="http://DongyeolLee.github.io/categories/programming/java/"/>
+    
+    
+      <category term="java" scheme="http://DongyeolLee.github.io/tags/java/"/>
+    
+      <category term="lambda" scheme="http://DongyeolLee.github.io/tags/lambda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1759] - 암호 만들기</title>
+    <link href="http://DongyeolLee.github.io/2018/12/04/Al/1759/"/>
+    <id>http://DongyeolLee.github.io/2018/12/04/Al/1759/</id>
+    <published>2018-12-03T16:51:13.000Z</published>
+    <updated>2019-04-30T07:24:41.153Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1759" target="_blank" rel="noopener"><strong><em>백준 1759 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>이번 문제는 백 트래킹을 활용해 문제를 풀 수 있다.</p><p>입력 받은 문자열을 오름 차순으로 정렬한 뒤 백 트래킹을 실시 한다.</p><p>조합을 통해 만들어 낸 문자열의 길이가 최종 길이와 같다면 문자열 중복을 set을 활용해 피한다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltstring>#include &ltalgorithm>#include &ltset>using namespace std;int L, C;vector&ltchar> c_arr;set&ltstring> se;void back_tracking(int idx, int cnt, string s) {    // 문자열 길이가 최종 길이와 같다면    if(cnt == L) {        // 모음 갯수, 자음 갯수        int chk1 = 0, chk2 = 0;        // 알파벳 중복 체크        int visited[27] = {0, };        for(int i = 0; i < s.length(); i ++) {            // 모음인 경우            if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u') {                chk1 ++;            }            // 자음인 경우            else {                // 중복 자음이 아닌 경우 카운트 증가                if(!visited[s[i]-'0'-48])                    chk2 ++;            }        }        // 모음이 하나 이상이고 서로 다른 자음이 2개이상 사용하면 set에 저장        if(chk1 >= 1 && chk2 >= 2)            se.insert(s);        return;    }    for(int i = idx; i < C; i ++) {        // 문자를 선택한 경우        back_tracking(i + 1, cnt + 1, s + c_arr[i]);        // 선택하지 않고 지나친 경우        back_tracking(i + 1, cnt, s);    }}int main() {    cin >> L >> C;    for(int i = 0; i < C; i ++) {        char c;        cin >> c;        c_arr.push_back(c);    }    // 오름 차순으로 정렬    sort(c_arr.begin(), c_arr.end());    // 백 트래킹 시작    back_tracking(0, 0, "");    // set에 저장된 문자열 출력    for(auto it = se.begin(); it != se.end(); it++) {        cout << *it << endl;    }    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1759&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1261] - 알고스팟</title>
+    <link href="http://DongyeolLee.github.io/2018/11/27/Al/1261/"/>
+    <id>http://DongyeolLee.github.io/2018/11/27/Al/1261/</id>
+    <published>2018-11-27T06:12:05.000Z</published>
+    <updated>2019-04-30T07:24:41.147Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1261" target="_blank" rel="noopener"><strong><em>백준 1261 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>문제의 정답은 벽을 최소로 부수면서 도착지에 도착하게끔 구현해야한다.</p><p>bfs로도 풀수 있을 것 같긴하나 시간 초과가 발생할 수도 있을것 같다. 따라서 다익스트라 알고리즘을 사용했다.</p><p>벽을 부수는 갯수를 해당 좌표까지 이동하는 비용으로 생각하고 문제를 풀었다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltcstring>#include &ltqueue>using namespace std;int r, c;int map[101][101];int broken[101][101];int dr[4] = {-1, 0, 1, 0};int dc[4] = {0, 1, 0, -1};priority_queue&ltpair&ltint, pair&ltint, int>>> pq;int main() {    cin >> c >> r;    // 벽을 부순 갯수를 나타내는 broken 지도    memset(broken, -1, sizeof(broken));    for(int i = 0; i < r; i ++) {        for(int j = 0; j < c; j ++) {            // 숫자 하나씩 입력 받으며 map에 그림            scanf(" %1d", &map[i][j]);        }    }    // 우선 순위 큐에 {벽을 부순 숫자, {좌표1, 좌표2}}    // 즉, (좌표1, 좌표2)까지 이동하기 위해 부순 벽돌수를 저장    pq.push({0, {0, 0}});    while(!pq.empty()) {        int broken_cnt = -pq.top().first;        int rr = pq.top().second.first;        int cc = pq.top().second.second;        pq.pop();        // 이미 해당 경로를 통과했을 경우        if(broken[rr][cc] != -1) {            continue;        }        // 부순 벽돌 수 저장        broken[rr][cc] = broken_cnt;        // 위, 오른쪽, 아래, 왼쪽        for(int i = 0; i < 4; i ++) {            int nr = rr + dr[i];            int nc = cc + dc[i];            // 범위 안에 존재하고            if(nr >= 0 && nc >= 0 && nr < r && nc < c) {                // 다음 목적지를 방문한적이 없으면                if(broken[nr][nc] == -1) {                    // 다음 목적지가 벽돌이라면                    if(map[nr][nc] == 1) {                        pq.push({-(broken_cnt + 1), {nr, nc}});                    }                    // 벽돌 없는 빈방이라면                    else {                        pq.push({-broken_cnt, {nr, nc}});                    }                }            }        }    }    cout << broken[r-1][c-1];    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1261&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1238] - 파티</title>
+    <link href="http://DongyeolLee.github.io/2018/11/16/Al/1238/"/>
+    <id>http://DongyeolLee.github.io/2018/11/16/Al/1238/</id>
+    <published>2018-11-16T05:20:50.000Z</published>
+    <updated>2019-04-30T07:24:41.147Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1238" target="_blank" rel="noopener"><strong><em>백준 1238 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>다익스트라 알고리즘을 사용하되 다시 각자의 마을로 복귀해야 하므로 다익스트라 알고리즘을 한번 더 사용한다.</p><p>dis_go 배열에는 갈때의 비용을 저장하고 dis_come 배열에는 다시 돌아올때의 비용을 저장한다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltqueue>#include &ltalgorithm>#include &ltutility>#include &ltcstring>using namespace std;int N, M, X, ans = -1, dis_go[1001], dis_come[1001];vector&ltvector&ltpair&ltint, int>>> graph;priority_queue&ltpair&ltint, int>> pq;int main() {    // 학생, 도로 숫자, 도착 마을    cin >> N >> M >> X;    // 마을 수 만큼 그래프를 증가    graph.resize(M+1);    for(int i = 0; i < M; i ++) {        int from, to, time;        cin >> from >> to >> time;        // 그래프를 그림        graph[from].push_back({to, time});    }    // 모든 마을에서 도착지점으로 가야하므로 반복문 사용    for(int i = 1; i &lt= N; i ++) {        // 출발지 설정        int source = i;        // 우선순위 큐를 초기화(나에게 오는 비용은 0)        pq.push({0, source});        // 모든 비용을 -1로 처리        memset(dis_go, -1, sizeof(dis_go));        while(!pq.empty()) {            int here = pq.top().second;            int cost = -pq.top().first;            pq.pop();            // 방문한 적이 있다면 무시            if(dis_go[here] != -1) {                continue;            }            // 해당 마을까지의 비용을 저장            dis_go[here] = cost;            // 현재 마을로 부터 연결된 지점을 탐색            for(int n = 0; n < graph[here].size(); n ++) {                int next = graph[here][n].first;                int n_cost = -graph[here][n].second - cost;                // 방문한 적이 있다면 무시                if(dis_go[next] != -1) {                    continue;                }                // 새로운 마을이라면 우선 순위큐에 삽입                pq.push({n_cost, next});            }        }        // 원래 마을로 복귀해야 하므로 도착지점을 출발지점으로 설정        pq.push({0, X});        memset(dis_come, -1, sizeof(dis_come));        while(!pq.empty()) {            int here = pq.top().second;            int cost = -pq.top().first;            pq.pop();            if(dis_come[here] != -1) {                continue;            }            dis_come[here] = cost;            for(int n = 0; n < graph[here].size(); n ++) {                int next = graph[here][n].first;                int n_cost = -graph[here][n].second - cost;                if(dis_come[next] != -1) {                    continue;                }                pq.push({n_cost, next});            }        }        ans = max(ans, dis_go[X] + dis_come[source]);    }    cout << ans;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1238&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1916] - 최소비용 구하기</title>
+    <link href="http://DongyeolLee.github.io/2018/11/14/Al/1916/"/>
+    <id>http://DongyeolLee.github.io/2018/11/14/Al/1916/</id>
+    <published>2018-11-14T05:09:32.000Z</published>
+    <updated>2019-04-30T07:24:41.154Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1916" target="_blank" rel="noopener"><strong><em>백준 1916 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>한 정점에서 모든 정점을 최소비용으로 가는 방법을 구하는 문제이므로 이는 다익스트라 알고리즘을 활용해 해결할 수 있다.</p><p>즉, 구하고자하는 마을과 버스 노선을 그래프로 그려 이를 활용해 우선순위 큐로 문제를 해결한다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltutility>#include &ltqueue>#include &ltcstring>using namespace std;// N: 마을 수, M: 버스 노선 수, source: 출발, destination: 목적지, dis[]: 거리int N, M, source, destination, dis[1001];vector&ltvector&ltpair<int, int>>> graph;priority_queue&ltpair&ltint, int>> pq;int main() {    cin >> N;    cin >> M;    // 그래프의 노드는 마을이므로 사이즈 증가    graph.resize(N+1);    for(int i = 0; i < M; i ++) {        int from, to, cost;        cin >> from >> to >> cost;        // 현재 마을에서 다음 마을까지의 요소를 현재 마을 인덱스에 저장        graph[from].push_back(make_pair(to, cost));    }    cin >> source >> destination;    // 우선순위 큐에 출발지 정보 삽입    pq.push({0, source});    memset(dis, -1, sizeof(dis));    while(!pq.empty()) {        // 우선순위 큐는 기본적으로 max heap을 활용하므로 - 값을 취함         int cost = -pq.top().first;        int location = pq.top().second;        pq.pop();        // 이전 방문 기록이 있으면 무시        if(dis[location] != -1) {            continue;        }        dis[location] = cost;        for(int i = 0; i < graph[location].size(); i ++) {            int n_location = graph[location][i].first;            // 가장 작은 비용이 상위에 저장되어야 하므로 - 값            int n_cost = -graph[location][i].second - cost;            if(dis[n_location] != -1) {                continue;            }            pq.push({n_cost, n_location});        }    }    cout << dis[destination];    return 0;}</int,></code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1916&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>stringstream을 활용하여 문자열 처리하기</title>
+    <link href="http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/"/>
+    <id>http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/</id>
+    <published>2018-11-08T12:19:47.000Z</published>
+    <updated>2019-04-30T07:24:41.167Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>cpp로 알고리즘 문제를 풀다보면 가끔 까다로운 input으로 시간이 오래 걸릴 경우가 있습니다.</p><p>그중 최근 겪었던 까다로운 input을 쉽게 해결하는 방법을 알아보겠습니다.</p><h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><p>문자열을 쉽게 핸들링하는 방법으로 <strong><code>stringstream</code></strong>이 있습니다. 이를 활용하여 입력받은 string input을 구분하여 저장할 수 있습니다.</p><p>예를 들어 다음과 같은 상황을 고려해보겠습니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 lee 3학년 19살</span><br><span class="line">2 kim 2학년 18살</span><br><span class="line">3 choi 1학년 17살</span><br></pre></td></tr></table></figure><p>예시와 같이 3명의 학생이 입력이 됩니다. 하지만 모든 입력은 띄어쓰기를 구분되어 번호, 이름, 학년, 나이가 입력됩니다. 이름과 학년, 나이의 길이 제한은 없습니다.</p><p>즉, 이름이 100자인 학생이 들어올수도 있고 나이가 100살인 학생이 들어올수 있습니다.</p><p>이럴 경우 단순히 input을 처리하기에는 다소 많은 시간을 들여야 합니다. 이때 유용하게 사용할 수 있는 방법이 바로 <strong><code>stringstream</code></strong>입니다.</p><p>이 역시 코드를 보며 확인해 보겠습니다.</p><pre><code class="cpp">#include &ltiostream>#include &ltsstream>using namespace std;int main() {    string input;    for(int i = 0; i < 3; i ++) {        getline(cin, input);        stringstream ss(input);        string v;        while((ss >> v)) {            cout << v << endl;        }        cout << endl;    }    return 0;}</code></pre><p>일단 입력받은 문자열을 통째로 input에 저장합니다. 이럴 경우 input에 저장되는 값은 아래와 같습니다.</p><p><img src="/images/Tips_Al/1/1.png" width="500"></p><p>input에 저장된 문자열을 이제 <strong><code>stringstream</code></strong>을 생성하며 문자열을 전달합니다.</p><p>이렇게 되면 ss에도 input 값과 같은 문자열이 가지고 있게 됩니다.</p><p><strong><code>stringstream</code></strong>에 저장된 값을 12번 줄에서 보이는 것 같이 내부적으로 다시 string 단위로 뽑아 다음과 같은 출력을 얻을 수 있습니다.</p><p><img src="/images/Tips_Al/1/2.png" width="300"></p><p>중간에 <strong><code>stringstream</code></strong>을 바꿔야 한다면 다음과 같이 사용하시면 됩니다. </p><pre><code class="cpp">ss.str("바꿔야 할 문자열");</code></pre><p><strong><code>stringstream</code></strong>을 사용하면서 한가지 주의할 점은 바로 값의 type입니다.</p><p>코드 예시에서 볼수 있듯이 <strong><code>stringstream</code></strong>에서 연산자를 활용하여 string type의 v에 값을 저장하고 있습니다.</p><p>하지만 이 type이 맞지 않는다면 <strong><code>stringstream</code></strong>은 값을 저장하지 않고 바로 종료합니다.</p><p><img src="/images/Tips_Al/1/3.png" width="400"></p><p><strong>즉, 위와 같은 input이 들어왔을 경우 해당 값을 저장할 변수 type이 int로 설정되어 있다면 출력 n의 바로 앞인 8까지 출력후 종료됩니다.</strong></p><h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>이번에 알게된 <strong><code>stringstream</code></strong>을 통해 모든 분들이 예상치 못한 input에 당황하는 일이 줄어들었으면 합니다… </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;cpp로 알고리즘 문제를 풀다보면 가끔 까다로운 input으로 시간이 오래 걸릴 경우가 있습니다.&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="tips" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/tips/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+      <category term="tips" scheme="http://DongyeolLee.github.io/tags/tips/"/>
+    
+      <category term="cpp" scheme="http://DongyeolLee.github.io/tags/cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[2644] - 촌수계산</title>
+    <link href="http://DongyeolLee.github.io/2018/11/07/Al/2644/"/>
+    <id>http://DongyeolLee.github.io/2018/11/07/Al/2644/</id>
+    <published>2018-11-07T12:07:34.000Z</published>
+    <updated>2019-04-30T07:24:41.157Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/2644" target="_blank" rel="noopener"><strong><em>백준 2644 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>전형적인 bfs 완전 탐색으로 문제를 해결할 수 있다.</p><p>각 가족들의 촌수를 양방향 그래프로 벡터에 저장한 뒤, 시작 노드부터 완전 탐색을 시작한다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltqueue>#include &ltvector>using namespace std;// 구조체 작성struct info {    // 촌수를 카운트    int rel_cnt;    // 나의 노드    int my_num;};int n, r1, r2, cnt;vector&ltvector&ltint>> rel(101);int visited[101];queue<info> q;int main() {    cin >> n;    cin >> r1 >> r2;    cin >> cnt;    for(int i = 0; i < cnt; i ++) {        int x, y;        cin >> x >> y;        // 촌수에 대한 양방향 그래프        rel[x].push_back(y);        rel[y].push_back(x);    }    // 나를 시작으로 완전탐색 시작    q.push({0, r1});    // 방문 체크    visited[r1] = 1;    while(!q.empty()) {        int rel_cnt = q.front().rel_cnt;        int my_num = q.front().my_num;        q.pop();        // 도착지점        if(my_num == r2) {            cout << rel_cnt;            return 0;        }        // 연결된 노드(가족)를 모두 검색        for(int i = 0; i < rel[my_num].size(); i ++) {            int next_rel = rel[my_num][i];            // 방문하지 않은 가족이 있다면            if(visited[next_rel] != 1) {                visited[next_rel] = 1;                q.push({rel_cnt + 1, next_rel});            }        }    }    cout << -1;    return 0;}</info></code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2644&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[16236] - 아기 상어</title>
+    <link href="http://DongyeolLee.github.io/2018/10/24/Al/16236/"/>
+    <id>http://DongyeolLee.github.io/2018/10/24/Al/16236/</id>
+    <published>2018-10-23T16:23:34.000Z</published>
+    <updated>2019-04-30T07:24:41.152Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/16236" target="_blank" rel="noopener"><strong><em>백준 16236 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>bfs를 활용하는 문제다. 처음에는 어떻게 풀어야 할지 잘 생각이 나지 않았다. 문제가 이해가 가질 않아서..</p><p>차분히 다시 생각해보니 bfs로 풀면 N이 작기 때문에 가능할 것 같다는 생각이 들었다.</p><p>bfs를 사용하되 과연 어떤 식으로 해결할 수 있을까..</p><p>아기 상어가 자신보다 작은 길로만 가게끔 구현하고 다음 위치의 상어가 아기 상어와 사이즈가 같을 경우와 물고기 없이 길인 경우를 동일시 처리한다.</p><p>만약 작은 상어가 있어 잡아 먹는다면 벡터로 따로 관라하는 방법을 취했다.</p><p>자세한 내용은 코드 주석을 확인</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltqueue>#include &ltcstring>#include &ltalgorithm>using namespace std;// 상어 구조체struct fish {    int r;    int c;    // 현재 사이즈를 표시    int size;    // 몇 마리를 잡아 먹었는지 표시    int eat;    // 이동한 시간을 표시    int time;};int N;int dr[4] = {-1, 0, 1, 0};int dc[4] = {0, 1, 0, -1};int map[21][21];int visited[21][21];queue&ltfish> q;vector&ltfish> v;// 문제 조건에 맞는 비교연산bool cmp(fish a, fish b) {    // 가장 짧은 시간    if (a.time &lt= b.time) {        // 시간이 같을 경우        if (a.time == b.time) {            // y값이 더 작은 순서            if (a.r &lt= b.r) {                // y값이 같다면                if (a.r == b.r) {                    // x값이 작은 순서로 정렬                    if (a.c < b.c) {                        return true;                    }                    return false;                }                return true;            }            return false;        }        return true;    }    return false;}int main() {    cin >> N;    // 이전 상어의 상태를 저장    fish ex;    for (int r = 0; r < N; r++) {        for (int c = 0; c < N; c++) {            cin >> map[r][c];            if (map[r][c] == 9) {                // 시작 위치를 설정                map[r][c] = 0;                // 물고기 초기화                ex = {r, c, 2, 0, 0};            }        }    }    // 시간 정보    int ans = 0;    while (1) {        v.clear();        memset(visited, 0, sizeof(visited));        visited[ex.r][ex.c] = 1;        q.push(ex);        while (!q.empty()) {            int r = q.front().r;            int c = q.front().c;            int size = q.front().size;            int eat = q.front().eat;            int time = q.front().time;            q.pop();            // 4방향으로 검사를 진행            for (int i = 0; i < 4; i++) {                int nr = r + dr[i];                int nc = c + dc[i];                if (nr >= 0 && nr < N && nc >= 0 && nc < N) {                    // 맵 사이즈가 유효하고 방문하지 않은 지역                    if (!visited[nr][nc]) {                        // 사이즈가 같은 상어이거나 길인 경우                        if (map[nr][nc] == 0 || map[nr][nc] == size) {                            // 방문 처리                            visited[nr][nc] = 1;                            // 시간만 추가하고 계속 작은 상어를 찾음                            q.push({nr, nc, size, eat, time + 1});                        }                         // 만약 작은 상어가 있다면                        else if (map[nr][nc] < size) {                            // 방문 처리                            visited[nr][nc] = 1;                            // 잡아 먹은 상어와 시간을 표시하고 벡터에 따로 저장                            v.push_back({nr, nc, size, eat + 1, time + 1});                        }                    }                }            }        }        // 만약 벡터가 비어있다면 잡아 먹을수 있는 상어가 없음        if (v.size() == 0) {            break;        }        // cmp 조건에 맞춰 정렬        sort(v.begin(), v.end(), cmp);        // 먹은 상어의 숫자가 현재 사이즈와 같다면 사이즈 증가        if (v[0].size == v[0].eat) {            v[0].size++;            v[0].eat = 0;        }        // 잡어 먹은 상어를 지움        map[v[0].r][v[0].c] = 0;        // 움직인 시간을 저장        ans += v[0].time;        // 시간을 초기화하고 다시 큐에 넣어 이전 과정을 반복        ex = {v[0].r, v[0].c, v[0].size, v[0].eat, 0};    }    cout << ans;    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/16236&quot; target=&quot;_blank&quot; rel=&quot;n
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[9205] - 맥주 마시면서 걷기</title>
+    <link href="http://DongyeolLee.github.io/2018/10/12/Al/9205/"/>
+    <id>http://DongyeolLee.github.io/2018/10/12/Al/9205/</id>
+    <published>2018-10-12T08:13:59.000Z</published>
+    <updated>2019-04-30T07:24:41.159Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/9205" target="_blank" rel="noopener"><strong><em>백준 9205 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>문제를 이해하기 힘들었다. 하지만 결론은 20병의 맥주를 다 마시기 전에 다른 편의점을 도착할 수 있는지의 여부, 그리고 도착지에 갈 수 있는지를 확인하면 된다.</p><ul><li>맥주 20개로 갈 수 있는 거리는 1000이다. 따라서 출발지로 부터 1000이내 편의점 또는 목적지가 있는지 검사한다.</li></ul><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltutility>#include &ltcstring>#include &ltcmath>#include &ltalgorithm>using namespace std;int T, N;string ans;vector&ltpair&ltint, int>> dist;int visited[105];// 거리 측정bool get_distance(int x1, int y1, int x2, int y2) {    int diff = abs(x1 - x2) + abs(y1 - y2);    return (diff &lt= 1000)? true : false;}void dfs(int idx) {    if(idx == N + 1) {        ans = "happy";        return;    }    for(int i = 1; i < N + 2; i ++) {        if(!visited[i]) {            // 거리 확인            if(get_distance(dist[idx].first, dist[idx].second, dist[i].first, dist[i].second)) {                visited[i] = 1;                // 이동                dfs(i);            }        }    }}int main() {    cin >> T;    for(int t = 1; t &lt= T; t ++) {        cin >> N;        ans = "sad";        dist.clear();        memset(visited, 0, sizeof(visited));        for(int i = 0; i < N + 2; i ++) {            int num1, num2;            cin >> num1 >> num2;            dist.push_back({num1, num2});        }        dfs(0);        cout << ans << endl;    }    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/9205&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[2668] - 숫자고르기</title>
+    <link href="http://DongyeolLee.github.io/2018/10/09/Al/2668/"/>
+    <id>http://DongyeolLee.github.io/2018/10/09/Al/2668/</id>
+    <published>2018-10-09T13:19:53.000Z</published>
+    <updated>2019-04-30T07:24:41.157Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/2668" target="_blank" rel="noopener"><strong><em>백준 2668 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>문제에서 요구하는 조건을 만족하려면 주어진 숫자들이 사이클을 이루는지 확인하고 사이클 갯수를 출력하면 된다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltalgorithm>#include &ltvector>#include &ltutility>#include &ltset>using namespace std;int N;int arr[101];int visited[101];vector&ltpair&ltint, int>> temp_arr;set<int> s_idx;void dfs(int idx) {    // 다음 방문할 곳    int next = arr[idx];    // 방문했다면 사이클이 존재    if(visited[next] == 1) {        // 사이클이 존재하는 idx만 따로 저장        for(int i = next; visited[i] != -1; i = arr[i]) {            temp_arr.push_back({idx, i});            idx = i;            visited[i] = -1;        }        return;    }    else if(visited[next] == -1 || visited[next] == 0) {        visited[next] = 1;        dfs(next);        visited[next] = -1;    }}int main() {    cin >> N;    // 1 ~ N까지 숫자    for(int i = 1; i &lt= N; i ++) {        // i는 1부터 시작        cin >> arr[i];    }    for(int i = 1; i &lt= N; i ++) {        temp_arr.clear();        // 방문 체크        visited[i] = 1;        // 사이클 확인        dfs(i);        visited[i] = -1;        // 중복 제거        for(int t = 0; t < temp_arr.size(); t ++) {            s_idx.insert(temp_arr[t].first);        }    }    cout << s_idx.size() << endl;    for (auto s1 = s_idx.begin(); s1 != s_idx.end(); s1++) {        cout << *s1 << endl;    }    return 0;}</int></code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2668&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Command Pattern(커맨드 패턴)</title>
+    <link href="http://DongyeolLee.github.io/2018/09/25/Design%20Pattern/CommandPattern/"/>
+    <id>http://DongyeolLee.github.io/2018/09/25/Design Pattern/CommandPattern/</id>
+    <published>2018-09-25T06:36:45.000Z</published>
+    <updated>2019-04-30T07:24:41.161Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이번 포스팅에서는 <strong><code>커맨드 패턴(Command Pattern)</code></strong> 에 대해서 알아보겠습니다.</p><h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="1-커맨드-패턴이란-무엇인가"><a href="#1-커맨드-패턴이란-무엇인가" class="headerlink" title="1. 커맨드 패턴이란 무엇인가"></a>1. 커맨드 패턴이란 무엇인가</h2><p><strong><code>커맨드 패턴(Command Pattern)</code></strong>은 특정 행위(기능)을 캡슐화하여 클래스를 변경하지 않고 재사용할때 유용하게 사용합니다.</p><p>즉, 요청을 객체의 형태로 캡슐화하여 사용자가 보낸 요청을 나중에 이용할 수 있도록 매서드 이름, 매개변수 등 요청에 필요한 정보를 저장 또는 로깅, 취소할 수 있게 하는 패턴입니다.</p><p>말로는 많이 어려우니 밑에서 예시를 통해 <strong><code>커맨드 패턴(Command Pattern)</code></strong>을 사용하지 않았을때 발생하는 문제점과 <strong><code>커맨드 패턴(Command Pattern)</code></strong>을 사용했을때 얻는 이점을 다시 한번 확인해보겠습니다. </p><h2 id="2-왜-커맨드-패턴을-사용해야-하는가"><a href="#2-왜-커맨드-패턴을-사용해야-하는가" class="headerlink" title="2. 왜 커맨드 패턴을 사용해야 하는가"></a>2. 왜 커맨드 패턴을 사용해야 하는가</h2><p>한 가지 예를 들어겠습니다. 버튼이 두개 있는 리모컨이 있습니다. 하나는 Turn On, 다른 한 가지는 Turn Off 입니다. 하지만 이 리모컨은 만능 리모컨이기에 TV, 에어컨 등 모든 전자 기기를 끌수 있고 킬수 있다고 가정하겠습니다.</p><p>이때 어떤 전자 기기는 전원을 키고 끌때 내부적으로 모든 로직이 똑같을 수도 있고 다를 수도 있습니다. <strong>즉, 이전 코드를 재사용 할 수도 있고 완전히 새로 구현해야 할 수도 있습니다.</strong></p><p>이럴 경우 <strong><code>커맨드 패턴(Command Pattern)</code></strong>을 사용하면 기능 자체를 추상화하여 재사용성을 높이고 메서드를 직접 호출하지 않으면서 수정할 부분을 최소화 시킬수 있습니다.</p><h2 id="3-예시"><a href="#3-예시" class="headerlink" title="3. 예시"></a>3. 예시</h2><p><strong><code>커맨드 패턴(Command Pattern)</code></strong>의 필요성에서 보았듯이 만능 리모콘을 만들어보며 패턴을 적용하지 않았을 경우 문제점을 알아보겠습니다.</p><p>간략한 예시를 위해 turn on만 가정해서 코드를 작성하겠습니다.</p><h3 id="3-1-커맨드-패턴을-적용하지-않았을-경우"><a href="#3-1-커맨드-패턴을-적용하지-않았을-경우" class="headerlink" title="3.1 커맨드 패턴을 적용하지 않았을 경우"></a>3.1 커맨드 패턴을 적용하지 않았을 경우</h3><pre><code class="java">public class Lamp {    public void turnOn() {        System.out.println("Turn On");    }}public class Button {    private Lamp theLamp;    public Button(Lamp theLamp) {        this.theLamp = theLamp;    }    public void pressed() {        theLamp.turnOn();    }}public class Client {    public static void main(String[] args) {        Lamp lamp = new Lamp();        Button remote = new Button(lamp);        remote.pressed();    }}</code></pre><p>위에서 작성한 코드는 전등을 키는 간단한 코드입니다. 작동하는데는 문제가 없어 보입니다.</p><p>하지만 몇가지 문제점를 확인할 수 있습니다.</p><ul><li>같은 코드를 사용하면서 전등이 아닌 TV나 알람을 키는 기능을 추가할 경우</li><li>버튼을 누르는 횟수에 따라 다른 기능을 수행해야 할 경우</li></ul><p>첫 번째 문제점을 먼저 확인해보겠습니다. 위에 예시에서 볼수 있듯이 TV 클래스를 작성하는 것만으로 그치지 않고 기존 Button 클래스 코드를 수정해야 합니다. <strong>이는 이전 포스팅에서 확인했듯이 OCP에 위배됩니다.</strong></p><p>즉, 버튼을 눌렀을 때 지정된 기능만 고정적으로 수행하도록 만든 처음과 같은 설계는 기능이 추가될 때마다 여러 클래스를 수정해야하기에 OCP를 위반하는 설계입니다.</p><p>두 번째 경우의 문제점을 확인해보겠습니다. </p><p>예를 들어 버튼을 처음 눌렀을 때는 램프를 켜고 두 번 눌렀을 때는 알람을 동작하게 할 경우에 Button 클래스는 2가지 기능을 모두 구현할 수 있어야 합니다. </p><pre><code class="java">enum Mode {LAMP, ALARM};public class Lamp {  public void turnOn() {      System.out.println("Turn On");  }}public class Alarm {  public void start() {      System.out.println("Alarming");  }}public class Button {    private Lamp theLamp;    private Alarm theAlarm;    private Mode theMode;    public Button(Lamp theLamp) {        this.theLamp = theLamp;        this.theAlarm = theAlarm;    }    public void setMode(Mode mode) {        this.theMode = mode;    }    public void pressed() {        swhitch(theMode) {            case LAMP:                theLamp.turnOn();                break;            case ALARM:                theAlarm.start();                break;        }    }}</code></pre><p>이 경우 역시 버튼을 눌렀을 때의 기능을 변경하기 위해 다시 Button 클래스의 코드를 수정해야합니다.</p><p>즉, OCP를 위배할 뿐더러 Button 클래스를 재사용하기 어렵습니다.</p><h3 id="3-2-커맨드-패턴을-적용한-경우"><a href="#3-2-커맨드-패턴을-적용한-경우" class="headerlink" title="3.2 커맨드 패턴을 적용한 경우"></a>3.2 커맨드 패턴을 적용한 경우</h3><p>새로운 기능을 추가하거나 변경하더라도 Button 클래스를 그대로 사용하려면 Button 클래스에 pressed 메서드에서 구체적인 기능을 직접 구현하는 대신 버튼을 눌렀을 때 실현될 기능을 클래스 외부에서 제공받아 캡슐화하여 호출하는 방법을 사용할 수 있습니다.</p><p><img src="/images/DesignPattern/4/1.png" width="600"></p><p>클래스 다이어그램을 보면 turnOn 메서드나 start 메서드를 직접 호출하지 않고 추상화하여 호출하고 있습니다.</p><pre><code class="java">public interface Command {    public abstract void execute();}public class Alarm {    public void start() {        System.out.println("Alarming ... ");    }}public class Lamp {    public void turnOn() {        System.out.println("Lamp On");    }}public class AlarmOnCommand implements Command {    private Alarm theAlarm;    public AlarmOnCommand(Alarm theAlarm) {        this.theAlarm = theAlarm;    }    @Override    public void execute() {        theAlarm.start();    }}public class LampOnCommand implements Command {    private Lamp theLamp;    public LampOnCommand(Lamp theLamp) {        this.theLamp = theLamp;    }    @Override    public void execute() {        theLamp.turnOn();    }}public class Button {    private Command theCommand;    public Button(Command theCommand) {        setTheCommand(theCommand);    }    public void setTheCommand(Command theCommand) {        this.theCommand = theCommand;    }    public void pressed() {        theCommand.execute();    }}</code></pre><p>보시는 바와 같이 Command 인터페이스를 구현하는 LampOnCommand와 AlarmCommand 객체를 Button 객체에 설정하여 버튼을 눌렀을 때 필요한 임의의 기능은 Command 인터페이스를 구현한 클래스의 객체를 Button 객체에 설정해서 실행할 수 있습니다.</p><p>즉, 실행될 기능을 캡슐화함으로써 호출자(Invoker)와 실제 기능을 실행하는 수신자(Receiver) 클래스 사이의 의존성을 제거합니다. 따라서 실행될 기능의 변경에도 호출자 클래스를 수정 없이 그대로 사용할 수 있도록 해줍니다.</p><ul><li>Command : 실행될 기능을 execute 메서드로 선언함</li><li>ConcreteCommand : 실제로 실행되는 기능을 구현</li><li>Invoker : 기능의 실행을 요청하는 호출자(Button)</li><li>Receiver : Concrete Command의 기능을 실행하기 위해 사용하는 수신자 클래스</li></ul><h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p><strong><code>커맨드 패턴(Command Pattern)</code></strong>의 개념과 관련해 추가적인 질문이나 오류, 오타가 있을시 댓글로 남겨주세요.</p><h1 id="출처"><a href="#출처" class="headerlink" title="출처"></a>출처</h1><p>JAVA 객체지향 디자인패턴</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;이번 포스팅에서는 &lt;strong&gt;&lt;code&gt;커맨드 패턴(Command Pattern)&lt;/code&gt;&lt;/strong
+      
+    
+    </summary>
+    
+      <category term="design pattern" scheme="http://DongyeolLee.github.io/categories/design-pattern/"/>
+    
+      <category term="java" scheme="http://DongyeolLee.github.io/categories/design-pattern/java/"/>
+    
+    
+      <category term="java" scheme="http://DongyeolLee.github.io/tags/java/"/>
+    
+      <category term="design pattern" scheme="http://DongyeolLee.github.io/tags/design-pattern/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1389] - 케빈 베이컨의 6단계 법칙</title>
+    <link href="http://DongyeolLee.github.io/2018/09/25/Al/1389/"/>
+    <id>http://DongyeolLee.github.io/2018/09/25/Al/1389/</id>
+    <published>2018-09-24T16:02:03.000Z</published>
+    <updated>2019-04-30T07:24:41.149Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1389" target="_blank" rel="noopener"><strong><em>백준 1389 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>유저의 숫자가 주어진다면 각 유저들간 친구 관계를 파악하기 위해 모든 유저를 상대로 dfs 탐색을 진행한다.</p><ul><li>유저 1과 나머지 유저들 간의 친구 관계를 계산하기 위해 유저 1 대상으로 연결 요소를 완전 탐색하고 거리차를 증가한다.  </li><li>각 친구들까지의 거리차를 cnt 배열에 따로 저장한다.</li><li>탐색이 완료되면 총 거리를 계산한다.</li><li>cnt 배열을 초기화하고 다음 유저에 대해서 위의 과정을 반복한다.</li></ul><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltcstring>#include &ltalgorithm>using namespace std;int N, M, person = 101, ans = 987654321;int cnt[101];vector&ltvector&ltint>> relation(101);// diff: 지정된 친구로부터 거리차, num: 친구 번호void dfs(int diff, int num) {    // cnt[num]에 거리차를 저장    if(cnt[num] != 0) {        cnt[num] = min(diff, cnt[num]);    } else {        cnt[num] = diff;    }    // 연결된 친구 모두 탐색    for(int j = 0; j < relation[num].size(); j ++) {        int next = relation[num][j];        // 친구를 포함하지 않았거나 더 가까운 사이의 친구라면 탐색        if(cnt[next] == 0 || cnt[next] > diff + 1 ) {            dfs(diff + 1, next);        }    }}int main() {    cin >> N >> M;    for(int i = 0; i < M; i ++) {        int from, to;        cin >> from >> to;        // 양방향 저장        relation[from].push_back(to);        relation[to].push_back(from);    }    for(int i = 1; i &lt= N; i ++) {        // 친구들과의 거리차 초기화        memset(cnt, 0, sizeof(cnt));        for(int j = 0; j < relation[i].size(); j ++) {            dfs(1, relation[i][j]);        }        int temp = 0;        for(int j = 1; j &lt= N; j ++) {            if(j == i) {                continue;            }            temp += cnt[j];        }        // 최소인지 검사        if(ans > temp) {            ans = temp;            person = i;        }        else if(ans == temp) {            person = min(person, i);        }    }    cout << person;    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1389&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[6603] - 로또</title>
+    <link href="http://DongyeolLee.github.io/2018/09/23/Al/6603/"/>
+    <id>http://DongyeolLee.github.io/2018/09/23/Al/6603/</id>
+    <published>2018-09-23T06:54:18.000Z</published>
+    <updated>2019-04-30T07:24:41.158Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/6603" target="_blank" rel="noopener"><strong><em>백준 6603 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>숫자가 주어지면 중복없이 6자리 숫자를 만들고 출력하면 된다.<br>ans 배열에 선택한 숫자를 저장한다. 숫자를 선택할때는 다음과 같은 규칙을 따른다.</p><ul><li>ans의 첫번째 숫자는 모든 숫자의 범위에서 선택한다.</li><li>ans의 두번째 숫자는 이전 선택한 수 보다 +1한 범위에서 숫자를 선택한다.<br> (ex. 숫자가 1 ~ 10까지 주어졌을때 첫번째 숫자로 3을 선택했다면 두번째 선택할 숫자의 범위를 4 ~ 10으로 한정한다.)</li><li>이후 3번째 숫자를 선택할때는 규칙 2를 반복한다.</li></ul><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>using namespace std;int K;int ans[6];vector&ltint> v;// depth: 숫자의 길이, num: 선택할 숫자void dfs(int depth, int num) {    // 6자리면 출력    if(depth == 6) {        for(int i = 0; i < 6; i ++) {            cout << ans[i] <<  " ";        }        cout << '\n';        return;    }    for(int start = num; start < K; start ++) {        ans[depth] = v[start];        dfs(depth + 1, start + 1);        ans[depth] = -1;    }}int main() {    while(1) {        cin >> K;        v.clear();        // 0이면 종료        if(K == 0)            break;        for(int i = 0; i < K ; i ++) {            int num;            cin >> num;            // 숫자를 모두 벡터에 저장            v.push_back(num);        }        dfs(0, 0);        cout << '\n';    }    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/6603&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1051] - 숫자 정사각형</title>
+    <link href="http://DongyeolLee.github.io/2018/09/18/Al/1051/"/>
+    <id>http://DongyeolLee.github.io/2018/09/18/Al/1051/</id>
+    <published>2018-09-18T14:18:02.000Z</published>
+    <updated>2019-04-30T07:24:41.144Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1051" target="_blank" rel="noopener"><strong><em>백준 1051 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>입력된 이차원 배열의 숫자들을 모두 순회하며 순차적으로 정사각형을 만들어 본다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltalgorithm>using namespace std;int N, M, ans = 0;char map[51][51];int main() {    cin >> N >> M;    for(int r = 0; r < N; r ++) {        for(int c = 0; c < M; c ++) {            scanf(" %c", &map[r][c]);        }    }    // 입력된 사각형의 변 중에 작은 값을 저장    int num = min(N, M);    // 모든 점을 순회하며 정사각형을 조회    for(int r = 0; r < N; r ++) {        for(int c = 0; c < M; c ++) {            // 만들수 있는 가장 큰 정사각형까지 만듬            for(int len = 0; len < num; len ++) {                if(r + len < N && c + len < M) {                    char s1 = map[r][c];                    char s2 = map[r + len][c];                    char s3 = map[r][c + len];                    char s4 = map[r + len][c + len];                    if((s1 == s2) && (s3 == s4) && (s1 == s3) && (s1 == s4) && (s2 == s3) && (s2 == s4) && (s3 == s4)) {                        // 사이즈 저장                        ans = max(ans, (len + 1) * (len + 1));                    }                }            }        }    }    cout << ans;    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1051&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[9517] - 아이 러브 크로아티아</title>
+    <link href="http://DongyeolLee.github.io/2018/09/10/Al/9517/"/>
+    <id>http://DongyeolLee.github.io/2018/09/10/Al/9517/</id>
+    <published>2018-09-09T19:15:00.000Z</published>
+    <updated>2019-04-30T07:24:41.160Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/9517" target="_blank" rel="noopener"><strong><em>백준 9517 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>단순한 구현 문제이다. 문제에서 요구하는 조건에 맞춰 구현을 하면 정답을 출력할 수 있다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>using namespace std;int K, N, T, remain_time = 210;char Z;vector&ltpair&ltint, char>> arr;int main() {    cin >> K >> N;    for(int i = 0; i < N; i ++) {        cin >> T >> Z;        arr.push_back({ T, Z });    }    for(int i = 0; i < arr.size(); i ++) {        int time = arr[i].first;        char ans = arr[i].second;        if(ans == 'T') {            remain_time -= time;            if(remain_time < 0) {                int num =  K % 8 == 0? 8 : K % 8;                cout << num;                return 0;            }            else {                K ++;            }        }         else {            remain_time -= time;            if(remain_time < 0) {                int num =  K % 8 == 0? 8 : K % 8;                cout << num;                return 0;            }        }    }}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/9517&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[1600] - 말이 되고픈 원숭이</title>
+    <link href="http://DongyeolLee.github.io/2018/09/08/Al/1600/"/>
+    <id>http://DongyeolLee.github.io/2018/09/08/Al/1600/</id>
+    <published>2018-09-08T11:40:40.000Z</published>
+    <updated>2019-04-30T07:24:41.152Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/1600" target="_blank" rel="noopener"><strong><em>백준 1600 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>bfs를 활용해 문제를 풀면 되지만 주의해야할 점은 바로 원숭이가 <strong>말 움직임 횟수</strong>에 따라 같은 좌표라도 결과가 다를수 있다는 점이다. </p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltqueue>using namespace std;struct info {    int r;    int c;    // 말 움직임 사용 횟수    int cnt;    int ans;};bool flag = false;int K, W, H;int map[201][201];int visited[201][201][31];// 말 움직임int dr[8] = {-1, -2, -2, -1, 1, 2, 2, 1};int dc[8] = {-2, -1, 1, 2, 2, 1, -1, -2};// 위, 오른쪽, 아래, 왼쪽int dr2[4] = {-1, 0, 1, 0};int dc2[4] = {0, 1, 0, -1};queue&ltinfo> q;int main() {    cin >> K >> W >> H;    for(int r = 0; r < H; r ++) {        for(int c = 0; c < W; c ++) {            cin >> map[r][c];        }    }    // r, c, 말 움직임 횟수    visited[0][0][0] = 1;    q.push({0, 0, 0, 0});    while(!q.empty()) {        int r = q.front().r;        int c = q.front().c;        int cnt = q.front().cnt;        int ans = q.front().ans;        q.pop();        // 도착지라면 정답 출력        if(r == H - 1 && c == W - 1) {            flag = true;            cout << ans;            break;        }        // 말 움직임을 더할 수 있다면        if(cnt < K) {            for(int i = 0; i < 8; i ++) {                int nr = r + dr[i];                int nc = c + dc[i];                if(nr >= 0 && nr < H && nc >= 0 && nc < W) {                    if(!map[nr][nc] && !visited[nr][nc][cnt + 1]) {                        visited[nr][nc][cnt + 1] = 1;                        q.push({nr, nc, cnt + 1, ans + 1});                    }                }            }        }        // 위, 오른쪽, 아래, 왼쪽 이동        for(int i = 0; i < 4; i ++) {            int nr = r + dr2[i];            int nc = c + dc2[i];            if(nr >= 0 && nr < H && nc >= 0 && nc < W) {                if(!map[nr][nc] && !visited[nr][nc][cnt]){                    visited[nr][nc][cnt] = 1;                    q.push({nr, nc, cnt, ans + 1});                }            }        }    }    if(!flag)        cout << -1;    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1600&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>백준[2580] - 스도쿠</title>
+    <link href="http://DongyeolLee.github.io/2018/09/03/Al/2580/"/>
+    <id>http://DongyeolLee.github.io/2018/09/03/Al/2580/</id>
+    <published>2018-09-03T14:12:10.000Z</published>
+    <updated>2019-04-30T07:24:41.156Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/2580" target="_blank" rel="noopener"><strong><em>백준 2580 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>백트래킹을 활용해서 문제를 풀수 있다.</p><ul><li>입력받은 값들 중 빈 좌표를 따로 저장</li><li>첫번째 저장된 좌표에 1~9까지 숫자를 대입하여 현재 스도쿠를 만족하는지 검사</li><li>만족한다면 다음 좌표에서 1~9까지 숫자를 대입하고 검사를 반복</li></ul><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltutility>#include &ltcstdlib>using namespace std;int sudoku[9][9];vector&ltpair&ltint, int>> arr;// 똑같은 숫자가 있는지 세로 검사bool chk_vertical(int c, int num) {    for(int r = 0; r < 9; r ++) {        if(sudoku[r][c] == num) {            return false;        }    }    return true;}// 가로 검사bool chk_horizontal(int r, int num) {    for(int c = 0; c < 9; c ++) {        if(sudoku[r][c] == num) {            return false;        }    }    return true;}// 3*3 네모난 모양 검사bool chk_square(int r, int c, int num) {    r = r / 3;    c = c / 3;    for(int rr = r * 3; rr < (r * 3) + 3; rr ++) {        for(int cc = c * 3 ; cc < (c * 3) + 3; cc ++) {            if(sudoku[rr][cc] == num) {                return false;            }        }    }    return true;}void dfs(int idx) {    // 모든 좌표에 숫자를 넣었다면 정답 출력    if(idx == arr.size()) {        for(int i = 0; i < 9; i ++) {            for(int j = 0; j < 9; j ++) {                cout << sudoku[i][j] << " ";            }            cout << "\n";        }        exit(0);    }    // 1~9까지 숫자를 넣음    for(int num = 1; num &lt= 9; num ++) {        int r = arr[idx].first;        int c = arr[idx].second;        // 가로, 세로, 네모 모양을 검사해서 해당 숫자가 들어갈 수 있는지 확인        if(chk_vertical(c, num) && chk_horizontal(r, num) && chk_square(r, c, num)) {            // 들어갈 수 있다면 숫자를 넣음            sudoku[r][c] = num;            // 다음 좌표로 이동            dfs(idx + 1);            // 원상 복구            sudoku[r][c] = 0;        }    }}int main() {    for(int i = 0; i < 9; i ++) {        for(int j = 0; j < 9; j ++) {            cin >> sudoku[i][j];            // 비어있는 칸은 좌표를 따로 저장            if(sudoku[i][j] == 0) {                arr.push_back({ i, j });            }        }    }    // 1~9까지 숫자를 넣음    for(int num = 1; num &lt= 9; num ++) {        int r = arr[0].first;        int c = arr[0].second;       // 가로, 세로, 네모 모양으로 해당 num이 들어갈 수 있는지 확인       if(chk_vertical(c, num) && chk_horizontal(r, num) && chk_square(r, c, num)) {           sudoku[r][c] = num;           dfs(1);           sudoku[r][c] = 0;       }    }    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2580&quot; target=&quot;_blank&quot; rel=&quot;no
+      
+    
+    </summary>
+    
+      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
+    
+      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
+    
+    
+      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>힙 정렬(Heap sort) | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="algorithms,sort,heap sort">
+    
+    <meta name="description" content="#들어가기이번 포스팅에는 힙 정렬(heap sort)에 대해 알아보겠습니다. #힙 정렬(heap sort)먼저 힙 정렬(heap sort)을 이해하기 위해서 힙(heap) 에 대해 알아보겠습니다.힙(heap) 은 다음과 같은 두가지 조건을 만족해야 합니다.  complete binary tree heap property  즉, 완전 이진 트리이면서 힙이 가">
+<meta name="keywords" content="algorithms,sort,heap sort">
+<meta property="og:type" content="article">
+<meta property="og:title" content="힙 정렬(Heap sort)">
+<meta property="og:url" content="http://DongyeolLee.github.io/2017/12/24/Datastructure/HeapSort/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="#들어가기이번 포스팅에는 힙 정렬(heap sort)에 대해 알아보겠습니다. #힙 정렬(heap sort)먼저 힙 정렬(heap sort)을 이해하기 위해서 힙(heap) 에 대해 알아보겠습니다.힙(heap) 은 다음과 같은 두가지 조건을 만족해야 합니다.  complete binary tree heap property  즉, 완전 이진 트리이면서 힙이 가">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/Heapsort/heapsort.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.160Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="힙 정렬(Heap sort)">
+<meta name="twitter:description" content="#들어가기이번 포스팅에는 힙 정렬(heap sort)에 대해 알아보겠습니다. #힙 정렬(heap sort)먼저 힙 정렬(heap sort)을 이해하기 위해서 힙(heap) 에 대해 알아보겠습니다.힙(heap) 은 다음과 같은 두가지 조건을 만족해야 합니다.  complete binary tree heap property  즉, 완전 이진 트리이면서 힙이 가">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/Heapsort/heapsort.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2017/12/24/datastructure/heapsort/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/computer-science/">computer science</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/computer-science/algorithms/">algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/computer-science/algorithms/concepts/">concepts</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Datastructure/HeapSort" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        힙 정렬(Heap sort)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/12/24/Datastructure/HeapSort/" class="article-date">
+            <time datetime="2017-12-24T10:55:03.000Z" itemprop="datePublished">2017-12-24</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/algorithms/">algorithms</a>, <a class="tag-link" href="/tags/heap-sort/">heap sort</a>, <a class="tag-link" href="/tags/sort/">sort</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="#들어가기"></a>#들어가기</h1><p>이번 포스팅에는 <strong><code>힙 정렬(heap sort)</code></strong>에 대해 알아보겠습니다.</p>
+<h1 id="힙-정렬-heap-sort"><a href="#힙-정렬-heap-sort" class="headerlink" title="#힙 정렬(heap sort)"></a>#힙 정렬(heap sort)</h1><p>먼저 <strong><code>힙 정렬(heap sort)</code></strong>을 이해하기 위해서 <strong>힙(heap)</strong> 에 대해 알아보겠습니다.<br><strong>힙(heap)</strong> 은 다음과 같은 두가지 조건을 만족해야 합니다.</p>
+<ul>
+<li>complete binary tree</li>
+<li>heap property</li>
+</ul>
+<p>즉, 완전 이진 트리이면서 힙이 가지고 있는 특성(max or min)을 만족해야 합니다.</p>
+<p><img src="/images/Heapsort/heapEX1.png" width="500"></p>
+<p>포스팅에서는 <strong>max heap property</strong>를 기준으로 설명하겠습니다.</p>
+<p><img src="/images/Heapsort/heapEX2.png" width="500"></p>
+<p>위의 예시를 보면 (a)는 <strong>힙(heap)</strong> 이지만 (b), (c)는 <strong>힙(heap)</strong> 이라고 할 수 없습니다.</p>
+<ul>
+<li>(a), max heap property를 만족하면서 완전 이진 트리.</li>
+<li>(b), 완전 이진 트리이긴하지만 heap property를 만족하지 않습니다.</li>
+<li>(c), max 또는 min property를 만족하지만, 완전 이진트리가 아닙니다.</li>
+</ul>
+<p><img src="/images/Heapsort/heapEX3.png" width="500"></p>
+<p>또 하나 참고로 알아야 할 것이 동일한 데이터를 가지더라도 <strong>힙(heap)</strong> 은 달라질 수 있습니다. <strong>즉, 힙(heap)은 동일한 데이터에 유일하지 않습니다.</strong></p>
+<p>그렇다면 트리로 복잡하게 표현된 <strong>힙(heap)</strong> 은 어떤 식으로 표현할 수 있을 까요??</p>
+<p><img src="/images/Heapsort/heapEX4.png" width="600"></p>
+<p>각각의 트리에 번호를 루트에서부터 부여해 1차원 배열로 표현이 가능합니다. 이렇게 1치원 배열로 표현된 <strong>힙(heap)</strong> 을 다루기 위한 기본 연산으로 max-heapify가 필요합니다.</p>
+<p>max-heapify를 사용하기 위해서는 트리의 전체 모양이 완전 이진 트리여야 하고 왼쪽 subtree와 오른쪽 subtree가 그 자체로 <strong>힙(heap)</strong> 이여야합니다. 즉, max-heapify는 루트 노드만이 <strong>힙(heap)</strong> 을 만족하지 않아 루트 노드를 포함해 <strong>힙(heap)</strong> 을 만드는 기본 연산입니다. </p>
+<p><img src="/images/Heapsort/heapEX5.png" width="600"></p>
+<p>예시를 한번 보겠습니다. 루트 노드 4를 제외하고 루트를 기준으로 왼쪽 subtree와 오른쪽 subtree는 모두 <strong>힙(heap)</strong> 을 만족하지만 루트 노드를 포함해서는 <strong>힙(heap)</strong> 을 만족하지 않는 상황입니다. 이럴 때 max-heapify의 연산으로 루트를 포함한 전체 트리를 <strong>힙(heap)</strong> 으로 만들수 있습니다. </p>
+<p><img src="/images/Heapsort/heapEX6.png" width="650"></p>
+<p>먼저, max-heapify의 동작 방식부터 보겠습니다. 이번 포스팅에서 max property를 기준으로 하기 때문에 루트 노드 4가 두 자식들 중 더 큰 자식이 나보다 크면 해당 자식과 위치를 교환합니다. 16과 자리를 교체하고 나면 다시 4가 루트인 서브트리를 기준으로 왼쪽 subtree와 오른쪽 subtree는 <strong>힙(heap)</strong> 을 만족하지만 4를 포함하면 만족하지 않기 때문에 다시 max-heapify 연산을 진행합니다.</p>
+<p><strong>max-heapify 연산은 자식이 존재 하지 않거나 두 자식이 나보다 작으면 동작을 멈추게 됩니다.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">MAX-HEAPIFY (A, i) &#123;</span><br><span class="line"></span><br><span class="line">    if there is no child of A[i]</span><br><span class="line">        return;</span><br><span class="line">    </span><br><span class="line">    k &lt;- index of the biggest child of i;</span><br><span class="line">    </span><br><span class="line">    if A[i] &gt;= A[k]</span><br><span class="line">        return;</span><br><span class="line">        </span><br><span class="line">    exchage A[i] and A[k];</span><br><span class="line">    </span><br><span class="line">    MAX-HEAPIFY(A, k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>수도 코드를 보면 자식이 존재하지 않을 때와 또는 두 자식보다 클 경우 종료되는 것을 확인할 수 있습니다.</p>
+<p><img src="/images/Heapsort/heapEX7.png" width="600"></p>
+<p>조금 더 직관적인 예시를 한번 보겠습니다. 루트 노드를 기준으로 왼쪽 subtree가 <strong>힙(heap)</strong> 을 만족하지 않습니다. 하지만 4를 기준으로 다시 볼때 4의 왼쪽, 오른쪽 subtree 모두 <strong>힙(heap)</strong> 을 만족하므로 heapify 연산을 사용해 전체를 <strong>힙(heap)</strong> 으로 만들수 있습니다.</p>
+<p><strong>즉, 위의 수도 코드를 사용한다면 MAX-HEAPIFY(A, 2)와 같은 방법으로 전체를 힙(heap)으로 만들 수 있습니다.</strong> </p>
+<p>자! 그렇다면 이제부터 <strong>힙(heap)</strong> 과 heapify 연산을 활용해 <strong><code>힙 정렬(heap sort)</code></strong>을 알아보겠습니다.</p>
+<p><img src="/images/Heapsort/heapEX8.png" width="400"></p>
+<p><strong><code>힙 정렬(heap sort)</code></strong>을 하기 위해서 먼저 정렬해야 할 배열을 완전 이진 트리 형태로 표현합니다. 하지만 이 상태만으로는 <strong>힙(heap)</strong> property를 만족하진 않습니다. <strong><code>힙 정렬(heap sort)</code></strong>구현을 위해 첫번째 할 일은 바로 표현된 완전 이진 트리를 <strong>힙(heap)</strong> 으로 만드는 것 입니다.</p>
+<p>표현된 완전 이진 트리를 <strong>힙(heap)</strong> 으로 만들기 위해서 뒤에서 부터 탐색해 자식이 있는 노드에서부터 앞서 활용했던 max-heapify를 사용합니다. 즉, 16을 기준으로 subtree를 비교하면서 max-heapify를 실행합니다. 16과 subtree는 그 자체로 <strong>힙(heap)</strong> 이므로 다음 노드인 2로 넘어갑니다.</p>
+<p><img src="/images/Heapsort/heapEX9.png" width="400"></p>
+<p>2를 기준으로 subtree를 비교할때 자식 노드 중 제인 큰 14보다 2는 작은 상황입니다. 따라서 2와 14를 교체합니다. 또 3은 다시 10과 교체하고 1은 16과 교체합니다. 루트 노드까지 올라가면서 max-heapify 연산을하면 <strong>힙(heap)</strong> 을 완성할 수 있습니다. </p>
+<p><strong>즉, 루트 노드가 최대값이 됩니다.</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Build-Max-Heap(A) &#123;</span><br><span class="line">    heap-size[A] &lt;- length[A]</span><br><span class="line">    </span><br><span class="line">    for i &lt;- absolute length[A]/2 downto 1  // 배열 A의 길이를 2로 나눈 절대값부터 1까지</span><br><span class="line">        do MAX-HEAPIFY(A, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>수도 코드를 보면 length[A]/2의 절대 값을 취해 자식이 있는 노드 중 가장 밑에 있는 노드부터 시작해 루트 노드까지 MAX-HEAPIFY를 진행합니다. </p>
+<p>Build-Max-Heap의 시간 복잡도는 O(n)입니다. MAX-HEAPIFY를 한 번 수행하는데 시간 복잡도는 O(logn)이고 이를 n/2번 실행함으로 시간 복잡도는 O(nlogn)이겠지만 MAX-HEAPIFY가 매번 N만큼 실행 되는 것이 아니므로 보다 정확하게 계산을 진행하면 O(n)이 나옵니다.</p>
+<p><img src="/images/Heapsort/heapEX10.png" width="650"></p>
+<p>그렇다면 정렬되지 않은 배열을 Build-Max-heap을 통해 <strong>힙(heap)</strong> 형태로 만들어 놓으면 루트 노드는 최대 값이 들어 있는 모양이 됩니다. 이때 루트에 들어있는 최대값을 <strong>힙(heap)</strong> 의 가장 마지막 값과 바꾸고 <strong>힙(heap)</strong> 의 사이즈를 1 줄여 줍니다. 그리고 다시 루트에서 부터 heapify를 통해 <strong>힙(heap)</strong> 으로 만들고 이를 반복합니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HeapSort(A) &#123;</span><br><span class="line">    Build-Max-Heap(A); // 배열을 힙으로 만듬 O(n)</span><br><span class="line">    </span><br><span class="line">    for i &lt;- heap_size downto 2 // 정렬 O(n-1)</span><br><span class="line">        exchange A[1] and A[i]  // O(1)</span><br><span class="line">        heap_size &lt;- heap_size -1   // O(1)</span><br><span class="line">        MAX-HEAPIFY(A, 1)   // O(logn)</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>결국 모든 <strong>힙(heap)</strong> 의 요소를 루트 노드에서 빼면서 진행하다 보면 배열은 정렬이 되고 이를 <strong><code>힙 정렬(heap sort)</code></strong>이라고 합니다. 시간 복잡도는 O(nlogn)입니다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="#마치며"></a>#마치며</h1><p>이로써 <strong><code>힙 정렬(heap sort)</code></strong>의 정리를 마치겠습니다.</p>
+<h1 id="참조"><a href="#참조" class="headerlink" title="#참조"></a>#참조</h1><p><a href="http://ucc.pknu.ac.kr/em/56f63ae60901a" target="_blank" rel="noopener">부경대학교 권오흠 교수님 강의 | 2015년 1학기 - 힙정렬 1</a><br><a href="http://ucc.pknu.ac.kr/em/56f63b203249c" target="_blank" rel="noopener">부경대학교 권오흠 교수님 강의 | 2015년 1학기 - 힙정렬 2</a><br><a href="http://ucc.pknu.ac.kr/em/56f63b52406a3" target="_blank" rel="noopener">부경대학교 권오흠 교수님 강의 | 2015년 1학기 - 힙정렬 3</a></p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2017/12/24/Datastructure/HeapSort/" data-id="cjyffib7h00014owecs1s6adc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/12/31/JS/EmscriptenInstall/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Mac OX에 emscripten 설치하기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/12/20/Spadework/GitUpdate-Index/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">commit 없이 로컬에 코드 반영하기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2017/12/24/Datastructure/HeapSort/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

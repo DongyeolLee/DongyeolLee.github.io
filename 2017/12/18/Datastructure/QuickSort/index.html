@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>퀵 정렬(Quick sort) | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="algorithms,sort,quick sort">
+    
+    <meta name="description" content="#들어가기이번 시간에는 분할정복법을 사용한 퀵 정렬(quick sort)를 알아보겠습니다. #퀵 정렬(quick sort)먼저 퀵 정렬(quick sort)의 간략한 개념부터 살펴보겠습니다.  위의 사진에서 볼수 있듯이   pivot을 선택 pivot을 기준으로 분할 분할된 구역에서 다시 순환적으로 정렬(정복)  즉, 퀵 정렬(quick sort)의 중요한">
+<meta name="keywords" content="algorithms,sort,quick sort">
+<meta property="og:type" content="article">
+<meta property="og:title" content="퀵 정렬(Quick sort)">
+<meta property="og:url" content="http://DongyeolLee.github.io/2017/12/18/Datastructure/QuickSort/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="#들어가기이번 시간에는 분할정복법을 사용한 퀵 정렬(quick sort)를 알아보겠습니다. #퀵 정렬(quick sort)먼저 퀵 정렬(quick sort)의 간략한 개념부터 살펴보겠습니다.  위의 사진에서 볼수 있듯이   pivot을 선택 pivot을 기준으로 분할 분할된 구역에서 다시 순환적으로 정렬(정복)  즉, 퀵 정렬(quick sort)의 중요한">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/Quicksort/quicksort.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="퀵 정렬(Quick sort)">
+<meta name="twitter:description" content="#들어가기이번 시간에는 분할정복법을 사용한 퀵 정렬(quick sort)를 알아보겠습니다. #퀵 정렬(quick sort)먼저 퀵 정렬(quick sort)의 간략한 개념부터 살펴보겠습니다.  위의 사진에서 볼수 있듯이   pivot을 선택 pivot을 기준으로 분할 분할된 구역에서 다시 순환적으로 정렬(정복)  즉, 퀵 정렬(quick sort)의 중요한">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/Quicksort/quicksort.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2017/12/18/datastructure/quicksort/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/computer-science/">computer science</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/computer-science/algorithms/">algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/computer-science/algorithms/concepts/">concepts</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Datastructure/QuickSort" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        퀵 정렬(Quick sort)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/12/18/Datastructure/QuickSort/" class="article-date">
+            <time datetime="2017-12-18T02:01:01.000Z" itemprop="datePublished">2017-12-18</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/algorithms/">algorithms</a>, <a class="tag-link" href="/tags/quick-sort/">quick sort</a>, <a class="tag-link" href="/tags/sort/">sort</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="#들어가기"></a>#들어가기</h1><p>이번 시간에는 분할정복법을 사용한 <strong><code>퀵 정렬(quick sort)</code></strong>를 알아보겠습니다.</p>
+<h1 id="퀵-정렬-quick-sort"><a href="#퀵-정렬-quick-sort" class="headerlink" title="#퀵 정렬(quick sort)"></a>#퀵 정렬(quick sort)</h1><p>먼저 <strong><code>퀵 정렬(quick sort)</code></strong>의 간략한 개념부터 살펴보겠습니다.</p>
+<p><img src="/images/Quicksort/qsort1.png" width="400"></p>
+<p>위의 사진에서 볼수 있듯이 </p>
+<ul>
+<li>pivot을 선택</li>
+<li>pivot을 기준으로 분할</li>
+<li>분할된 구역에서 다시 순환적으로 정렬(정복)</li>
+</ul>
+<p>즉, <strong><code>퀵 정렬(quick sort)</code></strong>의 중요한 부분은 ‘어떻게 pivot보다 작은 값과 큰 값을 구분해 정렬하는냐’에 있습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">qsort(A[], p, r) &#123;  // p는 배열의 첫번째 index 값, r은 마지막 index 값</span><br><span class="line">    if(p &lt; r) then &#123;</span><br><span class="line">        q = partition(A[], p, r); // 분할</span><br><span class="line">        qsort(A[], p, q-1); // pivot보다 작은 영역 정렬</span><br><span class="line">        qsort(A[], q+1, p); // pivot보다 큰 영역 정렬</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">partition(A[], p, r) &#123;</span><br><span class="line">    partiton이 하는 일은 배열에서 pivot을 기준으로 큰 영역과 작은 영역으로 재배치 한 후,</span><br><span class="line">    바뀐 pivot의 index값을 반환 합니다.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>pseudo code를 보면 실제로 partition 함수에서 pivot을 기준으로 영역을 나누고 바뀐 pivot의 위치를 반환하면 그 이후는 재귀 함수 호출로 간단히 구현이 가능합니다.<br>partition 함수를 조금 더 구체화 해보겠습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">partition(A[], p, r) &#123;</span><br><span class="line">    x←A[r]; // x, 현재 pivot의 값</span><br><span class="line">    i←p-1;  // i, 작은 영역의 마지막 요소를 가르키는 변수</span><br><span class="line">    </span><br><span class="line">    for j←p to r-1 // 배열을 전체 탐색</span><br><span class="line">        if A[j] ≤ x then // 해당 배열의 값이 pivot보다 작은 경우</span><br><span class="line">            i←i+1;  // i 값 증가</span><br><span class="line">            exchange A[i] and A[j]; // i와 j의 교체 </span><br><span class="line">        </span><br><span class="line">    exchange A[i+1] and A[r]; // pivot 위치 선정, 작은 영역의 마지막 index + 1로 이동</span><br><span class="line"> return i+1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>partition의 pseudo code에서 왜 i와 j의 값을 교체하는지 조금은 헷갈릴수 있습니다. 예를 한번 들어보겠습니다.</p>
+<p><img src="/images/Quicksort/qsortEX1.png" width="450"></p>
+<p>다음과 같은 상황에서 pivot의 값, x의 값은 15이고 j = 4, i = 0인 상황입니다. A[j]의 경우 pivot보다 작으므로 i값이 1 증가하면 i = 1이 됩니다. A[1]은 현재 pivot보다 큰 영역의 숫자이므로 A[j]와 교환을 해도 그 영역은 유지가 됩니다.</p>
+<p><strong>즉, i 보다 작은 index 영역이 pivot보다 작은 영역임을 유지하면 됩니다.</strong></p>
+<p>그렇다면 <strong>시간 복잡도</strong>는 어떻게 될까요? 최악의 경우 n의 제곱이 됩니다. 아이러니하게도 <strong><code>퀵 정렬(quick sort)</code></strong>의 최악의 경우는 이미 정렬된 배열의 가장 큰 값이나 가장 작은 값을 pivot으로 선택할 경우 입니다. 이럴 경우 pivot의 한 쪽은 정렬을 하지 않습니다. pivot 자체가 가장 큰 값이거나 가장 작은 값이기 때문이죠.</p>
+<p>자세히 <strong>시간 복잡도</strong>를 보면 </p>
+<ul>
+<li>T(n) = T(0) + T(n-1) + O(n) </li>
+<li>T(n-1) = T(0) + T(n-2) + O(n-1) </li>
+<li>T(n-2) = T(0) + T(n-3) + O(n-2)</li>
+</ul>
+<p>pivot을 제외한 왼쪽 영역을 정렬하는데 시간 T(n) = T(n-1) + O(n)이 됩니다. 이런 식으로 T를 계속 치환해 나가다보면 <strong>T(n) = O(1) + O(2) + O(3) + … + O(n) </strong>이 됩니다. 이는 <strong>{n(n-1)}/2</strong>로 다시 쓸수 있으므로 최악의 경우 <strong>시간 복잡도</strong>는 <strong>O(n^2)</strong>이 됩니다.</p>
+<p>최선의 경우는 정렬되지 않은 상태에서 정확히 pivot이 중간 값일 떄 입니다. <strong>시간 복잡도</strong>는 <strong>T(n) = nlogn</strong>이 됩니다. 이는 n이 pivot을 중심으로 정확히 절반 씩 영역을 나누는데 O(n)입니다. 또 절반씩 나누어진 영역에서 pivot을 중심으로 반을 나누면 O(n/2)이고 두 영역이니 이 역시 O(n)입니다.</p>
+<p><img src="/images/Quicksort/qsortEX2.png" width="450"></p>
+<p>결국은 최선의 경우 <strong>시간 복잡도</strong>는 <strong>n * 분할된 횟수인 logn</strong>이 됩니다.</p>
+<p>그렇다면 우리는 최악의 경우 O(n^2)이 나올수도 있는 <strong><code>퀵 정렬(quick sort)</code></strong>를 쓰는 이유는 무엇일까요?</p>
+<p>답은 <strong><code>퀵 정렬(quick sort)</code></strong>은 극단적인 최악의 경우를 제외하면 모든 정렬에서 <strong>평균 O(nlogn)</strong>이 나오기 떄문입니다.</p>
+<p><img src="/images/Quicksort/qsortEX3.png" width="450"></p>
+<p>1:9로 나누는 pivot이 선택된다고 가정했을때 <strong>시간 복잡도</strong>가 <strong>O(nlogn)</strong>이 나오는 걸 확인할수 있습니다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="#마치며"></a>#마치며</h1><p>이로써 <strong><code>퀵 정렬(quick sort)</code></strong>의 정리를 마치겠습니다.<br>설명 도중 틀린 설명이 있다면 코멘트로 남겨주세요. 수정하겠습니다!!</p>
+<h1 id="참조"><a href="#참조" class="headerlink" title="#참조"></a>#참조</h1><p><a href="http://ucc.pknu.ac.kr/em/56f63ab158595" target="_blank" rel="noopener">부경대학교 권오흠 교수님 강의 | 2015년 1학기</a></p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2017/12/18/Datastructure/QuickSort/" data-id="cjyffib7k00044oweq3uyg7fb" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/12/20/Spadework/GitUpdate-Index/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            commit 없이 로컬에 코드 반영하기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/12/12/Spadework/IncorrectValidationError/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">IncorrectValidationError</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2017/12/18/Datastructure/QuickSort/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

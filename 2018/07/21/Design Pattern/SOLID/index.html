@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>객체지향 설계 5대 원칙 - SOLID 원칙 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java,design pattern">
+    
+    <meta name="description" content="들어가기SOLID(SRP, OCP, LSP, ISP, DIP)의 개념을 정리하고 이해해보겠습니다. 본론단일 책임 원칙SOLID의 첫 번째 원칙으로 단일 책임 원칙(Single Responsibiliy Principle)이 있습니다. 이는 말 그대로 객체는 단 하나의 책임만 가져야 한다는 의미입니다. 그렇다면 여기서 의미하는 책임이란 무엇일까요? 이는 객체가">
+<meta name="keywords" content="java,design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="객체지향 설계 5대 원칙 - SOLID 원칙">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/07/21/Design Pattern/SOLID/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기SOLID(SRP, OCP, LSP, ISP, DIP)의 개념을 정리하고 이해해보겠습니다. 본론단일 책임 원칙SOLID의 첫 번째 원칙으로 단일 책임 원칙(Single Responsibiliy Principle)이 있습니다. 이는 말 그대로 객체는 단 하나의 책임만 가져야 한다는 의미입니다. 그렇다면 여기서 의미하는 책임이란 무엇일까요? 이는 객체가">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="객체지향 설계 5대 원칙 - SOLID 원칙">
+<meta name="twitter:description" content="들어가기SOLID(SRP, OCP, LSP, ISP, DIP)의 개념을 정리하고 이해해보겠습니다. 본론단일 책임 원칙SOLID의 첫 번째 원칙으로 단일 책임 원칙(Single Responsibiliy Principle)이 있습니다. 이는 말 그대로 객체는 단 하나의 책임만 가져야 한다는 의미입니다. 그렇다면 여기서 의미하는 책임이란 무엇일까요? 이는 객체가">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/07/21/design pattern/solid/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/design-pattern/">design pattern</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/design-pattern/java/">java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Design Pattern/SOLID" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        객체지향 설계 5대 원칙 - SOLID 원칙
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/07/21/Design Pattern/SOLID/" class="article-date">
+            <time datetime="2018-07-21T02:31:05.000Z" itemprop="datePublished">2018-07-21</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/design-pattern/">design pattern</a>, <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>SOLID(SRP, OCP, LSP, ISP, DIP)의 개념을 정리하고 이해해보겠습니다.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="단일-책임-원칙"><a href="#단일-책임-원칙" class="headerlink" title="단일 책임 원칙"></a>단일 책임 원칙</h2><p>SOLID의 첫 번째 원칙으로 <strong><code>단일 책임 원칙(Single Responsibiliy Principle)</code></strong>이 있습니다. 이는 말 그대로 객체는 단 하나의 책임만 가져야 한다는 의미입니다.</p>
+<p>그렇다면 여기서 의미하는 책임이란 무엇일까요? 이는 객체가 해야하는 것 또는 가장 대표되는 기능으로 객체 자신만이 수행할 수 있는 기능을 의미합니다.</p>
+<pre><code class="java">public class Student {
+    // 수강 과목 보기
+    public void getCourses() {...}
+    // 새로운 과목 등록
+    public void setCourses() {...}
+    // 데이터 베이스에 성적 저장
+    public void saveGrade() {...}
+    // 데이터베이스에서 성적 조회
+    public void loadGrade() {...}
+    // 성적표 출력
+    public void printOnReportCard() {...}
+    // 출석부 출력
+    public void printOnAttendanceBook() {...}
+}</code></pre>
+
+<p>위의 예시를 한번 확인해봅시다. Student 클래스는 <strong>너무나 많은 책임</strong>을 수행해야합니다. 데이터베이스에 성적을 저장하거나 확인 또는 성적표와 출석부를 출력하는 일은 Student 클래스가 아닌 다른 클래스가 더 잘할 수 있는 여지가 있습니다.</p>
+<p>즉, Student가 가장 잘 할수 있는 책임은 수강 과목을 등록하고 조회하는 일입니다.</p>
+<p>예시처럼 클래스가 작성되었다고 한다면 예측하지 못한 변경 사항이 발생했을때 유연하고 확장성있게 시스템을 변경할 수가 없습니다. 한번 상상을 해보겠습니다.</p>
+<ul>
+<li>성적표와 출석부 이외의 다른 형식으로 학생정보를 출력하는 경우.</li>
+<li>성적 스키마가 변경되었을 경우.</li>
+</ul>
+<p>이러한 사항은 모두 실질적으로 학생 클래스의 핵심기능과는 상관없지만 클래스를 수정해야하는 이유가 됩니다. 또한 책임이 많아 질수록 코드끼리의 결합성이 올라갑니다. 예를 들어 수강 과목을 조회하는 코드와 데이터베이스에서 학생 정보를 가져오는 코드 중 어딘가가 연결될 수도 있고, 수강 과목을 추가하는 코드와 데이터베이스에 학생 정보를 갱신하는 코드가 연결될 수 있습니다.</p>
+<p>따라서 이런 여러 책임을 수행하는 Student 클래스는단 하나의 책임만 수행하도록 변경해야합니다.</p>
+<p><img src="/images/DesignPattern/1/1.png" width="400"></p>
+<p>다음과 같이 Student 클래스는 학생 고유의 역할을 수행하고 나머지 변경이 잦은 책임들은 따로 클래스로 분리하여 데이터베이스의 스키마가 변경되더라도 Student 클래스에는 영향을 끼치지 않도록 해야합니다.</p>
+<h2 id="개방-폐쇄-원칙"><a href="#개방-폐쇄-원칙" class="headerlink" title="개방 폐쇄 원칙"></a>개방 폐쇄 원칙</h2><p><strong><code>개방 폐쇄 원칙(Open Closed Principle)</code></strong>은 기능의 추가에는 열려 있으면서 수정에는 닫혀있어야한다는 뜻입니다. 즉, 기존의 코드 변경을 최소화하면서 새로운 기능을 추가하고 수정한다는 의미입니다.</p>
+<p><img src="/images/DesignPattern/1/2.png" width="500"></p>
+<p>그림처럼 성적표와 출석부를 출력하는 클래스가 설계되어있다고 가정해봅시다. 만약 여기서 Client를 이용해 도서대출 현황을 출력하고 싶다면 어떻게 설계하시겠습니까? </p>
+<p>따로 도서대출 클래스를 만들어 Client와 연결하면 될것이라 생각됩니다. 하지만 이는 Client의 코드를 수정할 가능성이 있어 OCP 원칙을 위반합니다.</p>
+<p>즉, 애초에 Client 클래스는 수정을 하지 않고 기능을 추가할 수 있게 설계해야했습니다. 과연 어떻게 설계를 해야했을까요?</p>
+<p><img src="/images/DesignPattern/1/3.png" width="500"></p>
+<p>기존 설계를 위의 그림처럼 진행했다면 조금 더 변화에 유연하게 대처 가능했을 것입니다. Client는 어떤 새로운 출력물이 추가되어도 변경되지 않습니다.</p>
+<h2 id="리스코프-치환-원칙"><a href="#리스코프-치환-원칙" class="headerlink" title="리스코프 치환 원칙"></a>리스코프 치환 원칙</h2><p><strong><code>리스코프 치환 원칙(Liskov Substitution Principle)</code></strong>을 만족하면 부모 클래스의 인스턴스 대신에 자식 클래스의 인스턴스로 대체해도 프로그램이 정상적으로 동작해야함을 의미합니다.</p>
+<p><img src="/images/DesignPattern/1/4.png" width="100"></p>
+<p>위와 같은 예시는 LSP가 성립된다고 볼수 있습니다. 원숭이 인스턴스는 포유류와 원숭이 둘다 성립됨으로 <strong><code>리스코프 치환 원칙(Liskov Substitution Principle)</code></strong>이 성립됩니다.</p>
+<p>이번에는 코드로 한번 확인해보겠습니다.</p>
+<pre><code class="java">public class Bag {
+    private int price;
+    public void setPrice(int price) { this.price = price; };
+    public void getPrice() { return price; };
+}
+
+public class DiscountedBag extends Bag {
+    private double discountRate;
+    public void setDiscount(double discountRate) { this.discountRate = discountRate; };
+    public void applyDiscount(int price) { super.setPrice(price - (int)(discountRate * price)) };
+}</code></pre>
+
+<p><img src="/images/DesignPattern/1/5.png" width="400"></p>
+<p>위의 코드는 모두 같은 값을 출력합니다. 또, b3과 b4 인스턴스를 자식 객체의 인스턴스로 바꾸어도 정상 작동이 됩니다. 이는 상속관계가 LSP를 위반하지 않았음을 의미합니다.</p>
+<p>하지만 위의 코드에서 DiscountedBag 클래스에서 Bag 클래스의 메서드를 재정의하는 순간 LSP를 만족하지 않습니다. <strong>즉, LSP를 만족시키는 간단한 방법은 재정의를 하지 않는것 입니다.</strong></p>
+<h2 id="의존-역전-원칙"><a href="#의존-역전-원칙" class="headerlink" title="의존 역전 원칙"></a>의존 역전 원칙</h2><p><strong><code>의존 역전 원칙(Dependency Inversion Principle)</code></strong>은 객체 사이에 도움을 주고 받으며 발생하는 의존 관계에 있어 일종의 가이드 라인을 제시합니다. DIP는 의존 관계를 맺을 때 변화하기 쉬운 것 또는 자주 변하는 것보다 변화가 없는 것에 의존하라는 원칙입니다.</p>
+<p>변하기 어려운 것??? <strong>즉, 추상 클래스 또는 인터페이스에 의존하라는 의미입니다.</strong></p>
+<p>변하기 쉬운 것에 의존한다면 해당 클래스가 변화할때마다 그 클래스에 의존하는 다른 클래스 또한 수정해야하는 일이 일어납니다. 이에따라 변하기 쉬운 클래스를 추상화하는 인터페이스에 의존하는것이 DIP가 성립하는 설계입니다.</p>
+<h2 id="인터페이스-분리-원칙"><a href="#인터페이스-분리-원칙" class="headerlink" title="인터페이스 분리 원칙"></a>인터페이스 분리 원칙</h2><p><strong><code>인터페이스 분리 원칙(Interface Segregation Principle)</code></strong>은 클라이언트 입장에서 자신이 이용하지 않는 기능에는 영향을 받지 않아야한다는 의미입니다.</p>
+<p><img src="/images/DesignPattern/1/6.png" width="600"></p>
+<p>그림과 같은 설계는 프린터만 요구하는 클라이언트가 복합기의 팩스 기능의 변경으로 인해 발생하는 문제에 영향을 받을 수 있습니다.</p>
+<p>즉, ISP를 다르게 설명하면 말 그대로 인터페이스를 클라이언트에 특화되도록 분리시키는 설계입니다.</p>
+<p><img src="/images/DesignPattern/1/7.png" width="600"></p>
+<p>그림처럼 코드를 작성하면 클라이언트 객체들마다 관심을 갖는 메서드만 있는 인터페이스만을 제공받습니다. 이렇게 설계하면 클라이언트 입장에서는 쓰지 않는 메서드에 생긴 변화로 인한 영향을 받지 않습니다</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>SOLID의 개념과 관련해 추가적인 질문이나 오류, 오타가 있을시 댓글로 남겨주세요.</p>
+<h1 id="출처"><a href="#출처" class="headerlink" title="출처"></a>출처</h1><p>JAVA 객체지향 디자인패턴</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/07/21/Design Pattern/SOLID/" data-id="cjyffib7o00094owevf9siiol" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/07/31/Al/2749/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[2749] - 피보나치 수3
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/07/21/Al/10830/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[10830] - 행렬 제곱</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/07/21/Design Pattern/SOLID/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>Singleton Pattern(싱글톤 패턴) | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java,design pattern">
+    
+    <meta name="description" content="들어가기이번 포스팅에서는 디자인 패턴에서 유명한  싱글톤 패턴(Singleton Pattern) 에 대해서 알아보겠습니다. 본론싱글톤 패턴(Singleton Pattern) 은 특정 클래스에 대해 객체 인스턴스가 하나만 만들어질 수 있도록 해주는 패턴입니다. 간단하게 말하면, 싱글톤 패턴(Singleton Pattern) 은 어떤 상황에서든 해당 객체의 인">
+<meta name="keywords" content="java,design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Singleton Pattern(싱글톤 패턴)">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/08/13/Design Pattern/SingletonPattern/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기이번 포스팅에서는 디자인 패턴에서 유명한  싱글톤 패턴(Singleton Pattern) 에 대해서 알아보겠습니다. 본론싱글톤 패턴(Singleton Pattern) 은 특정 클래스에 대해 객체 인스턴스가 하나만 만들어질 수 있도록 해주는 패턴입니다. 간단하게 말하면, 싱글톤 패턴(Singleton Pattern) 은 어떤 상황에서든 해당 객체의 인">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Singleton Pattern(싱글톤 패턴)">
+<meta name="twitter:description" content="들어가기이번 포스팅에서는 디자인 패턴에서 유명한  싱글톤 패턴(Singleton Pattern) 에 대해서 알아보겠습니다. 본론싱글톤 패턴(Singleton Pattern) 은 특정 클래스에 대해 객체 인스턴스가 하나만 만들어질 수 있도록 해주는 패턴입니다. 간단하게 말하면, 싱글톤 패턴(Singleton Pattern) 은 어떤 상황에서든 해당 객체의 인">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/08/13/design pattern/singletonpattern/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/design-pattern/">design pattern</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/design-pattern/java/">java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Design Pattern/SingletonPattern" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Singleton Pattern(싱글톤 패턴)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/08/13/Design Pattern/SingletonPattern/" class="article-date">
+            <time datetime="2018-08-12T16:19:18.000Z" itemprop="datePublished">2018-08-13</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/design-pattern/">design pattern</a>, <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이번 포스팅에서는 디자인 패턴에서 유명한  <strong><code>싱글톤 패턴(Singleton Pattern)</code></strong> 에 대해서 알아보겠습니다.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><p><strong><code>싱글톤 패턴(Singleton Pattern)</code></strong> 은 특정 클래스에 대해 객체 인스턴스가 하나만 만들어질 수 있도록 해주는 패턴입니다.</p>
+<p>간단하게 말하면, <strong><code>싱글톤 패턴(Singleton Pattern)</code></strong> 은 어떤 상황에서든 해당 객체의 인스턴스는 하나만 존재해야하고 이를 <strong>사용하기 위해서는 새롭게 인스턴스를 생성하는 것이 아닌 이미 생성된 인스턴스를 사용해야합니다.</strong></p>
+<p>그렇다면 이런 <strong><code>싱글톤 패턴(Singleton Pattern)</code></strong> 의 객체를 어떻게 만들수 있을까요?</p>
+<h2 id="1-고전적인-방법"><a href="#1-고전적인-방법" class="headerlink" title="1. 고전적인 방법"></a>1. 고전적인 방법</h2><pre><code class="java">public class Singleton {
+    private static Singleton s;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if(s == null) {
+            s = new Singleton();
+        }
+        return s;
+    }
+}</code></pre>
+
+<p>위에 보인 예시는 아주 고전적인 방법의 예시입니다. 객체를 생성할 수 있는 생성자를 private로 캡슐화했습니다.</p>
+<p>즉, <strong><code>싱글톤 (Singleton Pattern)</code></strong> 객체를 만들기 위해서는 직접 생성자를 호출하는 방식이 아닌 class 내부의 getInstance 메서드를 활용해야만 합니다.</p>
+<p>그리고 getInstance 메서드는 이미 인스턴스가 존재하는지 확인한 후 존재한다면 기존의 인스턴스를 반환하고 아니면 인스턴스를 생성한뒤 반환합니다.</p>
+<p>인스턴스를 프로그램 시작과 동시에 생성하는 것이 아니라 상황에 따라 필요할때 getInstance 메서드를 호출하고 생성해 사용하고 있으며 이와 같은 방식을 <strong>Lazy Loading(지연 로딩)</strong> 이라고 부릅니다.</p>
+<p>하지만 <strong>고전적인 방법 multi-threaded(다중 스레드) 환경에서 문제</strong>를 야기합니다.</p>
+<p>다음과 같은 상황을 한번 생각해봅시다.</p>
+<ol>
+<li>Singleton 인스턴스가 아직 생성되지 않은 초기 상황에서 스레드 1이 getInstance를 호출해 if문을 실행</li>
+<li>만약 스레드 1이 생성자를 호출해 인스턴스를 만들기 전에 거의 비슷한 시점에 스레드 2도 if문을 실행</li>
+<li>인스턴스가 2개가 생성</li>
+</ol>
+<h2 id="2-synchrozied-사용"><a href="#2-synchrozied-사용" class="headerlink" title="2. synchrozied 사용"></a>2. synchrozied 사용</h2><p>multi-threaded(다중 스레드)환경에서 <strong><code>싱글톤 패턴(Singleton Pattern)</code></strong>를 활용하기 위해서는 앞서 예시에서 봤던 것처럼 동기화가 필수입니다. 그리고 자바를 공부해보신 여러분이라면 synchronized라는 동기화 처리 방법을 알고 계실겁니다. </p>
+<pre><code class="java">public class Singleton {
+    private static Singleton s;
+
+    private Singleton() {}
+
+    public static synchronized Singleton getInstance() {
+        if(s == null) {
+            s = new Singleton();
+        }
+        return s;
+    }
+}</code></pre>
+
+<p>synchronized를 사용한다면 getInstance 메서드는 스레드간에 동기화가 처리되어 동시에 접근할 수 없게 됩니다. 즉, 두 스레드가 동시에 getInstance에 접근하여 인스턴스를 동시 생성할 수 없게 됩니다.</p>
+<p>이렇게해서 프로그램 상에서 하나의 유일 인스턴스를 생성했습니다. 문제없이 잘 생성됩니다. 하지만 synchronized를 사용하면서 또 다른 문제가 발생합니다.</p>
+<p>바로 여러분들고 알고 계시는 속도 문제입니다. synchronized를 사용하면서 getInstance를 실행할때 마다 속도가 급격하게 감소합니다.</p>
+<h2 id="3-synchrozied-사용-정적-초기화"><a href="#3-synchrozied-사용-정적-초기화" class="headerlink" title="3. synchrozied 사용 - 정적 초기화"></a>3. synchrozied 사용 - 정적 초기화</h2><p>synchronized의 사용으로 급격하게 떨어진 속도를 조금이나마 올리기 위해 <strong>인스턴스 자체를 getInstance로 생성하는 것이 아닌 클래스가 로딩될때 jvm에서 인스턴스로 생성</strong>하는 방식입니다.</p>
+<pre><code class="java">public class Singleton {
+    private static Singleton s = new Singleton();
+
+    private Singleton() {}
+
+    public static synchronized Singleton getInstance() {
+        return s;
+    }
+}</code></pre>
+
+<p>보이는 것과 같이 getIntance에서는 인스턴스를 생성하지 않습니다. 하지만 이 방법도 문제점을 가지고 있습니다.</p>
+<p>만약 getInstance 자체가 <strong>또 다른 자원을 많이 필요로 하면 속도가 느려지는 것을 막을수 없습니다</strong>. 다른 문제점은 인스턴스 자체가 필요할때 메모리에 올려 사용하지 않고 프로그램 <strong>시작서부터 메모리를 사용한다</strong>는 문제가 있습니다.</p>
+<h2 id="4-synchrozied-사용-DCL-Double-Checking-Locking"><a href="#4-synchrozied-사용-DCL-Double-Checking-Locking" class="headerlink" title="4. synchrozied 사용 - DCL(Double-Checking Locking)"></a>4. synchrozied 사용 - DCL(Double-Checking Locking)</h2><p><strong>DCL(Double-Checking Locking)</strong> 을 사용하면 Lazy Loading을 할 수 있는 동시에 synchronized 역시 효율적으로 사용할 수 있습니다.</p>
+<pre><code class="java">public class Singleton {
+    private volatile static Singleton s;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if(s == null) {
+            synchronized(Singleton.class) {
+                if(s == null) {
+                    s = new Singleton();
+                }
+            }
+        }
+        return s;
+    }
+}</code></pre>
+
+<p>인스턴스가 생성되지 않았다면 생성될 때 최초 한 번만 동기화를 진행한 뒤 인스턴스를 생성합니다.</p>
+<p>다만 DCL은 Multi-processor가 shared-memory를 사용하면서 문제가 발생하기 쉽다고 합니다. 따라서 안정성이 불안하다면 이 방법은 사용하지 않는 것이 좋습니다. 또, 멀티코어 환경에서 하나의 CPU를 제외하고는 다른 CPU가 lock이 걸리게 됩니다.</p>
+<h2 id="5-Demand-Holder-Idiom"><a href="#5-Demand-Holder-Idiom" class="headerlink" title="5. Demand Holder Idiom"></a>5. Demand Holder Idiom</h2><pre><code class="java">public class Singleton {
+    private Singleton() {}
+
+    private static class LazyHolder {
+        static final Singleton s = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        return LazyHolder.s;
+    }
+}</code></pre>
+
+<p>이 방법은 중첩 클래스를 이용한 Holder를 사용하는 방법입니다. getInstance 메서드가 호출되기 전까지는 인스턴스가 생성되지 않습니다.</p>
+<p>Lazy Loading을 활용해 메모리 측면에서도 유리하고 synchronized를 사용하지 않아 성능면에서도 우수합니다.</p>
+<p><strong>Demand Holder Idiom 방식은 현재 가장 널리 쓰이는 방법 중 하나 입니다.</strong></p>
+<h2 id="싱글톤-패턴과-정적-클래스"><a href="#싱글톤-패턴과-정적-클래스" class="headerlink" title="싱글톤 패턴과 정적 클래스"></a>싱글톤 패턴과 정적 클래스</h2><p>실제로 굳이 <strong><code>싱글톤 패턴(Singleton Pattern)</code></strong>을 사용하지 않고 정적 메서드로만 이루어진 정적 클래스를 사용해도 비슷한 효과를 만들수 있습니다.</p>
+<p>하지만 <strong><code>싱글톤 패턴(Singleton Pattern)</code></strong>을 이용하는 방법과 가장 차이가 나는 점은 객체를 생성하지 않고 메서드만 이용한다는 점입니다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>오늘은<strong><code>싱글톤 패턴(Singleton Pattern)</code></strong>에 대해 알아봤습니다.</p>
+<p><strong><code>싱글톤 패턴(Singleton Pattern)</code></strong>의 개념과 관련해 추가적인 질문이나 오류, 오타가 있을시 댓글로 남겨주세요.</p>
+<h1 id="출처"><a href="#출처" class="headerlink" title="출처"></a>출처</h1><p>JAVA 객체지향 디자인패턴</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/08/13/Design Pattern/SingletonPattern/" data-id="cjyffib7q000a4owentl4hgh2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/14/Al/2589/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[2589] - 보물섬
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/08/09/Al/9471/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[9471] - 피사노 주기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/08/13/Design Pattern/SingletonPattern/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

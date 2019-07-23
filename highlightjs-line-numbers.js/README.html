@@ -1,0 +1,72 @@
+<h1 id="highlightjs-line-numbers-js"><a href="#highlightjs-line-numbers-js" class="headerlink" title="highlightjs-line-numbers.js "></a>highlightjs-line-numbers.js <a href="https://github.com/wcoder/highlightjs-line-numbers.js/archive/master.zip"><img src="http://img.shields.io/badge/release-v2.1.0-brightgreen.svg?style=flat" alt="version"></a></h1><p>Highlight.js line numbers plugin.</p>
+<p><a href="http://wcoder.github.io/highlightjs-line-numbers.js/">DEMO</a> | <a href="https://github.com/wcoder/highlightjs-line-numbers.js/issues/5">SСREENSHOTS</a></p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h4 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h4><pre><code>bower install highlightjs-line-numbers.js
+</code></pre><h4 id="Npm"><a href="#Npm" class="headerlink" title="Npm"></a>Npm</h4><pre><code>npm install highlightjs-line-numbers.js
+</code></pre><h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>Download plugin and include file after highlight.js:</p>
+<pre><code class="html"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"path/to/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
+
+<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"path/to/highlightjs-line-numbers.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
+</code></pre>
+<p>Initialize plugin after highlight.js:</p>
+<pre><code class="js">hljs.initHighlightingOnLoad();
+
+hljs.initLineNumbersOnLoad();
+</code></pre>
+<p>Here’s an equivalent way to calling <code>initLineNumbersOnLoad</code> using jQuery:</p>
+<pre><code class="js">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+    $(<span class="string">'code.hljs'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>{
+        hljs.lineNumbersBlock(block);
+    });
+});
+</code></pre>
+<p>If your needs cool style, add styles by taste:</p>
+<pre><code class="css"><span class="comment">/* for block of numbers */</span>
+<span class="selector-tag">td</span><span class="selector-class">.hljs-ln-numbers</span> {
+    <span class="attribute">-webkit-touch-callout</span>: none;
+    <span class="attribute">-webkit-user-select</span>: none;
+    <span class="attribute">-khtml-user-select</span>: none;
+    <span class="attribute">-moz-user-select</span>: none;
+    <span class="attribute">-ms-user-select</span>: none;
+    <span class="attribute">user-select</span>: none;
+
+    <span class="attribute">text-align</span>: center;
+    <span class="attribute">color</span>: <span class="number">#ccc</span>;
+    <span class="attribute">border-right</span>: <span class="number">1px</span> solid <span class="number">#CCC</span>;
+    <span class="attribute">vertical-align</span>: top;
+    <span class="attribute">padding-right</span>: <span class="number">5px</span>;
+
+    <span class="comment">/* your custom style here */</span>
+}
+
+<span class="comment">/* for block of code */</span>
+<span class="selector-tag">td</span><span class="selector-class">.hljs-ln-code</span> {
+    <span class="attribute">padding-left</span>: <span class="number">10px</span>;
+}
+</code></pre>
+<h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><p>After version 2.1 plugin has optional parameter <code>options</code> - for custom setup.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>singleLine</td>
+<td>boolean</td>
+<td>false</td>
+<td>enable plugin for code block with one line</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Examples-of-using"><a href="#Examples-of-using" class="headerlink" title="Examples of using"></a>Examples of using</h4><pre><code class="js">hljs.initLineNumbersOnLoad({
+    singleLine: <span class="literal">true</span>
+});
+</code></pre>
+<pre><code class="js">hljs.lineNumbersBlock(myCodeBlock, myOptions);
+</code></pre>
+<hr>
+<p>&copy; 2017 Yauheni Pakala | MIT License</p>

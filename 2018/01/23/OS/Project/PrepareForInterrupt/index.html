@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>10. GDT, IDT 테이블, TSS 세그먼트를 추가해 인터럽트에 대비하자 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="os">
+    
+    <meta name="description" content="들어가기TSS 세그먼트와 IDT 테이블을 생성하는 방법에 대해 알아보고, 임시 핸들러를 등록해보자. 본론10.1 인터럽트와 예외10.1.1 인터럽트와 예외의 차이점 인터럽트와 예외의 공통점은 코드 수행 도중에 발생하거나 프로세서에 의해 처리가 필요한 이벤트. 인터럽트나 예외가 발생하면 준비한 특수 코드를 실행.   인터럽트와 예외의 차이점은 이벤트를 발생시">
+<meta name="keywords" content="os">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10. GDT, IDT 테이블, TSS 세그먼트를 추가해 인터럽트에 대비하자">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/01/23/OS/Project/PrepareForInterrupt/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기TSS 세그먼트와 IDT 테이블을 생성하는 방법에 대해 알아보고, 임시 핸들러를 등록해보자. 본론10.1 인터럽트와 예외10.1.1 인터럽트와 예외의 차이점 인터럽트와 예외의 공통점은 코드 수행 도중에 발생하거나 프로세서에 의해 처리가 필요한 이벤트. 인터럽트나 예외가 발생하면 준비한 특수 코드를 실행.   인터럽트와 예외의 차이점은 이벤트를 발생시">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/operating-system.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10. GDT, IDT 테이블, TSS 세그먼트를 추가해 인터럽트에 대비하자">
+<meta name="twitter:description" content="들어가기TSS 세그먼트와 IDT 테이블을 생성하는 방법에 대해 알아보고, 임시 핸들러를 등록해보자. 본론10.1 인터럽트와 예외10.1.1 인터럽트와 예외의 차이점 인터럽트와 예외의 공통점은 코드 수행 도중에 발생하거나 프로세서에 의해 처리가 필요한 이벤트. 인터럽트나 예외가 발생하면 준비한 특수 코드를 실행.   인터럽트와 예외의 차이점은 이벤트를 발생시">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/operating-system.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/01/23/os/project/prepareforinterrupt/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/project/">project</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/">정리</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/os/">os</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-OS/Project/PrepareForInterrupt" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        10. GDT, IDT 테이블, TSS 세그먼트를 추가해 인터럽트에 대비하자
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/23/OS/Project/PrepareForInterrupt/" class="article-date">
+            <time datetime="2018-01-23T09:33:45.000Z" itemprop="datePublished">2018-01-23</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/os/">os</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>TSS 세그먼트와 IDT 테이블을 생성하는 방법에 대해 알아보고, 임시 핸들러를 등록해보자.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="10-1-인터럽트와-예외"><a href="#10-1-인터럽트와-예외" class="headerlink" title="10.1 인터럽트와 예외"></a>10.1 인터럽트와 예외</h2><h3 id="10-1-1-인터럽트와-예외의-차이점"><a href="#10-1-1-인터럽트와-예외의-차이점" class="headerlink" title="10.1.1 인터럽트와 예외의 차이점"></a>10.1.1 인터럽트와 예외의 차이점</h3><ul>
+<li><strong><code>인터럽트와 예외</code></strong>의 <strong>공통점</strong>은 코드 수행 도중에 발생하거나 <strong>프로세서에 의해 처리가 필요한 이벤트</strong>.<ul>
+<li>인터럽트나 예외가 발생하면 준비한 특수 코드를 실행.</li>
+</ul>
+</li>
+<li><strong><code>인터럽트와 예외</code></strong>의 <strong>차이점</strong>은 이벤트를 발생시키는 주체가 다름.<ul>
+<li><strong><code>인터럽트</code></strong>는 <strong>외부 디바이스에 의해 프로세서에 전달되는 이벤트</strong>.</li>
+<li><strong><code>예외</code></strong>는 프로세서가 코드를 수행하는 도중에 <strong>페이지 폴트나 잘못된 명령 같은 오류로 발생</strong>.</li>
+</ul>
+</li>
+<li>이벤트별로 특수한 처리 함수가 필요 -&gt; <strong><code>인터럽트 또는 예외 핸들러</code></strong>.<ul>
+<li>핸들러는 함수를 수행 후 발생한 시점으로 정상적으로 복귀.</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-1-2-IDT와-IDT-게이트-디스크립터"><a href="#10-1-2-IDT와-IDT-게이트-디스크립터" class="headerlink" title="10.1.2 IDT와 IDT 게이트 디스크립터"></a>10.1.2 IDT와 IDT 게이트 디스크립터</h3><ul>
+<li>프로세서는 인터럽트가 발생했을때 벡터 테이블의 인덱스에 해당하는 어드레스로 이동하여 처리 함수를 수행.</li>
+<li>벡터 테이블은 각 운영 모드마다 존재.<ul>
+<li><strong>리얼 모드의 벡터 테이블</strong>은 세그먼트 : 어드레스의 형태로 어드레스 0x0000 : 0x0000에 위치.</li>
+<li><strong>보호 모드와 IA-32e</strong> 모드에서는 <strong><code>IDT</code></strong>라고 불리는 특수한 형태의 벡터 테이블 사용.</li>
+</ul>
+</li>
+<li><strong><code>IDT</code></strong>는 IDT 게이트 디스크립터로 구성된 테이블, IDTR 레지스터를 통해 프로세서에 IDT 정보를 설정하며 최대 256의 엔트리.</li>
+<li>IDT 게이트 디스크립터는 다른 디스크립터와 달리 세그먼트 셀렉터를 포함 -&gt; <strong>유저 레벨의 어플리케이션 코드를 실행 중 인터럽트 발생시 커널 레벨로 올라가야하기 때문</strong>.</li>
+<li>IDT 게이트 디스크립터는 여러 가지 타입이 있음.<ul>
+<li>태스크 게이트</li>
+<li>인터럽트 게이트</li>
+<li>트랩 게이트</li>
+</ul>
+</li>
+<li>보호 모드만 세가지 다 지원하며 IA-32e 모드는 하위 2개의 게이트만 지원.</li>
+<li>인터럽트 게이트와 트랩 게이트의 차이는 핸들러 실행 중 추가 인터럽트를 발생 시키느냐의 여부.<ul>
+<li>인터럽트 게이트를 사용해 예외 처리를 하는 동안 인터럽트가 더 이상 발생하지 않음.</li>
+</ul>
+</li>
+<li><strong>IST</strong>는 IA-32e 모드에서 도입된 새로운 개념으로 인터럽트나 예외가 발생했을 때 별도의 스택 공간을 할당.</li>
+</ul>
+<h3 id="10-1-3-인터럽트와-예외의-종류"><a href="#10-1-3-인터럽트와-예외의-종류" class="headerlink" title="10.1.3 인터럽트와 예외의 종류"></a>10.1.3 인터럽트와 예외의 종류</h3><ul>
+<li>x86 프로세스는 IDT 테이블의 상위 32개 디스크립터를 예약, 20개는 실제로 사용되며 12개는 앞으로 사용을 위해 미리 예약한 영역.</li>
+<li>즉, 224개는 OS가 임의로 사용할 수 있는 부분.</li>
+<li>프로세서가 사용하는 20개의 예외는 3가지로 분류.<ul>
+<li><strong>faults</strong>는 코드에 문제가 발생했으나 수정하면 정상적으로 실행 가능한 예외. </li>
+<li><strong>traps</strong>는 trap을 유발하는 명령어를 실행했을 때 발생.</li>
+<li><strong>aborts</strong>는 심각한 문제가 발생하여 더이상 코드를 실행할 수 없는 경우.</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-2-인터럽트와-예외-스택과-태스크-상태-세그먼트"><a href="#10-2-인터럽트와-예외-스택과-태스크-상태-세그먼트" class="headerlink" title="10.2 인터럽트와 예외, 스택과 태스크 상태 세그먼트"></a>10.2 인터럽트와 예외, 스택과 태스크 상태 세그먼트</h2><h3 id="10-2-1-스택-스위칭과-IST"><a href="#10-2-1-스택-스위칭과-IST" class="headerlink" title="10.2.1 스택 스위칭과 IST"></a>10.2.1 스택 스위칭과 IST</h3><ul>
+<li>IDT 게이트 디스크립터에 설정된 코드 디스크립터의 권한이 현재 수행 중인 코드의 권한보다 높으면 새로운 스택으로 전환 -&gt; <strong><code>스택 스위칭</code></strong>.</li>
+<li><strong><code>스택 스위칭</code></strong>을 하는 첫 번째 이유는 핸들러의 스택 공간 부족으로 오류가 발생하는 일을 방지.</li>
+<li><strong><code>스택 스위칭</code></strong>을 하는 두 번째 이유는 권한이 높은 함수가 낮은 권한의 스택을 공유함으로써 발생할 수 있는 간섭을 최소화.</li>
+<li>보호 모드도 <strong><code>스택 스위칭</code></strong>을 지원하지만 권한이 변경되어야만 스택 스위칭이 발생.</li>
+<li><strong>IST</strong>는 인터럽트 처리를 위한 스택을 정의한 테이블로 최대 7개의 스택을 지정.</li>
+<li><strong>IST</strong>는 권한 변동 없이 무조건 스택 스위칭이 발생.</li>
+<li><strong>IST</strong>의 스택에서 수행 중이던 코드의 정보와 스택의 정보를 저장해 커널의 스택 데이터 유지.</li>
+</ul>
+<h3 id="10-2-2-프로세서와-태스크-상태-세그먼트-태스크-디스크립터"><a href="#10-2-2-프로세서와-태스크-상태-세그먼트-태스크-디스크립터" class="headerlink" title="10.2.2 프로세서와 태스크 상태 세그먼트, 태스크 디스크립터"></a>10.2.2 프로세서와 태스크 상태 세그먼트, 태스크 디스크립터</h3><ul>
+<li>TSS는 104 바이트로 태스크의 상태를 저장하는 영역으로 프로세스의 상태를 저장하는 역할.</li>
+<li>보호 모드의 TSS는 특정 레지스터를 제외하고 프로세서의 모든 레지스터를 저장, 또한 권한별 스택 정보를 저장하는 역할과 I/O 포트에 접근하는 것을 제한.</li>
+<li>IA-32e 모드로 옮기면서 TSS 위상 추락, 레지스터의 크기가 커지면서 고정된 TSS를 사용할 수 없게됨.</li>
+<li>IST 정보를 저장하는 역할을 IA-32e 모드에서 함.</li>
+<li>프로세서에 TSS 세그먼트에 대한 정보를 알려주는 <strong>TSS 디스크립터</strong>와 <strong>LTR 어셈블리어 명령어</strong>.</li>
+<li>TSS 디스크립터는 GDT 테이블에 있으며 16바이트를 차지.</li>
+</ul>
+<h2 id="10-3-GDT-테이블-교환과-TSS-세그먼트-디스크립터-추가"><a href="#10-3-GDT-테이블-교환과-TSS-세그먼트-디스크립터-추가" class="headerlink" title="10.3 GDT 테이블 교환과 TSS 세그먼트 디스크립터 추가"></a>10.3 GDT 테이블 교환과 TSS 세그먼트 디스크립터 추가</h2><h3 id="10-3-1-왜-GDT-테이블을-교환해야-하는가"><a href="#10-3-1-왜-GDT-테이블을-교환해야-하는가" class="headerlink" title="10.3.1 왜 GDT 테이블을 교환해야 하는가?"></a>10.3.1 왜 GDT 테이블을 교환해야 하는가?</h3><ul>
+<li>어셈블리어로 작성된 보호 모드 GDT에 추가해도 되지만, 커널 엔트리 포인트 영역(512바이트)에 비해 104바이트의 TSS 세그멘트 디스크립터가 너무 큼.</li>
+<li>1MB 이상의 공간에 GDT 테이블을 생성.</li>
+</ul>
+<h3 id="10-3-2-GDT-테이블-생성과-TSS-세그먼트-디스크립터-추가"><a href="#10-3-2-GDT-테이블-생성과-TSS-세그먼트-디스크립터-추가" class="headerlink" title="10.3.2 GDT 테이블 생성과 TSS 세그먼트 디스크립터 추가"></a>10.3.2 GDT 테이블 생성과 TSS 세그먼트 디스크립터 추가</h3><ul>
+<li>GDT 테이블과 GDT 정보를 나타내는 자료구조를 구조체로 작성.</li>
+<li>GDTR 자료구조의 시작 어드레스를 0x142000으로 설정하는 이유는 0x100000 영역부터 264KB를 페이지 테이블로 사용.</li>
+</ul>
+<h3 id="10-3-3-TSS-세그먼트-초기화"><a href="#10-3-3-TSS-세그먼트-초기화" class="headerlink" title="10.3.3 TSS 세그먼트 초기화"></a>10.3.3 TSS 세그먼트 초기화</h3><pre><code class="cpp">void kInitializeTSSSegment(TSSEGMENT * pstTSS) {
+    kMemSet(pstTSS, 0, sizeof(TSSDATA));
+    pstTSS -> qwIST[0] = 0x800000;
+    pstTSS -> wIOMapBASEAddress = 0xFFFF;
+}</code></pre>
+
+<ul>
+<li>I/O 맵을 사용하지 않으려면 TSS 세그먼트 디스크립터에서 설정한 Limit 필드 값보다 크게 설정.</li>
+<li>IST 필드의 0이 아닌 값으로 설정하고 핸들러가 사용할 스택 어드레스를 설정하면 사용 가능.</li>
+</ul>
+<h3 id="10-3-4-GDT-테이블-교체와-TSS-세그먼트-로드"><a href="#10-3-4-GDT-테이블-교체와-TSS-세그먼트-로드" class="headerlink" title="10.3.4 GDT 테이블 교체와 TSS 세그먼트 로드"></a>10.3.4 GDT 테이블 교체와 TSS 세그먼트 로드</h3><pre><code class="asm"> kLoadGDTR:
+    lgdt [rdi]  ; GDTR 어드레스를 프로세서에 로드
+    ret
+
+ kLoadTR:
+    ltr di      ; TSS 세그먼트 디스크립터의 오프셋을 프로세서에 설정해 TSS 세그먼트 로드
+    ret
+</code></pre>
+
+<ul>
+<li>GDT는 LGDT를 사용해 갱신.</li>
+<li>TSS 세그먼트는 LTR 명령어를 사용하여 GDT 테이블 내의 TSS 세그먼트 인덱스를 지정.</li>
+</ul>
+<h2 id="10-4-IDT-테이블-생성-인터럽트-예외-핸들러-등록"><a href="#10-4-IDT-테이블-생성-인터럽트-예외-핸들러-등록" class="headerlink" title="10.4 IDT 테이블 생성, 인터럽트, 예외 핸들러 등록"></a>10.4 IDT 테이블 생성, 인터럽트, 예외 핸들러 등록</h2><h3 id="10-4-1-IDT-테이블-생성"><a href="#10-4-1-IDT-테이블-생성" class="headerlink" title="10.4.1 IDT 테이블 생성"></a>10.4.1 IDT 테이블 생성</h3><pre><code class="cpp">for(i = 0; i < 100; i ++) {
+    kSetIDTEntry( &(pstEntry[i]), kDummyHandler, 0x08, IDT_FLAGS_IST1, IDT_FLAGS_KERNEL, IDT_TYPE_INTERRUPT)
+}
+
+void kDummyHandler(void) {
+    kPrintString(0, 0, "==================================");
+    kPrintString(0, 1, "  Dummy Interrupt Handler Called  ");
+    kPrintString(0, 2, "==================================");
+}</code></pre>
+
+<ul>
+<li>앞서 IDTR 자료구조의 시작 어드레스는 이 전에 생성한 TSS 세그먼트 이후에 위차하게 0x1420A0을 설정.</li>
+<li>인터럽트와 예외는 최대 100개까지 처리 가능하게 설정.</li>
+</ul>
+<h2 id="10-5-IDT-TSS-통합과-빌드"><a href="#10-5-IDT-TSS-통합과-빌드" class="headerlink" title="10.5 IDT, TSS 통합과 빌드"></a>10.5 IDT, TSS 통합과 빌드</h2><h3 id="10-5-1-디스크립터-파일-추가"><a href="#10-5-1-디스크립터-파일-추가" class="headerlink" title="10.5.1 디스크립터 파일 추가"></a>10.5.1 디스크립터 파일 추가</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/Descriptor.c" target="_blank" rel="noopener"><strong><em>Descriptor.c 코드 보기</em></strong></a><br><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/Descriptor.h" target="_blank" rel="noopener"><strong><em>Descriptor.h 코드 보기</em></strong></a></p>
+<h3 id="10-5-2-어셈블리어-유틸리티-파일-수정"><a href="#10-5-2-어셈블리어-유틸리티-파일-수정" class="headerlink" title="10.5.2 어셈블리어 유틸리티 파일 수정"></a>10.5.2 어셈블리어 유틸리티 파일 수정</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/AssemblyUtility.h" target="_blank" rel="noopener"><strong><em>수정된 AssemblyUtility.h 코드 보기</em></strong></a><br><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/AssemblyUtility.asm" target="_blank" rel="noopener"><strong><em>수정된 AssemblyUtility.asm 코드 보기</em></strong></a></p>
+<h3 id="10-5-3-유틸리티-파일-추가"><a href="#10-5-3-유틸리티-파일-추가" class="headerlink" title="10.5.3 유틸리티 파일 추가"></a>10.5.3 유틸리티 파일 추가</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/Utility.c" target="_blank" rel="noopener"><strong><em>Utility.c 코드 보기</em></strong></a><br><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/Utility.h" target="_blank" rel="noopener"><strong><em>Utility.h 코드 보기</em></strong></a></p>
+<h3 id="10-5-4-C-언어-커널-엔트리-포인트-파일-수정"><a href="#10-5-4-C-언어-커널-엔트리-포인트-파일-수정" class="headerlink" title="10.5.4 C 언어 커널 엔트리 포인트 파일 수정"></a>10.5.4 C 언어 커널 엔트리 포인트 파일 수정</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/aacb60e50eaf20e1a935d58e20595312b110fd57/02.Kernel64/Source/Main.c" target="_blank" rel="noopener"><strong><em>수정된 main 코드 보기</em></strong></a></p>
+<h3 id="10-5-5-빌드와-실행"><a href="#10-5-5-빌드와-실행" class="headerlink" title="10.5.5 빌드와 실행"></a>10.5.5 빌드와 실행</h3><p><img src="/images/OS/10/1.png" width="600"><br><img src="/images/OS/10/2.png" width="600"></p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>내일 코드 한번 다시 봐야겠다..<br>끝</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/01/23/OS/Project/PrepareForInterrupt/" data-id="cjyffibdg00m34owe3cx3vhrf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/24/Al/14697/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[14697] - 방 배정하기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/21/OS/Project/AddKeyboardDriver/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">9. 키보드 디바이스 드라이버를 추가하자</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/01/23/OS/Project/PrepareForInterrupt/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

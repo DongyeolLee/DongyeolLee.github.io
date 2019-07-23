@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>자바 8 - lambda(람다) 함수 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java,lambda">
+    
+    <meta name="description" content="들어가기어떤 상황에서 일을 하든 소비자 요구사항은 항상 바뀔 가능성이 높습니다. 따라서 변화하는 요구사항은 소프트웨어에서는 피할 수 없는 문제입니다.이런 상황에서 조금 더 가독성있게 편리하게 사용할 수 있는 것이 Lambda(람다)라는 자바 8에서 추가된 기능이라고 할 수 있습니다.  lambda를 이해하기 전 우리는 먼저 시시각각 변하는 사용자 요구사항에">
+<meta name="keywords" content="java,lambda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="자바 8 - lambda(람다) 함수">
+<meta property="og:url" content="http://DongyeolLee.github.io/2019/04/14/JAVA/lambda/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기어떤 상황에서 일을 하든 소비자 요구사항은 항상 바뀔 가능성이 높습니다. 따라서 변화하는 요구사항은 소프트웨어에서는 피할 수 없는 문제입니다.이런 상황에서 조금 더 가독성있게 편리하게 사용할 수 있는 것이 Lambda(람다)라는 자바 8에서 추가된 기능이라고 할 수 있습니다.  lambda를 이해하기 전 우리는 먼저 시시각각 변하는 사용자 요구사항에">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/java.jpg">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="자바 8 - lambda(람다) 함수">
+<meta name="twitter:description" content="들어가기어떤 상황에서 일을 하든 소비자 요구사항은 항상 바뀔 가능성이 높습니다. 따라서 변화하는 요구사항은 소프트웨어에서는 피할 수 없는 문제입니다.이런 상황에서 조금 더 가독성있게 편리하게 사용할 수 있는 것이 Lambda(람다)라는 자바 8에서 추가된 기능이라고 할 수 있습니다.  lambda를 이해하기 전 우리는 먼저 시시각각 변하는 사용자 요구사항에">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/java.jpg">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2019/04/14/java/lambda/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/programming/">programming</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/programming/java/">java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-JAVA/lambda" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        자바 8 - lambda(람다) 함수
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/04/14/JAVA/lambda/" class="article-date">
+            <time datetime="2019-04-14T05:15:55.000Z" itemprop="datePublished">2019-04-14</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/lambda/">lambda</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>어떤 상황에서 일을 하든 소비자 요구사항은 항상 바뀔 가능성이 높습니다. 따라서 변화하는 요구사항은 소프트웨어에서는 피할 수 없는 문제입니다.<br>이런 상황에서 조금 더 가독성있게 편리하게 사용할 수 있는 것이 <strong><code>Lambda(람다)</code></strong>라는 자바 8에서 추가된 기능이라고 할 수 있습니다. </p>
+<p><strong><code>lambda</code></strong>를 이해하기 전 우리는 먼저 시시각각 변하는 사용자 요구사항에 어떻게 대응해야 할까 생각을 해보아야 합니다. 새로 추가되거나 변경되는 기능이 쉽게 구현 가능하며 장기적인 관점에서는 유지 보수가 쉬워야 합니다.</p>
+<h1 id="동작-파라미터화"><a href="#동작-파라미터화" class="headerlink" title="동작 파라미터화"></a>동작 파라미터화</h1><p><strong>동작 파라미터화</strong>를 이용하면 자주 바뀌는 요구사항을 효과적으로 대응할 수 있습니다. <strong>동작 파라미터화</strong>란 아직은 어떻게 실행할 것인지 결정하지 않은 코드 블록을 의미합니다.<br>글로만 보려하니 잘 이해가 가지 않을 수도 있습니다. 한번 예시를 살펴보겠습니다.</p>
+<p>사과가 담긴 리스트에서 녹색 사과만 필터링 하는 기능을 구현하는 코드를 한번 보겠습니다.</p>
+<pre><code class="java">public class filterGreenApples {
+    public static List<apple> filterGreenApples(List<apple> inventory) {
+        List<apple> result = new ArrayList<apple>();
+        for (Apple apple : inventory) {
+            if ("green".equals(apple.getColor()) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+}</apple></apple></apple></apple></code></pre>
+
+<p>위와 같은 코드에서 과연 초록 사과 뿐만이 아닌 빨간 사과도 필터링 하고 싶으면 어떤 식으로 코드를 수정해야 할까요?<br>물론 코드 자체를 복사해서 “green” 부분만 “red”로 수정해도 문제는 없습니다. 하지만 나중에 다양한 색으로 필터링 하기는 어려운 관계로 조금 더 변화에 적절하게 바꿔 보겠습니다.</p>
+<pre><code class="java">public class filterApplesByColor {
+    public static List<apple> filterApplesByColor(List<apple> inventory, String color) {
+        List<apple> result = new ArrayList<apple>();
+        for(Apple apple : inventory) {
+            if (apple.getColor().equals(color)) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+}</apple></apple></apple></apple></code></pre>
+
+<p>이제 모든 색의 사과를 필터링 할 수 있게 됐습니다. 하지만 더 나아가 특정 색을 가진 사과를 다시 무게로 필터링을 하려면 어떻게 수정할 수 있을까요? 여러가지 방법이 있을 수 있겠지만 가장 쉽게 생각할 수 있는 방법은 다음과 같습니다.</p>
+<pre><code class="java">public class filterApplesByWeight {
+    // 특정 무게보다 무거운 사과만 담기
+    public static List<apple> filterApplesByWeight(List<apple> inventory, int weight) {
+        List<apple> result = new ArrayList<apple>();
+        for(Apple apple : inventory) {
+            if (apple.getWeight() > weight) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+}</apple></apple></apple></apple></code></pre>
+
+<p>지금까지 세개의 예시 코드를 보았습니다. 무엇가 느껴지시지 않으신가요? 검색 조건이 추가될 때마다 파라미터가 증가한다거나 또 색으로만 검색하고 싶은 경우는 별도의 중복된 함수를 따로 둬야 한다는 문제가 있습니다.<br>어떤 식으로 변경을 하면 조금 더 유연하게 변경이 가능할까요? 먼저 검색 조건을 추상화 해보겠습니다.</p>
+<pre><code class="java">public interface ApplePredicate {
+    boolean test (Apple apple);
+}
+
+public class filterApplesWithPredicate {
+    public static List<apple> filterApplesWithPredicate(List<apple> inventory, ApplePredicate p) {
+        List<apple> result = new ArrayList<apple>();
+        for(Apple apple : inventory) {
+            if(p.test(apple)) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    public class AppleHeavyWeightPredicate implements ApplePredicate {
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() > 150;
+        }
+    }
+}</apple></apple></apple></apple></code></pre>
+
+<p>위와 같은 코드는 어떤가요? 전략 패턴을 사용하여 메서드가 다양한 동작을 받아서 내부적으로 수행할 수 있게되어 훨씬 유연한 코드로 변화하였습니다. ApplePredicate를 적절하게 구현하는 클래스를 만들면 다양한 요구사항에 맞게 기능을 추가할 수 있습니다.<br><strong>즉, 우리가 전달한 ApplePredicate 객체에 의해 filterApplesWithPredicate 메서드의 동작을 파라미터화 한 것입니다.</strong></p>
+<p>자! 오래 기다리셨습니다. 이제 <strong><code>lambda(람다)</code></strong>를 이야기 할때가 된 것 같습니다. 바로 직전 본 코드에서 filter 함수를 어떤 식으로 호출할 수 있을까요?<br>아마 다음과 같이 호출할 수 있습니다.</p>
+<pre><code class="java">public class FilteringApples {
+    public static void main(String...args) {
+        List<apple> inventory = Arrays.asList(new Apple(90, "green"),
+                                       new Apple(200, "red"),
+                                       new Apple(90, "red"));
+
+        List<apple> heavyApples = filterApplesWithPredicate(inventory, 
+                                                      new AppleHeavyWeightPredicate);
+    }
+}</apple></apple></code></pre>
+
+<p>또 실제로 AppleHeavyWeightPredicate 메서드를 활용하지 않고 익명 함수로 처리할 수도 있습니다.</p>
+<pre><code class="java">public class FilteringApples {
+    public static void main(String...args) {
+        List<apple> inventory = Arrays.asList(new Apple(90, "green"),
+                                       new Apple(200, "red"),
+                                       new Apple(90, "red"));
+
+        List<apple> heavyApples = filterApplesWithPredicate(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return apple.getWeight() > 150;
+            }
+        });
+    }
+}</apple></apple></code></pre>
+
+<p>하지만 다음과 같은 익명 클래스에서도 다소 고치고 싶은 부분이 있습니다. 바로 중복되는 부분의 코드입니다. 익명 클래스로 <strong>ApplePredicate()</strong>를 넘겨 줄 때마다 명시적으로 public boolean test까지 표현해야해 여전히 많은 공간을 차지 합니다.<br>또, 익명 클래스에 익숙하지 않으면 사용하기 어렵다는 문제도 발생할 수 있습니다. </p>
+<p>이런 코드의 장황함과 익숙하지 않음을 해결해 줄 수 있는 방법이 바로 <strong><code>lambda(람다)</code></strong>입니다. 즉, <strong><code>lambda(람다)</code></strong>는 한눈에 이해할 수 있는 코드를 구현하는 데 많은 도움을 줄 수 있습니다.<br>명시적으로 익명 클래스처럼 객체를 만들고 새로운 동작을 정의하는 메서드를 구현하는데는 변하지 않지만 훨씬 가독성이 뛰어난 것을 확인할 수 있습니다. </p>
+<p>이제 <strong><code>lambda(람다)</code></strong>를 활용하여 앞에서 본 예제가 어떻게 변화했는지 확인 해보겠습니다.</p>
+<pre><code class="java">public class FilteringApples {
+ public static void main(String...args) {
+     List<apple> inventory = Arrays.asList(new Apple(90, "green"),
+                                    new Apple(200, "red"),
+                                    new Apple(90, "red"));
+
+     List<apple> heavyApples = filterApplesWithPredicate(inventory, 
+        // 람다 표현식
+        (Apple apple) -> apple.getWeight() > 150);
+ }
+}</apple></apple></code></pre>
+
+<p>이전 보다 훨씬 코드가 간결해지지 않았나요? 코드가 간결해지면서 가독성 또한 많이 높아졌습니다. 즉, <strong><code>lambda(람다)</code></strong>는 코드의 장황성을 배제하고 프로그래머로 하여금 훨씬 좋은 코드를 짤 수 있도록 많이 사용되고 있습니다.<br>다시 한번 정리하자면 <strong><code>lambda(람다)</code></strong>는 익명 클래스처럼 이름이 없는 함수면서 메서드를 간결하고 장황하지 않게 인수로 전달할 수 있는 코드 블록를 의미합니다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p><strong><code>lambda(람다)</code></strong>를 설명하기에는 다소 부족한 점이 많이 있었을 것이라 생각됩니다. 틀린 부분이 있거나 이해가 잘 가지 않는 부분이 있다면 언제든지 comment 달아주세요~<br>이번은 겉핥기식으로 정리를 해보았지만 이후 조금 더 심화된 내용의 <strong><code>lambda(람다)</code></strong>를 정리해볼까합니다.</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2019/04/14/JAVA/lambda/" data-id="cjyffibbu00hm4owesvrqg7c0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/04/30/JAVA/lambda-more/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            자바 8 - lambda(람다) 더 알아보기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/04/Al/1759/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[1759] - 암호 만들기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2019/04/14/JAVA/lambda/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

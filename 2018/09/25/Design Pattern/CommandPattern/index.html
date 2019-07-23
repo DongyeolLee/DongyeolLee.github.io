@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>Command Pattern(커맨드 패턴) | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java,design pattern">
+    
+    <meta name="description" content="들어가기이번 포스팅에서는 커맨드 패턴(Command Pattern) 에 대해서 알아보겠습니다. 본론1. 커맨드 패턴이란 무엇인가커맨드 패턴(Command Pattern)은 특정 행위(기능)을 캡슐화하여 클래스를 변경하지 않고 재사용할때 유용하게 사용합니다. 즉, 요청을 객체의 형태로 캡슐화하여 사용자가 보낸 요청을 나중에 이용할 수 있도록 매서드 이름, 매">
+<meta name="keywords" content="java,design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Command Pattern(커맨드 패턴)">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/09/25/Design Pattern/CommandPattern/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기이번 포스팅에서는 커맨드 패턴(Command Pattern) 에 대해서 알아보겠습니다. 본론1. 커맨드 패턴이란 무엇인가커맨드 패턴(Command Pattern)은 특정 행위(기능)을 캡슐화하여 클래스를 변경하지 않고 재사용할때 유용하게 사용합니다. 즉, 요청을 객체의 형태로 캡슐화하여 사용자가 보낸 요청을 나중에 이용할 수 있도록 매서드 이름, 매">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Command Pattern(커맨드 패턴)">
+<meta name="twitter:description" content="들어가기이번 포스팅에서는 커맨드 패턴(Command Pattern) 에 대해서 알아보겠습니다. 본론1. 커맨드 패턴이란 무엇인가커맨드 패턴(Command Pattern)은 특정 행위(기능)을 캡슐화하여 클래스를 변경하지 않고 재사용할때 유용하게 사용합니다. 즉, 요청을 객체의 형태로 캡슐화하여 사용자가 보낸 요청을 나중에 이용할 수 있도록 매서드 이름, 매">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/09/25/design pattern/commandpattern/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/design-pattern/">design pattern</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/design-pattern/java/">java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Design Pattern/CommandPattern" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Command Pattern(커맨드 패턴)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/09/25/Design Pattern/CommandPattern/" class="article-date">
+            <time datetime="2018-09-25T06:36:45.000Z" itemprop="datePublished">2018-09-25</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/design-pattern/">design pattern</a>, <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이번 포스팅에서는 <strong><code>커맨드 패턴(Command Pattern)</code></strong> 에 대해서 알아보겠습니다.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="1-커맨드-패턴이란-무엇인가"><a href="#1-커맨드-패턴이란-무엇인가" class="headerlink" title="1. 커맨드 패턴이란 무엇인가"></a>1. 커맨드 패턴이란 무엇인가</h2><p><strong><code>커맨드 패턴(Command Pattern)</code></strong>은 특정 행위(기능)을 캡슐화하여 클래스를 변경하지 않고 재사용할때 유용하게 사용합니다.</p>
+<p>즉, 요청을 객체의 형태로 캡슐화하여 사용자가 보낸 요청을 나중에 이용할 수 있도록 매서드 이름, 매개변수 등 요청에 필요한 정보를 저장 또는 로깅, 취소할 수 있게 하는 패턴입니다.</p>
+<p>말로는 많이 어려우니 밑에서 예시를 통해 <strong><code>커맨드 패턴(Command Pattern)</code></strong>을 사용하지 않았을때 발생하는 문제점과 <strong><code>커맨드 패턴(Command Pattern)</code></strong>을 사용했을때 얻는 이점을 다시 한번 확인해보겠습니다. </p>
+<h2 id="2-왜-커맨드-패턴을-사용해야-하는가"><a href="#2-왜-커맨드-패턴을-사용해야-하는가" class="headerlink" title="2. 왜 커맨드 패턴을 사용해야 하는가"></a>2. 왜 커맨드 패턴을 사용해야 하는가</h2><p>한 가지 예를 들어겠습니다. 버튼이 두개 있는 리모컨이 있습니다. 하나는 Turn On, 다른 한 가지는 Turn Off 입니다. 하지만 이 리모컨은 만능 리모컨이기에 TV, 에어컨 등 모든 전자 기기를 끌수 있고 킬수 있다고 가정하겠습니다.</p>
+<p>이때 어떤 전자 기기는 전원을 키고 끌때 내부적으로 모든 로직이 똑같을 수도 있고 다를 수도 있습니다. <strong>즉, 이전 코드를 재사용 할 수도 있고 완전히 새로 구현해야 할 수도 있습니다.</strong></p>
+<p>이럴 경우 <strong><code>커맨드 패턴(Command Pattern)</code></strong>을 사용하면 기능 자체를 추상화하여 재사용성을 높이고 메서드를 직접 호출하지 않으면서 수정할 부분을 최소화 시킬수 있습니다.</p>
+<h2 id="3-예시"><a href="#3-예시" class="headerlink" title="3. 예시"></a>3. 예시</h2><p><strong><code>커맨드 패턴(Command Pattern)</code></strong>의 필요성에서 보았듯이 만능 리모콘을 만들어보며 패턴을 적용하지 않았을 경우 문제점을 알아보겠습니다.</p>
+<p>간략한 예시를 위해 turn on만 가정해서 코드를 작성하겠습니다.</p>
+<h3 id="3-1-커맨드-패턴을-적용하지-않았을-경우"><a href="#3-1-커맨드-패턴을-적용하지-않았을-경우" class="headerlink" title="3.1 커맨드 패턴을 적용하지 않았을 경우"></a>3.1 커맨드 패턴을 적용하지 않았을 경우</h3><pre><code class="java">public class Lamp {
+    public void turnOn() {
+        System.out.println("Turn On");
+    }
+}
+
+public class Button {
+    private Lamp theLamp;
+
+    public Button(Lamp theLamp) {
+        this.theLamp = theLamp;
+    }
+
+    public void pressed() {
+        theLamp.turnOn();
+    }
+}
+
+public class Client {
+    public static void main(String[] args) {
+        Lamp lamp = new Lamp();
+        Button remote = new Button(lamp);
+        remote.pressed();
+    }
+}</code></pre>
+
+<p>위에서 작성한 코드는 전등을 키는 간단한 코드입니다. 작동하는데는 문제가 없어 보입니다.</p>
+<p>하지만 몇가지 문제점를 확인할 수 있습니다.</p>
+<ul>
+<li>같은 코드를 사용하면서 전등이 아닌 TV나 알람을 키는 기능을 추가할 경우</li>
+<li>버튼을 누르는 횟수에 따라 다른 기능을 수행해야 할 경우</li>
+</ul>
+<p>첫 번째 문제점을 먼저 확인해보겠습니다. 위에 예시에서 볼수 있듯이 TV 클래스를 작성하는 것만으로 그치지 않고 기존 Button 클래스 코드를 수정해야 합니다. <strong>이는 이전 포스팅에서 확인했듯이 OCP에 위배됩니다.</strong></p>
+<p>즉, 버튼을 눌렀을 때 지정된 기능만 고정적으로 수행하도록 만든 처음과 같은 설계는 기능이 추가될 때마다 여러 클래스를 수정해야하기에 OCP를 위반하는 설계입니다.</p>
+<p>두 번째 경우의 문제점을 확인해보겠습니다. </p>
+<p>예를 들어 버튼을 처음 눌렀을 때는 램프를 켜고 두 번 눌렀을 때는 알람을 동작하게 할 경우에 Button 클래스는 2가지 기능을 모두 구현할 수 있어야 합니다. </p>
+<pre><code class="java">enum Mode {LAMP, ALARM};
+
+public class Lamp {
+  public void turnOn() {
+      System.out.println("Turn On");
+  }
+}
+
+public class Alarm {
+  public void start() {
+      System.out.println("Alarming");
+  }
+}
+
+public class Button {
+    private Lamp theLamp;
+    private Alarm theAlarm;
+    private Mode theMode;
+
+    public Button(Lamp theLamp) {
+        this.theLamp = theLamp;
+        this.theAlarm = theAlarm;
+    }
+
+    public void setMode(Mode mode) {
+        this.theMode = mode;
+    }
+
+    public void pressed() {
+        swhitch(theMode) {
+            case LAMP:
+                theLamp.turnOn();
+                break;
+            case ALARM:
+                theAlarm.start();
+                break;
+        }
+    }
+}</code></pre>
+
+<p>이 경우 역시 버튼을 눌렀을 때의 기능을 변경하기 위해 다시 Button 클래스의 코드를 수정해야합니다.</p>
+<p>즉, OCP를 위배할 뿐더러 Button 클래스를 재사용하기 어렵습니다.</p>
+<h3 id="3-2-커맨드-패턴을-적용한-경우"><a href="#3-2-커맨드-패턴을-적용한-경우" class="headerlink" title="3.2 커맨드 패턴을 적용한 경우"></a>3.2 커맨드 패턴을 적용한 경우</h3><p>새로운 기능을 추가하거나 변경하더라도 Button 클래스를 그대로 사용하려면 Button 클래스에 pressed 메서드에서 구체적인 기능을 직접 구현하는 대신 버튼을 눌렀을 때 실현될 기능을 클래스 외부에서 제공받아 캡슐화하여 호출하는 방법을 사용할 수 있습니다.</p>
+<p><img src="/images/DesignPattern/4/1.png" width="600"></p>
+<p>클래스 다이어그램을 보면 turnOn 메서드나 start 메서드를 직접 호출하지 않고 추상화하여 호출하고 있습니다.</p>
+<pre><code class="java">public interface Command {
+    public abstract void execute();
+}
+
+public class Alarm {
+    public void start() {
+        System.out.println("Alarming ... ");
+    }
+}
+
+public class Lamp {
+    public void turnOn() {
+        System.out.println("Lamp On");
+    }
+}
+
+public class AlarmOnCommand implements Command {
+    private Alarm theAlarm;
+
+    public AlarmOnCommand(Alarm theAlarm) {
+        this.theAlarm = theAlarm;
+    }
+
+    @Override
+    public void execute() {
+        theAlarm.start();
+    }
+}
+
+public class LampOnCommand implements Command {
+    private Lamp theLamp;
+
+    public LampOnCommand(Lamp theLamp) {
+        this.theLamp = theLamp;
+    }
+
+    @Override
+    public void execute() {
+        theLamp.turnOn();
+    }
+}
+
+public class Button {
+    private Command theCommand;
+
+    public Button(Command theCommand) {
+        setTheCommand(theCommand);
+    }
+
+    public void setTheCommand(Command theCommand) {
+        this.theCommand = theCommand;
+    }
+
+    public void pressed() {
+        theCommand.execute();
+    }
+}</code></pre>
+
+<p>보시는 바와 같이 Command 인터페이스를 구현하는 LampOnCommand와 AlarmCommand 객체를 Button 객체에 설정하여 버튼을 눌렀을 때 필요한 임의의 기능은 Command 인터페이스를 구현한 클래스의 객체를 Button 객체에 설정해서 실행할 수 있습니다.</p>
+<p>즉, 실행될 기능을 캡슐화함으로써 호출자(Invoker)와 실제 기능을 실행하는 수신자(Receiver) 클래스 사이의 의존성을 제거합니다. 따라서 실행될 기능의 변경에도 호출자 클래스를 수정 없이 그대로 사용할 수 있도록 해줍니다.</p>
+<ul>
+<li>Command : 실행될 기능을 execute 메서드로 선언함</li>
+<li>ConcreteCommand : 실제로 실행되는 기능을 구현</li>
+<li>Invoker : 기능의 실행을 요청하는 호출자(Button)</li>
+<li>Receiver : Concrete Command의 기능을 실행하기 위해 사용하는 수신자 클래스</li>
+</ul>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p><strong><code>커맨드 패턴(Command Pattern)</code></strong>의 개념과 관련해 추가적인 질문이나 오류, 오타가 있을시 댓글로 남겨주세요.</p>
+<h1 id="출처"><a href="#출처" class="headerlink" title="출처"></a>출처</h1><p>JAVA 객체지향 디자인패턴</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/09/25/Design Pattern/CommandPattern/" data-id="cjyffib7l00054oweja0s4l7i" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/10/09/Al/2668/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[2668] - 숫자고르기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/09/25/Al/1389/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[1389] - 케빈 베이컨의 6단계 법칙</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/09/25/Design Pattern/CommandPattern/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

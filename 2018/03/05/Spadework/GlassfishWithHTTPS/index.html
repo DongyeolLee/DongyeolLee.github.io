@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>Let&#39;s Encrypt를 활용한 Glassfish Https 설정하기 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="https,letsencrypt,glassfish">
+    
+    <meta name="description" content="들어가기최근 봉사 활동을 하면서 관리하는 페이지의 인증서가 만료되어 수동으로 갱신을 해야했습니다. 자료를 찾아보니 아직은 많은 자료가 없는 것 같아 Let’s Encrypt를 활용한 Glassfish 인증서 수동 갱신 과정을 공유해볼까 합니다. 본론Let’s Encrypt 설치Let’s Encrypt가 설치가 안된 상태라면 먼저 Let’sEncrypt를 설">
+<meta name="keywords" content="https,letsencrypt,glassfish">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let&#39;s Encrypt를 활용한 Glassfish Https 설정하기">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/03/05/Spadework/GlassfishWithHTTPS/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기최근 봉사 활동을 하면서 관리하는 페이지의 인증서가 만료되어 수동으로 갱신을 해야했습니다. 자료를 찾아보니 아직은 많은 자료가 없는 것 같아 Let’s Encrypt를 활용한 Glassfish 인증서 수동 갱신 과정을 공유해볼까 합니다. 본론Let’s Encrypt 설치Let’s Encrypt가 설치가 안된 상태라면 먼저 Let’sEncrypt를 설">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/GlassfishAndHttps/glassfish.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Let&#39;s Encrypt를 활용한 Glassfish Https 설정하기">
+<meta name="twitter:description" content="들어가기최근 봉사 활동을 하면서 관리하는 페이지의 인증서가 만료되어 수동으로 갱신을 해야했습니다. 자료를 찾아보니 아직은 많은 자료가 없는 것 같아 Let’s Encrypt를 활용한 Glassfish 인증서 수동 갱신 과정을 공유해볼까 합니다. 본론Let’s Encrypt 설치Let’s Encrypt가 설치가 안된 상태라면 먼저 Let’sEncrypt를 설">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/GlassfishAndHttps/glassfish.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/03/05/spadework/glassfishwithhttps/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/삽질기/">삽질기</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Spadework/GlassfishWithHTTPS" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Let&#39;s Encrypt를 활용한 Glassfish Https 설정하기
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/03/05/Spadework/GlassfishWithHTTPS/" class="article-date">
+            <time datetime="2018-03-05T04:07:25.000Z" itemprop="datePublished">2018-03-05</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/glassfish/">glassfish</a>, <a class="tag-link" href="/tags/https/">https</a>, <a class="tag-link" href="/tags/letsencrypt/">letsencrypt</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>최근 봉사 활동을 하면서 관리하는 페이지의 인증서가 만료되어 수동으로 갱신을 해야했습니다. 자료를 찾아보니 아직은 많은 자료가 없는 것 같아 <strong>Let’s Encrypt를 활용한 Glassfish 인증서 수동 갱신</strong> 과정을 공유해볼까 합니다.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="Let’s-Encrypt-설치"><a href="#Let’s-Encrypt-설치" class="headerlink" title="Let’s Encrypt 설치"></a>Let’s Encrypt 설치</h2><p>Let’s Encrypt가 설치가 안된 상태라면 먼저 Let’sEncrypt를 설치해야 합니다. 설치하는 과정은 많은 블로그에서 공유되고 있으므로 간략하게 클론하는 명령어만 적고 넘어가겠습니다.</p>
+<pre><code class="shellscript">git clone https://github.com/letsencrypt/letsencrypt</code></pre>
+
+<p>정상적으로 설치가 됐다면 확인을 해보겠습니다.</p>
+<pre><code class="shellscript">letsencrypt-auto --help</code></pre> 
+
+<p>다음과 같이 출력된다면 정삭적으로 설치를 마친것 입니다.</p>
+<p><img src="/images/GlassfishAndHttps/1.png" width="600"></p>
+<h2 id="Let’s-Encrypt를-활용해-pem-파일-받아오기"><a href="#Let’s-Encrypt를-활용해-pem-파일-받아오기" class="headerlink" title="Let’s Encrypt를 활용해 pem 파일 받아오기"></a>Let’s Encrypt를 활용해 pem 파일 받아오기</h2><p>이제 앞에서 설치한 Let’s Encrypt를 활용해 pem 파일을 받아오겠습니다.</p>
+<pre><code class="shellscript">letsencrypt-auto certonly</code></pre>
+
+<p>명령어를 치고 나면 환경에 맞게 서버를 인증 받아야합니다. 저같은 경우는 이전에 standalone으로 인증 받았기 때문에 똑같이 standalone으로 진행하겠습니다.</p>
+<p><img src="/images/GlassfishAndHttps/2.png" width="600"></p>
+<p>문제가 없다면 정상적으로 <strong><code>/etc/letsencrypt</code></strong> 아래 pem 파일이 갱신 또는 새롭게 받아온 것을 확인할 수 있습니다.</p>
+<p><img src="/images/GlassfishAndHttps/3.png" width="600"></p>
+<p><strong>날짜를 보시면 pkcs.p12 파일은 이전에 만들어 놨던 인증서이므로 아직까지는 신경을 쓰지 않아도 됩니다.</strong></p>
+<h2 id="발급된-pem-파일-인증서로-변환하기"><a href="#발급된-pem-파일-인증서로-변환하기" class="headerlink" title="발급된 pem 파일, 인증서로 변환하기"></a>발급된 pem 파일, 인증서로 변환하기</h2><p>이제 받아온 pem 파일들을 인증서로 변환하여 Glassfish keystore에 넣어주면 인증서는 갱신 됩니다. pem 파일들을 인증서로 변환하기 위해서는 openssl을 사용해야합니다.</p>
+<pre><code class="shellscript">openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out pkcs.p12 -name s1as</code></pre>
+
+<p>비밀번호는 별도의 설정을 하지 않았을 경우 <strong>changeit</strong> 입니다.</p>
+<p>이 과정을 수행하면 다음과 같이 <strong>pkcs</strong>라는 파일이 생성됨을 확인 할 수 있습니다.</p>
+<p><img src="/images/GlassfishAndHttps/4.png" width="600"></p>
+<p>이제 생성된 <strong>pkcs</strong> 인증서를 keysore.jks에 넣어주기만 하면 인증서 갱신이 완료 됩니다.</p>
+<h2 id="keystore에-인증서-넣기"><a href="#keystore에-인증서-넣기" class="headerlink" title="keystore에 인증서 넣기"></a>keystore에 인증서 넣기</h2><p>먼저 keystore에 기존에 있었던 만료된 인증서를 지워야 합니다. 만약 만료된 인증서가 없었다면 바로 pkcs 파일을 넣어 주시면 됩니다. 그럼 먼저 리스트를 확인하고 삭제 해보겠습니다.</p>
+<pre><code class="shellscript">keytool -list -keystore keystore.jks</code></pre>
+
+<pre><code class="shellscript">keytool -delete -alias s1as -keystore keystore.jks</code></pre>
+
+<p>기본 비밀번호는 똑같이 <strong>changeit</strong> 입니다. 위의 명령어를 진행하면 keystore에 저정되 있던 만료된 인증서는 삭제가 됩니다.</p>
+<p>자!! 그럼 이제 마지막으로 갱신한 인증서를 넣어 주겠습니다.</p>
+<pre><code class="shellscript"> cd /usr/local/glassfish4/glassfish/domains/domain1/config
+ keytool -importkeystore -deststorepass {비밀번호} -destkeypass {비밀번호} -destkeystore keystore.jks -srckeystore /etc/letcencrypt/live/freemed.iptime.org/pkcs.p12 -srcstoretype PKCS12 -alias s1as</code></pre>
+
+<p> 해당 환경은 저의 환경을 기준으로 Path가 설정되어 있으므로 참고하시고 각자의 설정된 Path로 진행하시면 됩니다.</p>
+<p> 마지막으로 확인보면 갱신된 인증서가 정상적으로 keystore에 추가됨을 확인할 수 있습니다.</p>
+<p> <img src="/images/GlassfishAndHttps/5.png" width="600"></p>
+<p> 이제 정말 마지막으로 서버만 껏다 키면 인증서가 적용됩니다.</p>
+<p> <img src="/images/GlassfishAndHttps/6.png" width="600"></p>
+<p> <img src="/images/GlassfishAndHttps/7.png" width="600"></p>
+<p>https 통신이 정상적으로 작동되네요..!!</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>glassfish 서버 자체를 많이 쓰지는 않지만 유용한 정보였기를 바랍니다.</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/03/05/Spadework/GlassfishWithHTTPS/" data-id="cjyffibc200i24owene42say1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/03/06/Al/11724/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[11724] - 연결 요소의 개수
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/03/04/Al/11650/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[11650] - 좌표 정렬하기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/03/05/Spadework/GlassfishWithHTTPS/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

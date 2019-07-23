@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>Strategy Pattern(스트래티지 패턴) | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java,design pattern">
+    
+    <meta name="description" content="들어가기이번 포스팅에서는 흔히 스트래티지 패턴(Strategy Pattern)으로 불리는 전략 패턴 에 대해서 알아보겠습니다. 본론먼저 본격적인 설명에 앞서 하나의 예시를 보겠습니다. 우리는 앞으로 두가지 타입의 로봇을 만들 예정입니다. 걸어다니고 미사일로 공격하는 태권V와 날아다니며 주먹으로 공격하는 아톰이라는 로봇입니다. 가장 쉽게 생각할 수 있는 방법">
+<meta name="keywords" content="java,design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strategy Pattern(스트래티지 패턴)">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/08/06/Design Pattern/StrategyPattern/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기이번 포스팅에서는 흔히 스트래티지 패턴(Strategy Pattern)으로 불리는 전략 패턴 에 대해서 알아보겠습니다. 본론먼저 본격적인 설명에 앞서 하나의 예시를 보겠습니다. 우리는 앞으로 두가지 타입의 로봇을 만들 예정입니다. 걸어다니고 미사일로 공격하는 태권V와 날아다니며 주먹으로 공격하는 아톰이라는 로봇입니다. 가장 쉽게 생각할 수 있는 방법">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Strategy Pattern(스트래티지 패턴)">
+<meta name="twitter:description" content="들어가기이번 포스팅에서는 흔히 스트래티지 패턴(Strategy Pattern)으로 불리는 전략 패턴 에 대해서 알아보겠습니다. 본론먼저 본격적인 설명에 앞서 하나의 예시를 보겠습니다. 우리는 앞으로 두가지 타입의 로봇을 만들 예정입니다. 걸어다니고 미사일로 공격하는 태권V와 날아다니며 주먹으로 공격하는 아톰이라는 로봇입니다. 가장 쉽게 생각할 수 있는 방법">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/java-design-patterns.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/08/06/design pattern/strategypattern/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/design-pattern/">design pattern</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/design-pattern/java/">java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-Design Pattern/StrategyPattern" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Strategy Pattern(스트래티지 패턴)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/08/06/Design Pattern/StrategyPattern/" class="article-date">
+            <time datetime="2018-08-05T16:54:44.000Z" itemprop="datePublished">2018-08-06</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/design-pattern/">design pattern</a>, <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이번 포스팅에서는 흔히 <strong><code>스트래티지 패턴(Strategy Pattern)으로 불리는 전략 패턴</code></strong> 에 대해서 알아보겠습니다.</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><p>먼저 본격적인 설명에 앞서 하나의 예시를 보겠습니다. 우리는 앞으로 두가지 타입의 로봇을 만들 예정입니다. <strong>걸어다니고 미사일로 공격하는 태권V와 날아다니며 주먹으로 공격하는 아톰</strong>이라는 로봇입니다.</p>
+<p>가장 쉽게 생각할 수 있는 방법은 Robot이라는 추상 클래스를 만들고 이를 상속하는 각각의 로봇을 만들어 로봇 타입에 맞는 방법으로 메서드를 재정의하는 방법입니다. 즉, 밑에 보여지는 다이어그램 같은 방법입니다.</p>
+<p><img src="/images/DesignPattern/2/1.png" width="400"></p>
+<p>다시 이 다이어그램을 코드로 옮겨보겠습니다.</p>
+<p><strong>Robot.java</strong></p>
+<pre><code class="java">public abstract class Robot {
+    private String name;
+
+    public Robot(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public abstract void attack();
+    public abstract void move();
+}</code></pre>
+
+<p><strong>TaekwonV.java</strong></p>
+<pre><code class="java">public class TaekwonV extends Robot {
+    public TaekwonV(String name) {
+        super(name);
+    }
+
+    @Override
+    public void attack() {
+      System.out.println("Missile Attack");
+    }
+
+    @Override
+    public void move() {
+      System.out.println("Walk");
+    }
+}</code></pre>
+
+<p><strong>Atom.java</strong></p>
+<pre><code class="java">public class Atom extends Robot {
+    public Atom(String name) {
+        super(name);
+    }
+
+    @Override
+    public void attack() {
+      System.out.println("Punch Attack");
+    }
+
+    @Override
+    public void move() {
+      System.out.println("Fly");
+    }
+}</code></pre>
+
+<p><strong>Main.java</strong></p>
+<pre><code class="java">public class Main {
+    public static void main(String[] args) {
+        Robot taekwonV = new TaekwonV("TaewonV");
+        Robot atom = new Atom("atom");
+
+        System.out.println(taekwonV.getName());
+        taekwonV.attack();
+        taekwonV.move();
+
+        System.out.println("-------------------------------------------------------");
+
+        System.out.println(atom.getName());
+        atom.attack();
+        atom.move();
+    }
+}</code></pre>
+
+<p>Main.java를 실행하여 출력물을 확인하면 우리가 구현하고자하는 로봇 타입을 다음과 같이 출력합니다.</p>
+<p><img src="/images/DesignPattern/2/2.png" width="200"></p>
+<p>하지만 위와 같은 설계는 <strong>문제점을 야기할 수 있는 설계</strong>입니다. 어떤점이 문제일까요?</p>
+<p>만약 Atom과 완전 똑같은 기능을 수행하는 다른 로봇인 Mazinger를 추가하려면 어떻해야 할까요? 클래스를 하나 더 만들어 Robot 클래스를 상속하고 기능을 Atom과 똑같이 구현하면 문제는 해결됩니다.</p>
+<p>여기서 특정 기능을 똑같이 필요로 하는 다른 로봇들이 많이 추가된다면 위와 같은 설계는 코드 중복을 야기합니다. 또 이에 따라 해당 기능이 오류가 있어 수정했다면 모든 중복된 코드를 일관성 있게 변경해야합니다.</p>
+<p>과연 어떻게 위와 같은 문제를 해결할 수 있을까요??</p>
+<p>다른 로봇에 의해 자주 사용되고 수정되는 attack와 move 메서드를 추상화해 문제를 해결할 수 있습니다.</p>
+<p><img src="/images/DesignPattern/2/3.png" width="400"></p>
+<p>그럼 이전 다이어그램과 비교할때 어떻게 바뀌었을까요?</p>
+<p><img src="/images/DesignPattern/2/4.png" width="600"> </p>
+<p>다소 복잡해지긴 했지만 무엇이 변화될것인지를 찾은 후에 이를 캡슐화한 과정입니다. </p>
+<p>이와 같은 설계는 로봇 객체와는 상관없이 향후 등장할 이동방식과 공격방식의 변화뿐만 아니라 현재 변화도 잘 처리할 수 있게 만든 설계입니다.</p>
+<p>변경점을 바탕으로 다시 코드를 수정해보겠습니다.</p>
+<p><strong>AttackStrategy.java</strong></p>
+<pre><code class="java">public interface AttackStrategy {
+    public void attack();
+}</code></pre>
+
+<p><strong>missileattack.java</strong></p>
+<pre><code class="java">public class missileattack implements AttackStrategy {
+    @Override
+    public void attack() {
+        System.out.println("Missile Attack");
+    }
+}</code></pre>
+
+<p><strong>punchattack.java</strong></p>
+<pre><code class="java">public class punchattack implements AttackStrategy {
+    @Override
+    public void attack() {
+        System.out.println("Punch Attack");
+    }
+}</code></pre>
+
+<p><strong>MoveStrategy.java</strong></p>
+<pre><code class="java">public interface MoveStrategy {
+    public void move();
+}</code></pre>
+
+<p><strong>flymove.java</strong></p>
+<pre><code class="java">public class flymove implements MoveStrategy {
+    @Override
+    public void move() {
+        System.out.println("Fly");
+    }
+}</code></pre>
+
+<p><strong>walkmove.java</strong></p>
+<pre><code class="java">public class walkmove implements MoveStrategy {
+    @Override
+    public void move() {
+        System.out.println("Walk");
+    }
+}</code></pre>
+
+<p><strong>Robot.java</strong></p>
+<pre><code class="java">public abstract class Robot {
+    private String name;
+    private MoveStrategy mv;
+    private AttackStrategy at;
+
+    public Robot(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void move() {
+        mv.move();
+    }
+
+    public void attack() {
+        at.attack();
+    }
+
+    public void setMove(MoveStrategy move) {
+        this.mv = move;
+    }
+
+    public void setAttack(AttackStrategy attack) {
+        this.at = attack;
+    }
+}</code></pre>
+
+<p><strong>Atom.java</strong></p>
+<pre><code class="java">public class Atom extends Robot {
+    public Atom(String name) {
+        super(name);
+    }
+}</code></pre>
+
+<p><strong>TaekwonV.java</strong></p>
+<pre><code class="java">public class TaekwonV extends Robot {
+    public TaekwonV(String name) {
+        super(name);
+    }
+}</code></pre>
+
+<p><strong>Main.java</strong></p>
+<pre><code class="java">public class Main {
+    public static void main(String[] args) {
+        Robot taekwonV = new TaekwonV("TaewonV");
+        taekwonV.setAttack(new missileattack());
+        taekwonV.setMove(new walkmove());
+        Robot atom = new Atom("atom");
+        atom.setAttack(new punchattack());
+        atom.setMove(new flymove());
+
+        System.out.println(taekwonV.getName());
+        taekwonV.attack();
+        taekwonV.move();
+
+        System.out.println("-------------------------------------------------------");
+
+        System.out.println(atom.getName());
+        atom.attack();
+        atom.move();
+    }
+}</code></pre>
+
+<p>새롭게 설계한 로봇은 이전 설계했던 로봇과 똑같은 결과값을 출력합니다. 하지만 이전 코드와 비교해 볼때 앞으로 발생할 코드의 중복을 줄일수 있게 되었고 또 현재 로봇들의 기능을 손쉽게 변경할수있게 됐습니다.</p>
+<p><strong><code>스트래티지 패턴(Strategy Pattern), 전략 패턴</code></strong>은 이와 같이 전략을 쉽게 바꿀 수 있도록 해주는 디자인 패턴입니다.</p>
+<p>여기에서 전략이란 어떤 목적을 달성하기 위해 일을 수행하는 방식, 비즈니스 규칙, 문제를 해결하는 알고리즘 등으로 이해할 수 있습니다.</p>
+<p>즉, <strong><code>스트래티지 패턴(Strategy Pattern), 전략 패턴</code></strong>은 같은 문제를 해결하는 여러 알고리즘이 클래스 별로 캡슐화되어 있고 이들이 필요할 때 교체할 수 있도록 함으로써 동일한 문제를 다른 알고리즘으로 해결할 수 있게 하는 디자인 패턴입니다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p><strong><code>스트래티지 패턴(Strategy Pattern), 전략 패턴</code></strong>의 개념과 관련해 추가적인 질문이나 오류, 오타가 있을시 댓글로 남겨주세요.</p>
+<h1 id="출처"><a href="#출처" class="headerlink" title="출처"></a>출처</h1><p>JAVA 객체지향 디자인패턴</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/08/06/Design Pattern/StrategyPattern/" data-id="cjyffib7t000e4owes4g8d9tv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/09/Al/9471/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            백준[9471] - 피사노 주기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/08/06/Al/10826/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">백준[10826] - 피보나치 수4</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/08/06/Design Pattern/StrategyPattern/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>4. 32비트 보호 모드로 전환하자 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="os">
+    
+    <meta name="description" content="들어가기리얼 모드에서 보호 모드로 전환하고, 메세지를 출력해 보호 모드임을 확인해보자!! 본론  간략하게 표시된 리얼모드에서 보호모드 전환 과정.  4.1 세그먼트 디스크립터 생성 세그먼트 디스크립터는 세그먼테이션 기법에서 세그먼트의 정보를 나타내는 자료구조. 세그먼트 디스크립터는 크게 코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터로 나뉨. 코드 세">
+<meta name="keywords" content="os">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4. 32비트 보호 모드로 전환하자">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/01/13/OS/Project/ConvertTo32bitProtectMode/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기리얼 모드에서 보호 모드로 전환하고, 메세지를 출력해 보호 모드임을 확인해보자!! 본론  간략하게 표시된 리얼모드에서 보호모드 전환 과정.  4.1 세그먼트 디스크립터 생성 세그먼트 디스크립터는 세그먼테이션 기법에서 세그먼트의 정보를 나타내는 자료구조. 세그먼트 디스크립터는 크게 코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터로 나뉨. 코드 세">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/operating-system.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4. 32비트 보호 모드로 전환하자">
+<meta name="twitter:description" content="들어가기리얼 모드에서 보호 모드로 전환하고, 메세지를 출력해 보호 모드임을 확인해보자!! 본론  간략하게 표시된 리얼모드에서 보호모드 전환 과정.  4.1 세그먼트 디스크립터 생성 세그먼트 디스크립터는 세그먼테이션 기법에서 세그먼트의 정보를 나타내는 자료구조. 세그먼트 디스크립터는 크게 코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터로 나뉨. 코드 세">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/operating-system.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/01/13/os/project/convertto32bitprotectmode/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/project/">project</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/">정리</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/os/">os</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-OS/Project/ConvertTo32bitProtectMode" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        4. 32비트 보호 모드로 전환하자
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/13/OS/Project/ConvertTo32bitProtectMode/" class="article-date">
+            <time datetime="2018-01-12T18:24:23.000Z" itemprop="datePublished">2018-01-13</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/os/">os</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>리얼 모드에서 보호 모드로 전환하고, 메세지를 출력해 보호 모드임을 확인해보자!!</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><p><img src="/images/OS/4/1.png" width="600"></p>
+<ul>
+<li>간략하게 표시된 <strong>리얼모드에서 보호모드</strong> 전환 과정.</li>
+</ul>
+<h2 id="4-1-세그먼트-디스크립터-생성"><a href="#4-1-세그먼트-디스크립터-생성" class="headerlink" title="4.1 세그먼트 디스크립터 생성"></a>4.1 세그먼트 디스크립터 생성</h2><ul>
+<li><strong><code>세그먼트 디스크립터</code></strong>는 세그먼테이션 기법에서 세그먼트의 정보를 나타내는 <strong>자료구조</strong>.</li>
+<li><strong><code>세그먼트 디스크립터</code></strong>는 크게 <strong>코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터</strong>로 나뉨.<ul>
+<li><strong>코드 세그먼트 디스크립터</strong>, 실행 가능한 코드가 포함된 세그먼트 정보로 CS 세그먼트 셀렉터 사용.</li>
+<li><strong>데이터 세그먼트 디스크립터</strong>, 데이터가 포함된 세그먼트에 대한 정보로 CS 제외한 나머지 세그먼트 셀렉터 사용.</li>
+<li>세그먼트 레지스터 명칭은 보호 모드에서 세그먼트 셀렉터라는 이름으로 명칭</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/OS/4/2.png" width="600"></p>
+<p><img src="/images/OS/4/3.jpg" width="600"></p>
+<ul>
+<li>보호 모드의 <strong>세그먼트 디스크립터</strong>는 8 바이트로 다양한 필드가 존재.</li>
+<li>복잡한 필드로 어떻게 설정할지는 목표로 하는 프로젝트를 먼저 정리하고 설정.<ul>
+<li>커널 코드와 데이터용 디스크립터 각 1개.</li>
+<li>모든 디스크립터는 0 ~ 4GB까지 접근.</li>
+<li>코드와 데이터 사용할 기본 오퍼랜드 크기는 32비트.</li>
+<li>보호 기능은 사용하지 않으며, 프로세서의 명령을 사용하는데 제약 없음.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-1-1-코드-세그먼트-디스크립터와-데이터-세그먼트-디스크립터-타입-설정"><a href="#4-1-1-코드-세그먼트-디스크립터와-데이터-세그먼트-디스크립터-타입-설정" class="headerlink" title="4.1.1 코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터 타입 설정"></a>4.1.1 코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터 타입 설정</h3><p><img src="/images/OS/4/4.png" width="500"></p>
+<ul>
+<li><strong>코드와 데이터 세그먼트</strong>를 설정하려면 S 필드와 타입 필드를 조합.<ul>
+<li>S 필드는 <strong><code>세그먼트 디스크립터</code></strong>를 설정함으로 값을 1로 설정.</li>
+<li>타입 필드는 4 비트의 필드를 이용해서 설정.</li>
+</ul>
+</li>
+<li>프로젝트를 진행하면서 기본 세그먼트 타입만 사용하고, <strong>코드 세그먼트</strong>는 실행/읽기, <strong>데이터 세그먼트</strong>는 읽기/쓰기 타입으로 설정. (코드 : 0x0A, 데이터 : 0x02)</li>
+</ul>
+<h3 id="4-1-2-세그먼트의-영역-설정"><a href="#4-1-2-세그먼트의-영역-설정" class="headerlink" title="4.1.2 세그먼트의 영역 설정"></a>4.1.2 세그먼트의 영역 설정</h3><ul>
+<li>이번 프로젝트의 <strong>커널 세그먼트 디스크립터</strong>는 4GB 전체 영역에 접근.<ul>
+<li>따라서 <strong>커널 세그먼트 디스크립터</strong>의 기준 주소를 0으로 설정.</li>
+</ul>
+</li>
+<li>크기 필드는 총 20 비트, 2^20(1MB)는 4GB까지 표현 불가능.</li>
+<li>G 필드의 값을 1로 설정해 4GB로 확장.</li>
+</ul>
+<h3 id="4-1-3-기본-오퍼랜드-크기와-권한-설정"><a href="#4-1-3-기본-오퍼랜드-크기와-권한-설정" class="headerlink" title="4.1.3 기본 오퍼랜드 크기와 권한 설정"></a>4.1.3 기본 오퍼랜드 크기와 권한 설정</h3><ul>
+<li>보호 모드는 32 비트로 동작하므로 기본 오퍼랜드의 크기도 32 비트로 설정.</li>
+<li>D/B 필드의 값을 1로 설정.</li>
+<li>보호 모드는 권한을 따로 구분하지 않으므로 0으로 설정.</li>
+</ul>
+<h3 id="4-1-4-기타-필드-설정"><a href="#4-1-4-기타-필드-설정" class="headerlink" title="4.1.4 기타 필드 설정"></a>4.1.4 기타 필드 설정</h3><ul>
+<li>디스크립터의 유요함을 나타내는 P 필드를 1로 설정.</li>
+<li>AVL 필드는 이번 프로젝트에서는 사용하지 않을 예정으로 0으로 설정.</li>
+</ul>
+<h3 id="4-1-5-세그먼트-디스크립터-생성-코드"><a href="#4-1-5-세그먼트-디스크립터-생성-코드" class="headerlink" title="4.1.5 세그먼트 디스크립터 생성 코드"></a>4.1.5 세그먼트 디스크립터 생성 코드</h3><p><img src="/images/OS/4/5.png" width="500"></p>
+<pre><code class="cpp"> CODEDESCRIPTOR : 
+    dw 0xFFFF       ; Limit [15:0]
+    dw 0x0000       ; Base [15:0]
+    db 0x00         ; Base [23:16]
+    db 0x9A         ; P=1, DPL=0, Code Segment, Execute/Read
+    db 0xCF         ; G=1, D=1, L=0, Limit[19:16]
+    db 0x00         ; Base [31:24]
+
+DATADESCRIPTOR :
+    dw 0xFFFF       ; Limit [15:0]
+    dw 0x0000       ; Base [15:0]
+    db 0x00         ; Base [23:16]
+    db 0x92         ; P=1, DPL=0, Data Segment, Read/Write
+    db 0xCF         ; G=1, D=1, L=0, Limit[19:16]
+    db 0x00         ; Base [31:24]</code></pre>
+
+<ul>
+<li>코드와 표를 비교하면서 이해.</li>
+</ul>
+<h2 id="4-2-GDT-생성"><a href="#4-2-GDT-생성" class="headerlink" title="4.2 GDT 생성"></a>4.2 GDT 생성</h2><ul>
+<li><strong><code>GDT</code></strong>는 연속된 디스크립터의 집합이므로 연속된 어셈블리어 코드로 나타내면 그 자체가 GDT.</li>
+<li>하지만 한가지 제약은 <strong>NULL 디스크립터</strong>를 가장 앞부분에 추가.</li>
+</ul>
+<p><img src="/images/OS/4/6.png" width="500"></p>
+<ul>
+<li><strong><code>GDT</code></strong>는 프로세서에 <strong><code>GDT</code></strong>의 시작 주소와 크기 정보를 로딩해야 함.<ul>
+<li>따라서 이것을 저장하는 자료구조가 필요.</li>
+</ul>
+</li>
+<li><strong><code>GDT</code></strong> 정보를 저장하는 자료구조의 기준 주소는 데이터 세그먼트의 기준 주소와 관계 없이 어드레스 0을 기준으로 하는 선형 주소.</li>
+<li><strong><code>GDT</code></strong>의 실제 주소를 변환 해야함.<ul>
+<li>부트 로더의 의해 0x10000에 로딩되어 실행 되고 있으므로 자료구조를 생성할때 GDT 오프셋 + 0x10000.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="cpp">; GDTR 자료구조 정의
+GDTR:
+ dw GDTEND - GDT - 1         ; 아래 위치하는 GDT 테이블의 전체 크기
+ dd ( GDT - $$ + 0x10000 )   ; 아래에 위치하는 GDT 테이블의 시작 어드레스
+                             ; 실제 GDT가 있는 선형 주소 계산을 위해
+                             ; 현재 섹션 내의 GDT 오프셋에 세그먼트 기준 주소인 0x10000을 더함
+
+;GDT 테이블 정의
+GDT:
+    ; 널 디스크립터, 반드시 0으로 초기화 해야함
+    NULLDescriptor:
+        dw 0x0000
+        dw 0x0000
+        db 0x00
+        db 0x00
+        db 0x00
+        db 0x00
+
+    ; ~~ 생략 ~~
+
+    ; 보호 모드 커널용 데이터 세그먼트 디스크립터
+    DATADESCRIPTOR:
+        dw 0xFFFF       ; Limit [15:0]
+        dw 0x0000       ; Base [15:0]
+        db 0x00         ; Base [23:16]
+        db 0x92         ; P=1, DPL=0, Data Segment, Read/Write
+        db 0xCF         ; G=1, D=1, L=0, Limit[19:16]
+        db 0x00         ; Base [31:24]
+GDTEND:</code></pre>
+
+<ul>
+<li>즉, <strong><code>GDT</code></strong> 정보를 저장하는 자료구조의 기준 주소는 <strong><code>GDT</code></strong>가 섹션(SECTION)에서 어느 정도 떨어져 있는지 저장.<ul>
+<li>따라서 <strong><code>GDT</code> - $$</strong>으로 <strong><code>GDT</code></strong> 오프셋을 구함.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-3-보호-모드로-전환"><a href="#4-3-보호-모드로-전환" class="headerlink" title="4.3 보호 모드로 전환"></a>4.3 보호 모드로 전환</h2><ul>
+<li>보호모드로 넘어가려면 간단하게 <strong>GDTR 설정, CR0 컨트롤 레지스터 설정, jmp 명령 수행</strong> 3단계만 수행하면 가능.</li>
+</ul>
+<h3 id="4-3-1-프로세서와-GDT-정보-설정"><a href="#4-3-1-프로세서와-GDT-정보-설정" class="headerlink" title="4.3.1 프로세서와 GDT 정보 설정"></a>4.3.1 프로세서와 GDT 정보 설정</h3><pre><code = "cpp">lgdt (GDTR)</code></pre>
+
+<ul>
+<li>프로세서에 GDT 정보 생성을 위함 lgdt 명령어 사용.</li>
+<li>lgdt 명령으로 2 바이트의 크기와 4 바이트의 기준 주소로 된 GDT 정보 자료구조를 오퍼랜드로 받음.</li>
+</ul>
+<h3 id="4-3-2-CR0-컨트롤-레지스터-설정"><a href="#4-3-2-CR0-컨트롤-레지스터-설정" class="headerlink" title="4.3.2 CR0 컨트롤 레지스터 설정"></a>4.3.2 CR0 컨트롤 레지스터 설정</h3><p><img src="/images/OS/4/7.png" width="500"></p>
+<ul>
+<li>CR0 컨트롤 레지스터에는 보호 모드 전환 필드 외에 다양한 필드 포함.</li>
+<li>하지만 이번 보호 모드에서의 CR0는 세그먼테이션 기능 외에는 사용하지 않을 예정.</li>
+</ul>
+<h3 id="4-3-3-보호-모드로-전환과-세그먼트-셀렉터-초기화"><a href="#4-3-3-보호-모드로-전환과-세그먼트-셀렉터-초기화" class="headerlink" title="4.3.3 보호 모드로 전환과 세그먼트 셀렉터 초기화"></a>4.3.3 보호 모드로 전환과 세그먼트 셀렉터 초기화</h3><pre><code = "cpp">; 커널 코드 세그먼트를 0x00을 기준으로 하는 것으로 교체하고 EIP의 값을 0x00을 기준으로 재설정
+; CS 세그먼트 셀렉터 : EIP
+jmp dword 0x08: ( PROTECTEDMODE - $$ + 0x10000 )  
+; 커널 코드 세그먼트가 0x00을 기준으로 하는 반명 실제 코드는 0x10000을 기준으로 실행되고 있으므로
+; 오프셋에 0x10000을 더해 세그먼트 교체 후에도 같은 선형 주소를 가리키게 함
+
+[BITS 32]           ; 이하의 코드는 32비트 코드로 설정
+PROTECTEDMODE:
+   mov ax, 0x10    ; 보호 모드 커널용 데이터 세그먼트 디스크립터를 AX 레지스터에 저장
+   mov ds, ax      ; DS 세그먼트 셀렉터에 설정
+   mov es, ax      ; ES 세그먼트 셀렉터에 설정
+   mov fs, ax      ; FS 세그먼트 셀렉터에 설정
+   mov gs, ax      ; GS 세그먼트 셀렉터에 설정
+
+   ; 스택을 0x00000000 ~ 0x0000FFFF 영역에 64KB 크기로 생성
+   mov ss, ax      ; SS 세그먼트 셀렉터에 설정
+   mov esp, 0xFFFE ; ESP 레지스터의 어드레스를 0xFFFE로 설정
+   mov ebp, 0xFFFE ; EBP 레지스터의 어드레스를 0xFFFE로 설정</code></pre>
+
+<ul>
+<li>32비트 코드를 준비한 후, 어셈블리어 코드로 CS 세그먼트 셀렉터의 값을 바꿈.</li>
+<li>CS 세그먼트 셀렉터 교체를 위한 jmp 명령과 세그먼트 레지스터 접두사를 사용.<ul>
+<li>리얼 모드의 세그먼트 레지스터는 세그먼트의 시작 주소를 저장.</li>
+<li>보호 모드의 세그먼트 디스크립터는 다양한 정보를 포함하고 있으므로 세그먼트 셀렉터(레지스터)는 세그먼트의 시작 주소가 아닌 해당 디스크립터의 주소를 저장.</li>
+<li>디스크립터의 주소는 보호 모드로 변환하면서 GDT 내의 오프셋으로 접근.(즉, 보호 모드로 변환하면서 세그먼트 셀렉터의 기준 값이 GDT의 시작 주소가 되는 것)</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-4-보호-모드용-PRINTSTRING-함수"><a href="#4-3-4-보호-모드용-PRINTSTRING-함수" class="headerlink" title="4.3.4 보호 모드용 PRINTSTRING 함수"></a>4.3.4 보호 모드용 PRINTSTRING 함수</h3><pre><code = "cpp">; 메시지를 출력하는 함수
+;   PARAM: x좌표, y좌표, 문자열
+PRINTMESSAGE:
+    push ebp    ; 베이스 포인터 레지스터(EBP)를 스택에 삽입
+    mov ebp, esp; 베이스 포인터 레지스터(EBP)에 스택 포인터 레지스터(ESP)의 값을 설정
+                ; 베이스 포인터 레지스터(EBP)를 이용해서 파라미터에 접근할 목적
+                ; 호출된 직후의 ESP 레지스터 값을 저장하여 BP 레지스터와 고정된 오프셋으로 파라미터에 접근하게함
+    push esi    ; ES 세그먼트 레지스터부터 DX 레지스터까지 스택에 삽입
+    push edi    ; 함수에서 임시로 사용하는 레지스터로 함수의 마지막 부분에서 스택에 삽입된 값을 꺼내 원래 값으로 복원
+    push eax
+    push ecx
+    push edx
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ; X, Y의 좌표로 비디오 메모리의 어드레스를 계산함
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ; Y 좌표를 이용해서 먼저 라인 어드레스를 구함
+    mov eax, dword [ ebp + 12 ] ; 파라미터 2(Y좌표)를 EAX 레지스터에 설정
+    mov esi, 160                ; 한 라인의 바이트 수(2 * 80 컬럼)를 ESI 레지스터에 설정
+    mul esi                     ; EAX 레지스터와 ESI 레지스터를 곱하여 화면 Y어드레스 계산
+    mov edi, eax                ; 계산된 화면 Y 어드레스를 EDI 레지스터에 설정
+
+    ; X 좌표를 이용해서 2를 곱한 후 최종 어드레스를 구함
+    mov eax, dword [ ebp + 8 ]  ; 파라미터 1(X좌표)를 EAX 레지스터에 설정
+    mov esi, 2                  ; 한 문자를 나타내는 바이트수(2)를 ESI 레지스터에 설정
+    mul esi                     ; EAX 레지스터와 ESI 레지스터를 곱하여 화면 X 어드레스를 계산
+    add edi, eax                ; 화면 Y 어드레스와 계산된 X 어드레스를 더해서 실제 비디오 메모리 어드레스를 계산
+
+    ; 출력할 문자열의 어드레스
+    mov esi, dword [ ebp + 16 ] ; 파라미터 3(출력할 문자열의 어드레스)
+
+.MESSAGELOOP:               ; 메시지를 출력하는 루프
+    mov cl, byte [ esi ]    ; ESI 레지스터가 가리키는 문자열 위치에서 한 문자를 CL 레지스터에 복사
+                            ; CL 레지스터는 ECX 레지스터의 하위 1바이트를 의미
+                            ; 문자열은 1바이트면 충분하므로 ECX 레지스터의 하위 1바이트만 사용
+
+    cmp cl, 0               ; 복사된 문자와 0을 비교
+    je  .MESSAGEEND         ; 복사한 문자의 값이 0이면 문자열이 종료되었음을 의미하므로 .MESSAGEEND로 이동하여 문자 출력 종료
+
+    mov byte [ edi + 0x0B8000 ], cl  ; 0이 아니라면 메모리 어드레스 0xB8000:EDI에 문자를 출력
+
+    add esi, 1              ; ESI 레지스터에 1을 더하여 다음 문자열로 이동
+    add edi, 2              ; EDI 레지스터에 2를 더하여 비디오 메모리의 다음 문자 위치로 이동
+                            ; 비디오 메모리는 (문자, 속성)의 쌍으로 구성되므로 문자만 출력하려면 2를 더해야함
+
+    jmp .MESSAGELOOP        ; 메시지 출력 루프로 이동하여 다음 문자를 출력
+
+.MESSAGEEND:
+    pop edx     ; 함수에서 사용이 끝난 EDX 레지스터부터 EBP 레지스터까지를 스택에 삽입된 값을 이용해서 복원
+    pop ecx     ; 스택은 가장 마지막에 들어간 데이터가 먼저나오는 자료구조이므로 삽입의 역순으로 제거해야한다
+    pop eax
+    pop edi
+    pop esi
+    pop ebp     ; 베이트 포인터 레지스터(EBP) 복원
+    ret         ; 함수를 호출한 다음 코드의 위치로 복귀</code></pre>
+
+<ul>
+<li>리얼 모드용 함수를 보호 모드로 변환 하는 것은 스택의 크기가 2 바이트에서 4 바이트로 증가하며, 범용 레지스터의 크기가 4 바이트라는 정도만 알면 쉽게 교체.</li>
+<li><a href="https://dongyeollee.github.io/2018/01/11/OS-imageLoading/">3. 플로피 디스크에서 OS 이미지를 로딩하자</a>에서의 PRINTSTRING와 비교.<ul>
+<li>범용 레지스터가 수정되고 스택의 크기 변경으로 인한 오프셋 변경.</li>
+<li>보호 모드는 주소 접근 범위가 4GB로 넓어져 ES 세그먼트가 사라짐.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-4-보호-모드용-커널-이미지-빌드와-가상-OS-이미지-교체"><a href="#4-4-보호-모드용-커널-이미지-빌드와-가상-OS-이미지-교체" class="headerlink" title="4.4 보호 모드용 커널 이미지 빌드와 가상 OS 이미지 교체"></a>4.4 보호 모드용 커널 이미지 빌드와 가상 OS 이미지 교체</h2><h3 id="4-4-1-커널-엔트리-포인트-파일-생성"><a href="#4-4-1-커널-엔트리-포인트-파일-생성" class="headerlink" title="4.4.1 커널 엔트리 포인트 파일 생성"></a>4.4.1 커널 엔트리 포인트 파일 생성</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/d01cce48157614cee92f5ec08f47db534aad3582/01.Kernel32/Source/EntryPoint.s" target="_blank" rel="noopener">EntryPoint.s 코드 보기</a></p>
+<ul>
+<li>EntryPoint.s는 외부(부트 로더)에서 보호 모드 커널로 진입하는 부분.</li>
+</ul>
+<h3 id="4-4-2-makefile-수정과-가상-OS-이미지-파일-교체"><a href="#4-4-2-makefile-수정과-가상-OS-이미지-파일-교체" class="headerlink" title="4.4.2 makefile 수정과 가상 OS 이미지 파일 교체"></a>4.4.2 makefile 수정과 가상 OS 이미지 파일 교체</h3><pre><code = "shell">all: Kernel32.bin
+
+Kernel32.bin: Source/EntryPoint.s
+    nasm -o Kernel32.bin $<
+
+clean:
+    rm -f Kernel32.bin</code></pre>
+
+<ul>
+<li>$&lt;의 사용으로 Dependency 첫번째 파일을 의미.</li>
+</ul>
+<p><a href="https://github.com/DongyeolLee/OS-project/blob/d01cce48157614cee92f5ec08f47db534aad3582/makefile" target="_blank" rel="noopener">makefile 소스 보기</a></p>
+<p>-$^, Dependency 전체 파일을 의미.</p>
+<h3 id="4-4-3-OS-이미지-통합-및-QEMU-실행"><a href="#4-4-3-OS-이미지-통합-및-QEMU-실행" class="headerlink" title="4.4.3 OS 이미지 통합 및 QEMU 실행"></a>4.4.3 OS 이미지 통합 및 QEMU 실행</h3><p><img src="/images/OS/4/8.png" width="500"></p>
+<ul>
+<li>부트로더의 섹터 크기 조절 후 실행하면 정상작동.</li>
+</ul>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>생각 안나면 무조건 복습이 답이다.</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/01/13/OS/Project/ConvertTo32bitProtectMode/" data-id="cjyffibdf00m04owe2fc3wlzu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/15/OS/Project/MakingKernelWithC/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            5. C언어로 커널을 작성하자
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/11/OS/Project/OS-imageLoading/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">3. 플로피 디스크에서 OS 이미지를 로딩하자</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/01/13/OS/Project/ConvertTo32bitProtectMode/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

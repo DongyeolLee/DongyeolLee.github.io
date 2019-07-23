@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3705505635834500",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    
+    <meta charset="utf-8">
+    
+    <title>7. 페이징 기능을 활성화하여 64비트 전환을 준비하자 | Dy:1992</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="os">
+    
+    <meta name="description" content="들어가기페이징 설정을 통한 64비트 모드로의 전환 준비! 본론7.1 선형 주소화 4단계 페이징 기법  페이징에 사용하는 각 테이블은 512(2^9)개의 엔트리로 구성, 다음 레벨에서 사용할 테이블의 기준 주소를 포함. 그림과 구현한 페이징의 차이점은 2MB 페이지를 만들 계획, 따라서 페이지 테이블 엔트리없이 페이지 디렉터리에서 바로 물리 주소. 선형 주소">
+<meta name="keywords" content="os">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7. 페이징 기능을 활성화하여 64비트 전환을 준비하자">
+<meta property="og:url" content="http://DongyeolLee.github.io/2018/01/19/OS/Project/ReadyFor64bitMode/index.html">
+<meta property="og:site_name" content="Dy:1992">
+<meta property="og:description" content="들어가기페이징 설정을 통한 64비트 모드로의 전환 준비! 본론7.1 선형 주소화 4단계 페이징 기법  페이징에 사용하는 각 테이블은 512(2^9)개의 엔트리로 구성, 다음 레벨에서 사용할 테이블의 기준 주소를 포함. 그림과 구현한 페이징의 차이점은 2MB 페이지를 만들 계획, 따라서 페이지 테이블 엔트리없이 페이지 디렉터리에서 바로 물리 주소. 선형 주소">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dongyeollee.github.io/images/operating-system.png">
+<meta property="og:updated_time" content="2019-04-30T07:24:41.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="7. 페이징 기능을 활성화하여 64비트 전환을 준비하자">
+<meta name="twitter:description" content="들어가기페이징 설정을 통한 64비트 모드로의 전환 준비! 본론7.1 선형 주소화 4단계 페이징 기법  페이징에 사용하는 각 테이블은 512(2^9)개의 엔트리로 구성, 다음 레벨에서 사용할 테이블의 기준 주소를 포함. 그림과 구현한 페이징의 차이점은 2MB 페이지를 만들 계획, 따라서 페이지 테이블 엔트리없이 페이지 디렉터리에서 바로 물리 주소. 선형 주소">
+<meta name="twitter:image" content="http://dongyeollee.github.io/images/operating-system.png">
+    
+    <link rel="canonical" href="http://DongyeolLee.github.io/2018/01/19/os/project/readyfor64bitmode/">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110982226-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+
+    <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css">
+    <script src="/highlight/highlight.pack.js"></script>
+    <script src="/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1>
+                        <a href="/" style="font-size:100px;color:#fff; text-decoration: none;">{DY}</a>
+                    </h1>
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/">computer science</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/algorithms/">algorithms</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/computer-science/network/">network</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/">design pattern</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/design-pattern/java/">java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/">programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/programming/javascript/">javascript</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/">project</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/project/정리/">정리</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/">review</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/review/job/">job</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/삽질기/">삽질기</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/project/">project</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/">정리</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/project/정리/os/">os</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                            <article id="post-OS/Project/ReadyFor64bitMode" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        7. 페이징 기능을 활성화하여 64비트 전환을 준비하자
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/19/OS/Project/ReadyFor64bitMode/" class="article-date">
+            <time datetime="2018-01-19T01:35:35.000Z" itemprop="datePublished">2018-01-19</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/os/">os</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>페이징 설정을 통한 64비트 모드로의 전환 준비!</p>
+<h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="7-1-선형-주소화-4단계-페이징-기법"><a href="#7-1-선형-주소화-4단계-페이징-기법" class="headerlink" title="7.1 선형 주소화 4단계 페이징 기법"></a>7.1 선형 주소화 4단계 페이징 기법</h2><p><img src="/images/OS/7/1.png" width="600"></p>
+<ul>
+<li>페이징에 사용하는 각 테이블은 512(2^9)개의 엔트리로 구성, 다음 레벨에서 사용할 테이블의 기준 주소를 포함.</li>
+<li>그림과 구현한 페이징의 차이점은 2MB 페이지를 만들 계획, 따라서 페이지 테이블 엔트리없이 페이지 디렉터리에서 바로 물리 주소.<ul>
+<li>선형 주소 역시 테이블 관련 9 비트 없이 20 비트를 오프셋으로 사용.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/OS/7/2.png" width="500"></p>
+<ul>
+<li>제작하는 OS를 실행하는데 필요한 페이지의 역할은 다음과 같음.<ol>
+<li>선형 주소롸 물리 주소를 1:1로 매핑.</li>
+<li>2MB 페이지를 사용하려 최대 64GB의 물리 메모리 매핑.</li>
+<li>물리 메모리 전체 영역에 대해 캐시를 활성화.</li>
+</ol>
+</li>
+</ul>
+<h2 id="7-2-페이지-테이블-구성과-공간-할당"><a href="#7-2-페이지-테이블-구성과-공간-할당" class="headerlink" title="7.2 페이지 테이블 구성과 공간 할당"></a>7.2 페이지 테이블 구성과 공간 할당</h2><h3 id="7-2-1-64GB의-물리-메모리-관리를-위한-메모리-계산"><a href="#7-2-1-64GB의-물리-메모리-관리를-위한-메모리-계산" class="headerlink" title="7.2.1 64GB의 물리 메모리 관리를 위한 메모리 계산"></a>7.2.1 64GB의 물리 메모리 관리를 위한 메모리 계산</h3><ul>
+<li>페이지 디렉터리는 8 바이트 크기인 엔트리 512개로 구성, 각 엔트리는 2MB 페이지에 대한 정보 담음.<ul>
+<li>2MB * 512 = 1GB를 관리함.</li>
+</ul>
+</li>
+<li>페이지 디렉터리의 크기는 8 바이트 * 512 = 4KB.</li>
+<li>64GB의 메모리 영역 관리를 위해서는 페이지 디렉터리 <strong>64개</strong> 필요, 크기는 64 * 4KB = 256KB.</li>
+<li>페이지 디렉터리를 포인팅하는 페이지 디렉터리 포인터 테이블 역시 512개의 엔트리로 구성되며, 64개의 페이지 디렉터리를 관리하는데 <strong>1개</strong>면 충분.</li>
+<li>PML4 역시 8 바이트 크기로 <strong>1개</strong>면 충분.</li>
+<li>64GB 물리 메모리를 매핑하는데 필요한 페이지 테이블 개수는 66개(264KB).</li>
+</ul>
+<h3 id="7-2-2-페이지-테이블을-위한-공간-할당"><a href="#7-2-2-페이지-테이블을-위한-공간-할당" class="headerlink" title="7.2.2 페이지 테이블을 위한 공간 할당"></a>7.2.2 페이지 테이블을 위한 공간 할당</h3><ul>
+<li>264KB나 되는 영역을 OS 이미지나 커널 어드레스 공간에 두는 것은 좋지 않음.</li>
+<li>커널 이미지가 2MB에서 시작, 1MB ~ 2MB 사이에 저장.</li>
+</ul>
+<h3 id="7-2-3-공통-속성-필드-설정"><a href="#7-2-3-공통-속성-필드-설정" class="headerlink" title="7.2.3 공통 속성 필드 설정"></a>7.2.3 공통 속성 필드 설정</h3><p><strong>PCD 필드와 PWT 필드</strong></p>
+<ul>
+<li>속도 향상을 위해 캐시.</li>
+<li>캐시 정책으로 Write-Through &amp; Write-Back 방식이 있으며, Write-Back 방식이 더 효과적.</li>
+<li>PCD = 0, PWT = 0.</li>
+</ul>
+<p><strong>U/S 필드와 R/W 필드</strong></p>
+<ul>
+<li>유저 레벨과 커널 레벨의 구분이 필요.</li>
+<li>하지만 현재는 따로 구분하지 않고(유저 레벨 어플리케이션이 아직 없기 때문에) 모두 읽기/쓰기 가능하게 설정.</li>
+<li>U/S = 0, R/W = 1.</li>
+</ul>
+<p><strong>EXB 필드, A 필드, P 필드, Avail 필드</strong></p>
+<ul>
+<li>페이징 기능외에 다른 기능은 사용하지 않을 예정.</li>
+<li>EXB = 0.</li>
+<li>특정 페이지에 접근 했는지 여부 파악도 X.</li>
+<li>A = 0.</li>
+<li>테이블을 임의의 용도로 사용하지 않음.</li>
+<li>Avail = 0.</li>
+<li>해당 엔트리가 유효하다는 것을 나타내야 함.</li>
+<li>P = 1.</li>
+</ul>
+<h3 id="7-2-4-페이지-디렉터리-엔트리용-속성-필드-설정"><a href="#7-2-4-페이지-디렉터리-엔트리용-속성-필드-설정" class="headerlink" title="7.2.4 페이지 디렉터리 엔트리용 속성 필드 설정"></a>7.2.4 페이지 디렉터리 엔트리용 속성 필드 설정</h3><p><strong>PAT 필드, G 필드, D 필드</strong></p>
+<ul>
+<li>페이지 별로 특수한 옵션을 지정하지 않음.</li>
+<li>PAT = 0.</li>
+<li>페이지 테이블 고정되어 있음.</li>
+<li>G = 0.</li>
+<li>A 필드와  마찬가지로 사용하지 않음.</li>
+<li>D = 0.</li>
+</ul>
+<h2 id="7-3-페이지-테이블-생성과-페이징-기능-활성화"><a href="#7-3-페이지-테이블-생성과-페이징-기능-활성화" class="headerlink" title="7.3 페이지 테이블 생성과 페이징 기능 활성화"></a>7.3 페이지 테이블 생성과 페이징 기능 활성화</h2><h3 id="7-3-1-페이지-엔트리를-위한-자료구조-정의와-매크로-정의"><a href="#7-3-1-페이지-엔트리를-위한-자료구조-정의와-매크로-정의" class="headerlink" title="7.3.1 페이지 엔트리를 위한 자료구조 정의와 매크로 정의"></a>7.3.1 페이지 엔트리를 위한 자료구조 정의와 매크로 정의</h3><pre><code class="cpp"> typedef struct kPageTableEntryStruct{
+    // PML4T와 PDPTE의 경우
+    // 1 비트 P, RW, US, PWT, PCD, A, 3 비트 Reserved, 3 비트 Avail,
+    // 20 비트 Base Address
+    // PDE의 경우
+    // 1 비트 P, RW, US, PWT, PCD, A, D, 1, G, 3 비트 Avail, 1 비트 PAT, 8 비트 Avail,
+    // 11 비트 Base Address
+    DWORD dwAttributeAndLowerBaseAddress;
+    // 8 비트 Upper BaseAddress, 12 비트 Reserved, 11 비트 Avail, 1 비트 EXB
+    DWORD dwUpperBaseAddressAndEXB;
+ } PML4TENTRY, PDPTENTRY, PDENTRY, PTENTRY;</code></pre>
+
+<ul>
+<li>세 종류의 페이지 엔트리는 내부 필드가 거의 유사, 개별적으로 정의하지 않고 형태만 정의.</li>
+</ul>
+<pre><code class="java"> #define PAGE_FLAGS_P        0x00000001  // Present
+ #define PAGE_FLAGS_RW       0x00000002  // Read/Write
+ #define PAGE_FLAGS_US       0x00000004  // User/Supervisor(플래그 설정 시 유저 레벨)
+ #define PAGE_FLAGS_PWT      0x00000008  // Page Level Write-through
+ #define PAGE_FLAGS_PCD      0x00000010  // Page Level Cache Disable
+ #define PAGE_FLAGS_A        0x00000020  // Accessed
+ #define PAGE_FLAGS_D        0x00000040  // Dirty
+ #define PAGE_FLAGS_PS       0x00000080  // Page Size
+ #define PAGE_FLAGS_G        0x00000100  // Global
+ #define PAGE_FLAGS_PAT      0x00001000  // Page Attribute Table Index
+ // 상위 32비트 용 속성 필드
+ #define PAGE_FLAGS_EXB      0x80000000  // Execute Disable 비트
+ // 아래는 편의를 위해 정의한 플래그
+ #define PAGE_FLAGS_DEFAULT  ( PAGE_FLAGS_P | PAGE_FLAGS_RW )
+
+ // 기타 페이징 관련
+ #define PAGE_TABLESIZE      0x1000
+ #define PAGE_MAXENTRYCOUNT  512
+ #define PAGE_DEFAULTSIZE    0x200000</code></pre>
+
+<ul>
+<li>속성 필드 정의.</li>
+</ul>
+<h3 id="7-3-2-페이지-엔트리-생성과-페이지-테이블-생성"><a href="#7-3-2-페이지-엔트리-생성과-페이지-테이블-생성" class="headerlink" title="7.3.2 페이지 엔트리 생성과 페이지 테이블 생성"></a>7.3.2 페이지 엔트리 생성과 페이지 테이블 생성</h3><pre><code class="cpp"> /**
+  *  페이지 엔트리에 기준 주소와 속성 플래그를 설정
+  **/
+ void kSetPageEntryData( PTENTRY* pstEntry, DWORD dwUpperBaseAddress,
+         DWORD dwLowerBaseAddress, DWORD dwLowerFlags, DWORD dwUpperFlags )
+ {
+     pstEntry->dwAttributeAndLowerBaseAddress = dwLowerBaseAddress | dwLowerFlags;
+     pstEntry->dwUpperBaseAddressAndEXB = ( dwUpperBaseAddress & 0xFF ) |
+         dwUpperFlags;
+ }
+
+ /**
+  *  IA-32e 모드 커널을 위한 페이지 테이블 생성
+  **/
+ void kInitializePageTables( void )
+ {
+         PML4TENTRY* pstPML4TEntry;
+
+         // PML4 테이블 생성
+         // 첫 번째 엔트리 외에 나머지는 모두 0으로 초기화
+         pstPML4TEntry = ( PML4TENTRY* ) 0x100000;
+         // 페이지 엔트리를 유저 레벨로 설정하여 유저 레벨에서 접근 가능하도록 설정
+         kSetPageEntryData( &( pstPML4TEntry[ 0 ] ), 0x00, 0x101000,
+                 PAGE_FLAGS_DEFAULT, 0 );
+         for( i = 1 ; i < PAGE_MAXENTRYCOUNT ; i++ )
+         {
+             kSetPageEntryData( &( pstPML4TEntry[ i ] ), 0, 0, 0, 0 );
+         }
+ }</code></pre>
+
+<ul>
+<li>아직 보호 모드이므로 64비트 어드레스를 상위 32비트와 하위 32 비트로 나눔.</li>
+<li>어드레스를 계산할 때도 동일하게 적용.<ul>
+<li>dwUpperBaseAddress의 값이 dwLowerBaseAddress의 값이 4GB를 넘을 때마다 증가.</li>
+<li>어드레스 계산 도중 범위를 초과하면 안됨.</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-3-3-프로세서의-페이징-기능-활성화"><a href="#7-3-3-프로세서의-페이징-기능-활성화" class="headerlink" title="7.3.3 프로세서의 페이징 기능 활성화"></a>7.3.3 프로세서의 페이징 기능 활성화</h3><ul>
+<li>CR0의 PG 비트 CR3 레지스터, CR4의 PAE 비트를 1로 설정.</li>
+<li>PG 비트를 1로 설정하는 순간 체이징 기능이 활성화되므로, 그 전에 미리 CR3 레지스터에 PML4 테이블의 어드레스를 설정.</li>
+<li>CR4 레지스터의 PAE 비트와 페이지 디렉터리 엔트리의 PS 비트를 1로 설정함으로써 IA-32e 모드 페이징 설정.</li>
+</ul>
+<pre><code class="cpp">; PAE 비트를 1로 설정
+mov eax, cr4
+or eax, 0x20
+mov cr4, eax
+
+;PML4 테이블의 어드레시와 캐시 활성화
+mov eax, 0x100000
+mov cr3, eax
+
+;페이징 기능 활성화
+mov eax, cr0
+or eax, 80000000
+mov cr0, eax
+</code></pre>
+
+<ul>
+<li>현재는 보호 모드이므로 해당 코드로 페이징을 활성화하는 것은 IA-32e에서 사용.</li>
+</ul>
+<h2 id="7-4-보호-모드-커널에-페이지-테이블-생성-기능-추가"><a href="#7-4-보호-모드-커널에-페이지-테이블-생성-기능-추가" class="headerlink" title="7.4 보호 모드 커널에 페이지 테이블 생성 기능 추가"></a>7.4 보호 모드 커널에 페이지 테이블 생성 기능 추가</h2><h3 id="7-4-1-페이징-기능-관련-파일-생성"><a href="#7-4-1-페이징-기능-관련-파일-생성" class="headerlink" title="7.4.1 페이징 기능 관련 파일 생성"></a>7.4.1 페이징 기능 관련 파일 생성</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/c8631aff1dc3126148d25b57ba2554a2e36f76f6/01.Kernel32/Source/Page.h" target="_blank" rel="noopener"><strong><em>page.h 코드 보기</em></strong></a><br><a href="https://github.com/DongyeolLee/OS-project/blob/c8631aff1dc3126148d25b57ba2554a2e36f76f6/01.Kernel32/Source/Page.c" target="_blank" rel="noopener"><strong><em>page.c 코드 보기</em></strong></a></p>
+<ul>
+<li>PML4(0x100000 ~ 101000) -&gt; 페이지 디렉터리 포인터 테이블(0x101000 ~ 102000) -&gt; 페이지 디렉터리(0x102000 ~ 142000)</li>
+</ul>
+<h3 id="7-4-2-C-커널-엔트리-포인트-수정"><a href="#7-4-2-C-커널-엔트리-포인트-수정" class="headerlink" title="7.4.2 C 커널 엔트리 포인트 수정"></a>7.4.2 C 커널 엔트리 포인트 수정</h3><p><a href="https://github.com/DongyeolLee/OS-project/blob/c8631aff1dc3126148d25b57ba2554a2e36f76f6/01.Kernel32/Source/Main.c" target="_blank" rel="noopener"><strong><em>32비트 커널 코드 보기</em></strong></a></p>
+<h2 id="7-5-빌드와-수행"><a href="#7-5-빌드와-수행" class="headerlink" title="7.5 빌드와 수행"></a>7.5 빌드와 수행</h2><p><img src="/images/OS/7/3.png" width="600"></p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>끝!</p>
+
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://DongyeolLee.github.io/2018/01/19/OS/Project/ReadyFor64bitMode/" data-id="cjyffibdh00m54owemnzzwqeu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <!--<div class="sidebar-top">-->
+        <!--<p>follow:</p>-->
+        <!--<ul class="social-links">-->
+            <!---->
+        <!--</ul>-->
+    <!--</div>-->
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/20/OS/Project/ConvertTo64bitMode/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            8. 64비트 모드로 전환하자
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/17/OS/Project/A20GateActivation/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">6. A20 게이트를 활성화하여 1MB이상 영역에 접근해보자</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a><span class="category-list-count">103</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/">algorithms</a><span class="category-list-count">102</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/concepts/">concepts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/problems/">problems</a><span class="category-list-count">98</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/algorithms/tips/">tips</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/network/">network</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/">design pattern</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/design-pattern/java/">java</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/etc/">etc</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/">정리</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/project/정리/os/">os</a><span class="category-list-count">17</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/review/">review</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/review/job/">job</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/삽질기/">삽질기</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/big-endian/" style="font-size: 10px;">big endian</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/emscripten/" style="font-size: 10px;">emscripten</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/git-update-index/" style="font-size: 10px;">git update-index</a> <a href="/tags/glassfish/" style="font-size: 10px;">glassfish</a> <a href="/tags/heap-sort/" style="font-size: 10px;">heap sort</a> <a href="/tags/https/" style="font-size: 11.67px;">https</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/javascript-compiler/" style="font-size: 10px;">javascript compiler</a> <a href="/tags/job/" style="font-size: 11.67px;">job</a> <a href="/tags/lambda/" style="font-size: 11.67px;">lambda</a> <a href="/tags/letsencrypt/" style="font-size: 11.67px;">letsencrypt</a> <a href="/tags/little-endian/" style="font-size: 10px;">little endian</a> <a href="/tags/merge-sort/" style="font-size: 10px;">merge sort</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/os/" style="font-size: 18.33px;">os</a> <a href="/tags/quick-sort/" style="font-size: 10px;">quick sort</a> <a href="/tags/recruiting/" style="font-size: 11.67px;">recruiting</a> <a href="/tags/review/" style="font-size: 11.67px;">review</a> <a href="/tags/sort/" style="font-size: 13.33px;">sort</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 광고1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3705505635834500" data-ad-slot="9757412350" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit" align="center">
+                <h1>
+                    <a href="/" style="font-size:30px;color:#fff; text-decoration: none;">{DY : 1992}</a>
+                </h1>
+                <p>&copy; 2019 Dy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'dyblog-1';
+    
+    
+    var disqus_url = 'http://DongyeolLee.github.io/2018/01/19/OS/Project/ReadyFor64bitMode/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
