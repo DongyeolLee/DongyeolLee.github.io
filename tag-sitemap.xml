@@ -58,6 +58,13 @@
     </url>
 
     <url>
+        <loc>http://DongyeolLee.github.io/tags/event-loop/</loc>
+        <lastmod>2019-04-30T07:24:41.163Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://DongyeolLee.github.io/tags/network/</loc>
         <lastmod>2019-04-30T07:24:41.163Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,13 +80,6 @@
 
     <url>
         <loc>http://DongyeolLee.github.io/tags/little-endian/</loc>
-        <lastmod>2019-04-30T07:24:41.163Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://DongyeolLee.github.io/tags/event-loop/</loc>
         <lastmod>2019-04-30T07:24:41.163Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -171,21 +171,21 @@
 
     <url>
         <loc>http://DongyeolLee.github.io/tags/review/</loc>
-        <lastmod>2019-08-15T08:41:26.329Z</lastmod>
+        <lastmod>2019-08-15T08:42:11.126Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://DongyeolLee.github.io/tags/recruiting/</loc>
-        <lastmod>2019-08-15T08:41:26.329Z</lastmod>
+        <lastmod>2019-08-15T08:42:11.126Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://DongyeolLee.github.io/tags/job/</loc>
-        <lastmod>2019-08-15T08:41:26.329Z</lastmod>
+        <lastmod>2019-08-15T08:42:11.126Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
