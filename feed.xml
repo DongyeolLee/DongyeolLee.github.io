@@ -6,7 +6,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://DongyeolLee.github.io/"/>
-  <updated>2019-08-10T06:12:23.370Z</updated>
+  <updated>2019-08-15T08:41:26.329Z</updated>
   <id>http://DongyeolLee.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018년도 LINE(라인) 채용 - 서류부터 최종면접까지 후기</title>
+    <link href="http://DongyeolLee.github.io/2019/08/15/Review/line/"/>
+    <id>http://DongyeolLee.github.io/2019/08/15/Review/line/</id>
+    <published>2019-08-15T06:32:24.000Z</published>
+    <updated>2019-08-15T08:41:26.329Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>지난 <strong><em><a href="https://dongyeollee.github.io/2019/05/23/Review/nhn/">NHN(NHN 엔터테인먼트)</a></em></strong>에 이어 라인에 지원하면서 간략하게 전형 및 느낌점을 정리해본다.</p><h1 id="서류-평가"><a href="#서류-평가" class="headerlink" title="서류 평가"></a>서류 평가</h1><p>라인 역시 IT 회사답게 어마 무시한 내용을 적는 자기소개서는 아니었다. 단지 어떤 활동을 했는지, 프로젝트 진행 여부를 묻는 듯한 질문이 많았다.</p><p>문항은 다음과 같았다.</p><ul><li>자신을 자유롭게 소개해 주세요.(제한 없음)</li><li>학교 수업이나 대외활동 등을 통해 경험한 프로젝트를 적어주세요. 프로젝트에서 맡았던 역할과 활용한 기술 및 개발 방식, 진행하면서 겪었던 어려움이나 이를 극복한 방법 등도 함께 설명해주세요.(제한 없음)</li><li>LINE에서 왜 자신을 채용해야 하는지, 자신의 경쟁력에 대해 구체적으로 적어주세요.(제한 없음)</li></ul><p>당시 개발 직군은 Server, Client, Game, Security로 지원이 가능했다.</p><p>당시 제일 어려웠던 문항이 개인적으로 1번 문항과 3번 문항이었다. 어떻게 작성할 수 있을까 고민이 많았다.</p><p>자기소개서 문항 1번에는 학부 시절 공부했던 내용과 ‘내가 왜 개발 분야에 흥미를 느끼게 됐는지’를 주로 피력했다.</p><p>그리고 3번 문항에는 입사 후 가질 마음가짐과 나의 장점을 주로 쓰는 것으로 마무리했다.</p><p>참고로 프로젝트를 적는 문항에는 내가 어떤 프로젝트를 했는지는 많이 작성하지 않았다.</p><p>프로젝트 개요는 최대한 단순하게 설명했다. 그보다 어떤 라이브러리를 썼고, 왜 그 라이브러리를 사용했는지, 또 어디서 많은 시간을 들여 개발했는지를 위주로 썼다.</p><h1 id="온라인-필기-시험"><a href="#온라인-필기-시험" class="headerlink" title="온라인 필기 시험"></a>온라인 필기 시험</h1><p><img src="/images/Review/line_online.png" width="600"></p><p>시험은 토요일 오전 Goorm으로 테스트를 진행했다. 라인 온라인 시험은 알고리즘 + 전공 기반 문제였다</p><p>알고리즘 4~5문제 전공 필기가 20문제 내외였다. 전공 필기 문제는 0,X 문항과 모두 고르는 객관식이 섞여 있는 문제였고 알고리즘 역시 구현에서부터 탐색까지 다양하게 나왔다.</p><p>10시에 딱 맞춰 시험이 시작됐다. 근데 웃긴 게 Goorm으로 알고리즘 시험을 보던 중, 사이트가 폭발했다. 그래서 시험 20분? 만에 온라인 알고리즘 시험을 취소한다는 이메일을 받았다.</p><p><img src="/images/Review/line_alert.png" width="600"></p><p>온라인 필기시험은 전공 점수로만 평가하고 알고리즘은 추후 오프라인 시험에서 다시 진행한다고 공지했다. 당시 사이트 문제로 알고리즘 시험을 진행할 수 없다고 했다.</p><p>이후 다시 시간에 맞춰 전공 시험을 봤는데 이 역시 상당히 어려웠다. 근데 라인은 찍으면 감점된다는 이야기가 있어 찍지도 못하고 울며 겨자 먹기로 아는 것만 열심히 풀었다. 워낙 어려워서 커트 라인이 어느 정도에서 형성될지도 감이 안 왔다.</p><p>정말 학부 시절 배운 모든 것을 물어보는 듯한 느낌이 강했다. 주로 네트워크, DB, OS, 컴퓨터 구조가 대부분이라 그 위주로 준비했으나 모르는 문제도 많았다.</p><p>전공 시험도 어려워 ‘망했다’라는 생각이 지배적이었다. 그냥 여기서 라인은 보내줘야겠다고 생각했다.</p><h1 id="오프라인-필기-시험"><a href="#오프라인-필기-시험" class="headerlink" title="오프라인 필기 시험"></a>오프라인 필기 시험</h1><p><img src="/images/Review/line_offline.png" width="400"></p><p>합격 메일을 받고 많이 당황했다. 메일이 잘 못 왔다는 생각까지 했다. 내가 왜 붙었지 의아했지만, 기분은 좋았다. 근데 막상 다시 볼 시험을 생각하니 걱정이 이만저만 아니었다.</p><p>2주 정도 여유가 있어 이전에 준비했던 것처럼 주로 OS, 알고리즘, 컴퓨터 구조, 네트워크, DB 등을 공부하며 오프라인 시험을 준비했다.</p><p>시험은 역삼역 근처에 있는 멀티캠퍼스에서 진행됐다. 내가 도착했을 당시 나 말고 응시자가 상당히 많아 어차피 떨어질 거 편하게 보자는 생각을 가졌다.</p><p>먼저 저번에 취소된 알고리즘 시험부터 2시간 가량 봤던 거로 기억한다. 문제는 4문제였고 배점이 다 달랐던 거로 기억한다.</p><p>당연히 온라인으로 봤던 문제와는 다른 문제들이 출제됐고 유형은 약간 비슷했다.</p><p>이어서 1시간 정도 전공시험을 쳤다. 컴퓨터로 작성하는 시험이었고 문제도 10문제 정도였다.</p><p>여기서 살짝 당황한 게 전공 문제가 아닌 약간 실제 프로젝트를 진행하면서 겪을 수 있는 문제? 를 위주로 나왔던 것 같다.</p><p>JAVA 관련 깊은 질문, 남이 작성한 코드를 보고 빈칸 채워 넣어 프로그램 작동시키기 같은 문제가 많았다.</p><p>당연히 모든 문제가 서술형이었고 모르면 찍지도 못하는 문제들이었다. </p><p>시험을 끝내고 나오면서 같이 본 친구들과 시험에 관해 이야기했다.</p><p>대체로 알고리즘은 비슷한 수준으로 풀었던 것 같다. 1 ~ 2.5 문제?? 정도가 우리들의 평균이었다. 근데 배점이 다 달라서 예상할 수가 없었다.</p><p>전공 시험은 전혀 내가 어느 정도 인지 감도 오지 않았지만 그래도 모르는 문제도 최대한 주워들은 지식으로 작성하려고 노력했다.</p><p>그래도 친구들보다 전공 시험은 뭔가 잘 본 듯한 느낌이었지만 안심할 수 없었다.</p><h1 id="1차-면접"><a href="#1차-면접" class="headerlink" title="1차 면접"></a>1차 면접</h1><p><img src="/images/Review/line_1.png" width="400"></p><p>다행히 합격 통보를 받을 수 있었다. 서술형 같은 경우는 어떻게 채점을 다 했는지 모르겠지만 합격해서 다행이었다.</p><p>라인 1차 면접에 관해서는 아는 정보가 많이 없어 어떻게 준비를 해야 할지 걱정이 앞섰다.</p><p>일단 자소서 기반으로 면접을 준비하되, 기본적인 전공 질문을 받을 수 있기에 전공 공부도 같이 진행하기로 했다.</p><p>1차 면접은 라인 판교 오피스에서 본다고 안내 메일에 적혀있었다. 면접 시간보다 30분 먼저 도착해 대기실에 앉아 있으면서 긴장하지 않으려 노력했다.</p><p>면접은 명시된 대로 딱 50분 진행됐다. 뭔가 폭풍이 지나간 느낌이었다.</p><p>자소서에 적은 프로젝트를 기반으로 질문을 많이 받았다. 왜 이게 어려웠는지, 문제 해결은 어떻게 했는지, 그게 최선책이었는지, 지금 생각해볼 때의 다른 방법은 어떤 게 있을지 프로젝트 관련해서는 대부분 저런 질문이었다.</p><p>또 프로젝트 관련해서 응용 질문도 많았다. 제약 사항을 주고 이럴 경우 어떻게 해결할 수 있는지 물어봤다. 문제 해결력을 보려고 하는 건가? 정답인지는 모르겠지만 내가 생각하는 방안을 제시하면서 답변했다.</p><p>물론 중간중간 모르는 부분이 상당히 많았다. 근데 틀린 대답을 하는 것보다는 모르는 건 진짜 모르겠다고 답했다.</p><p>뭔가 깔끔하지는 않지만, 엄청나게 잘 본 느낌도 아닌 그런 면접이었다.</p><h1 id="2차-면접"><a href="#2차-면접" class="headerlink" title="2차 면접"></a>2차 면접</h1><p><img src="/images/Review/line_2.png" width="400"></p><p>드디어 마지막 관문까지 왔다.</p><p>1차 면접을 준비했던 것처럼 2차 면접을 준비했다. 더 깊이 있게 공부하기보다는 1차 면접에서 답 못했던 내용을 정리해 준비했다.</p><p>2차 면접은 라인 서현 오피스에서 봤다. 집에서 서현까지 상당히 멀었지만 그래도 면접이 오후 4시정도여서 다행이었다.</p><p>그리고 기억하기로는 1차 면접 합격한 뒤 지원했던 분야인 Server에서 어디로 배치받고 싶은지 설문도 했다.</p><p>2차 면접 역시 50분 정도 이어졌고 1차와 비슷한 느낌이었다. 근데 뭔가 더 응용적인 질문도 많았다. 또 제약 상황을 많이 만들어 문제 해결력을 더 보는 듯한 느낌이었다.</p><p>1차 면접에서 답 못했던 부분을 다시 질문하고 나의 생각을 물어보기도 했다. 찾아보고 가길 잘했다.</p><p>근데 2차 면접의 전체적인 느낌은 너무 부정적이었다. 1차 면접보다 모르겠다고 답한 부분이 상당히 많았고 특히 전공 관련해서 깊게 물어볼 때 모르겠다고 답한 게 많아 아쉬웠다.</p><p>가장 당황했던 부분은 내가 사용한 언어에 있어 구동 방식에 문제점이 있었는데 그게 왜 문제일 것 같냐는 질문이었다. 너무 당황했다.</p><p>내가 대략 설명하고 잘 모르겠다고 하자 면접관이 그럼 우리 같이 추측해보자고 하면서 노트를 들이밀고 그림을 그리면서 설명해보라고 했다.</p><p>그냥 아는 부분만 대충 설명했다. 면접관 역시 뜨뜻미지근한 표정으로 알겠다고 한 뒤 넘어갔다.</p><p>라인은 면접이 매우 어려웠다. 다른 기업 면접보다 확실히 더 어렵게 느껴졌다. 뭔가 내가 제일 가고 싶은 기업이라 그랬을까…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;지난 &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://dongyeollee.github.io/2019/05/
+      
+    
+    </summary>
+    
+      <category term="review" scheme="http://DongyeolLee.github.io/categories/review/"/>
+    
+      <category term="job" scheme="http://DongyeolLee.github.io/categories/review/job/"/>
+    
+    
+      <category term="review" scheme="http://DongyeolLee.github.io/tags/review/"/>
+    
+      <category term="recruiting" scheme="http://DongyeolLee.github.io/tags/recruiting/"/>
+    
+      <category term="job" scheme="http://DongyeolLee.github.io/tags/job/"/>
+    
+  </entry>
   
   <entry>
     <title>2018년도 NHN 채용 - 서류부터 최종면접까지 후기</title>
@@ -561,35 +592,6 @@
       
       
         &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1600&quot; target=&quot;_blank&quot; rel=&quot;no
-      
-    
-    </summary>
-    
-      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
-    
-      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
-    
-      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
-    
-    
-      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>백준[2580] - 스도쿠</title>
-    <link href="http://DongyeolLee.github.io/2018/09/03/Al/2580/"/>
-    <id>http://DongyeolLee.github.io/2018/09/03/Al/2580/</id>
-    <published>2018-09-03T14:12:10.000Z</published>
-    <updated>2019-04-30T07:24:41.156Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/2580" target="_blank" rel="noopener"><strong><em>백준 2580 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>백트래킹을 활용해서 문제를 풀수 있다.</p><ul><li>입력받은 값들 중 빈 좌표를 따로 저장</li><li>첫번째 저장된 좌표에 1~9까지 숫자를 대입하여 현재 스도쿠를 만족하는지 검사</li><li>만족한다면 다음 좌표에서 1~9까지 숫자를 대입하고 검사를 반복</li></ul><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>#include &ltutility>#include &ltcstdlib>using namespace std;int sudoku[9][9];vector&ltpair&ltint, int>> arr;// 똑같은 숫자가 있는지 세로 검사bool chk_vertical(int c, int num) {    for(int r = 0; r < 9; r ++) {        if(sudoku[r][c] == num) {            return false;        }    }    return true;}// 가로 검사bool chk_horizontal(int r, int num) {    for(int c = 0; c < 9; c ++) {        if(sudoku[r][c] == num) {            return false;        }    }    return true;}// 3*3 네모난 모양 검사bool chk_square(int r, int c, int num) {    r = r / 3;    c = c / 3;    for(int rr = r * 3; rr < (r * 3) + 3; rr ++) {        for(int cc = c * 3 ; cc < (c * 3) + 3; cc ++) {            if(sudoku[rr][cc] == num) {                return false;            }        }    }    return true;}void dfs(int idx) {    // 모든 좌표에 숫자를 넣었다면 정답 출력    if(idx == arr.size()) {        for(int i = 0; i < 9; i ++) {            for(int j = 0; j < 9; j ++) {                cout << sudoku[i][j] << " ";            }            cout << "\n";        }        exit(0);    }    // 1~9까지 숫자를 넣음    for(int num = 1; num &lt= 9; num ++) {        int r = arr[idx].first;        int c = arr[idx].second;        // 가로, 세로, 네모 모양을 검사해서 해당 숫자가 들어갈 수 있는지 확인        if(chk_vertical(c, num) && chk_horizontal(r, num) && chk_square(r, c, num)) {            // 들어갈 수 있다면 숫자를 넣음            sudoku[r][c] = num;            // 다음 좌표로 이동            dfs(idx + 1);            // 원상 복구            sudoku[r][c] = 0;        }    }}int main() {    for(int i = 0; i < 9; i ++) {        for(int j = 0; j < 9; j ++) {            cin >> sudoku[i][j];            // 비어있는 칸은 좌표를 따로 저장            if(sudoku[i][j] == 0) {                arr.push_back({ i, j });            }        }    }    // 1~9까지 숫자를 넣음    for(int num = 1; num &lt= 9; num ++) {        int r = arr[0].first;        int c = arr[0].second;       // 가로, 세로, 네모 모양으로 해당 num이 들어갈 수 있는지 확인       if(chk_vertical(c, num) && chk_horizontal(r, num) && chk_square(r, c, num)) {           sudoku[r][c] = num;           dfs(1);           sudoku[r][c] = 0;       }    }    return 0;}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2580&quot; target=&quot;_blank&quot; rel=&quot;no
       
     
     </summary>
