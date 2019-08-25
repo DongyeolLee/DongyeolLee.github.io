@@ -7,16 +7,24 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2019/08/15/Review/line/</loc>
-        <lastmod>2019-08-15T08:42:11.126Z</lastmod>
+        <loc>http://DongyeolLee.github.io/2019/05/23/Review/nhn/</loc>
+        <lastmod>2019-08-25T12:47:20.820Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2019/05/23/Review/nhn/</loc>
-        <lastmod>2019-08-10T06:12:23.370Z</lastmod>
+        <loc>http://DongyeolLee.github.io/2019/05/21/Review/11st/</loc>
+        <lastmod>2019-08-25T12:42:38.090Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/2019/08/15/Review/line/</loc>
+        <lastmod>2019-08-15T08:42:11.126Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -31,15 +39,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2019/05/21/Review/11st/</loc>
-        <lastmod>2019-07-22T07:42:38.505Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/</loc>
+        <loc>http://DongyeolLee.github.io/2018/03/05/Spadework/GlassfishWithHTTPS/</loc>
         <lastmod>2019-04-30T07:24:41.167Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -47,7 +47,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/03/05/Spadework/GlassfishWithHTTPS/</loc>
+        <loc>http://DongyeolLee.github.io/2018/11/08/Tips_Al/StringStream/</loc>
         <lastmod>2019-04-30T07:24:41.167Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -95,7 +95,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/01/31/OS/Project/MakeAConsoleShell/</loc>
+        <loc>http://DongyeolLee.github.io/2018/01/15/OS/Project/MakingKernelWithC/</loc>
         <lastmod>2019-04-30T07:24:41.165Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -103,7 +103,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/01/15/OS/Project/MakingKernelWithC/</loc>
+        <loc>http://DongyeolLee.github.io/2018/01/31/OS/Project/MakeAConsoleShell/</loc>
         <lastmod>2019-04-30T07:24:41.165Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -127,14 +127,6 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/01/20/OS/Project/ConvertTo64bitMode/</loc>
-        <lastmod>2019-04-30T07:24:41.165Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://DongyeolLee.github.io/2018/01/13/OS/Project/ConvertTo32bitProtectMode/</loc>
         <lastmod>2019-04-30T07:24:41.165Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -143,15 +135,15 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/02/06/OS/Project/AddRoundRobinScheduler/</loc>
-        <lastmod>2019-04-30T07:24:41.164Z</lastmod>
+        <loc>http://DongyeolLee.github.io/2018/01/20/OS/Project/ConvertTo64bitMode/</loc>
+        <lastmod>2019-04-30T07:24:41.165Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/01/10/OS/Project/Boot-my-PC/</loc>
+        <loc>http://DongyeolLee.github.io/2018/01/21/OS/Project/AddKeyboardDriver/</loc>
         <lastmod>2019-04-30T07:24:41.164Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,7 +159,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/01/21/OS/Project/AddKeyboardDriver/</loc>
+        <loc>http://DongyeolLee.github.io/2018/02/06/OS/Project/AddRoundRobinScheduler/</loc>
         <lastmod>2019-04-30T07:24:41.164Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -176,6 +168,14 @@
 
     <url>
         <loc>http://DongyeolLee.github.io/2018/02/02/OS/Project/AddTimerDeviceDriver/</loc>
+        <lastmod>2019-04-30T07:24:41.164Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/2018/01/10/OS/Project/Boot-my-PC/</loc>
         <lastmod>2019-04-30T07:24:41.164Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -199,7 +199,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/01/04/OS/Project/64bits-processor/</loc>
+        <loc>http://DongyeolLee.github.io/2018/02/05/OS/Project/AddBasicMultiTasking/</loc>
         <lastmod>2019-04-30T07:24:41.163Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -207,7 +207,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/02/05/OS/Project/AddBasicMultiTasking/</loc>
+        <loc>http://DongyeolLee.github.io/2018/01/04/OS/Project/64bits-processor/</loc>
         <lastmod>2019-04-30T07:24:41.163Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -263,7 +263,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/09/25/Design%20Pattern/CommandPattern/</loc>
+        <loc>http://DongyeolLee.github.io/2018/08/13/Design%20Pattern/SingletonPattern/</loc>
         <lastmod>2019-04-30T07:24:41.161Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -279,7 +279,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/08/13/Design%20Pattern/SingletonPattern/</loc>
+        <loc>http://DongyeolLee.github.io/2018/09/25/Design%20Pattern/CommandPattern/</loc>
         <lastmod>2019-04-30T07:24:41.161Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -319,14 +319,6 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/07/05/Al/7569/</loc>
-        <lastmod>2019-04-30T07:24:41.159Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://DongyeolLee.github.io/2018/03/16/Al/7576/</loc>
         <lastmod>2019-04-30T07:24:41.159Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -336,6 +328,14 @@
 
     <url>
         <loc>http://DongyeolLee.github.io/2018/05/29/Al/7785/</loc>
+        <lastmod>2019-04-30T07:24:41.159Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/2018/07/05/Al/7569/</loc>
         <lastmod>2019-04-30T07:24:41.159Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -399,7 +399,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/03/02/Al/2609/</loc>
+        <loc>http://DongyeolLee.github.io/2018/11/07/Al/2644/</loc>
         <lastmod>2019-04-30T07:24:41.157Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -407,7 +407,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/11/07/Al/2644/</loc>
+        <loc>http://DongyeolLee.github.io/2018/03/02/Al/2609/</loc>
         <lastmod>2019-04-30T07:24:41.157Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -423,7 +423,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/10/09/Al/2668/</loc>
+        <loc>http://DongyeolLee.github.io/2018/03/02/Al/2745/</loc>
         <lastmod>2019-04-30T07:24:41.157Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -431,7 +431,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/03/02/Al/2745/</loc>
+        <loc>http://DongyeolLee.github.io/2018/10/09/Al/2668/</loc>
         <lastmod>2019-04-30T07:24:41.157Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -471,7 +471,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/06/26/Al/2583/</loc>
+        <loc>http://DongyeolLee.github.io/2018/08/14/Al/2589/</loc>
         <lastmod>2019-04-30T07:24:41.156Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -479,7 +479,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/08/14/Al/2589/</loc>
+        <loc>http://DongyeolLee.github.io/2018/06/26/Al/2583/</loc>
         <lastmod>2019-04-30T07:24:41.156Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -489,22 +489,6 @@
     <url>
         <loc>http://DongyeolLee.github.io/2018/05/29/Al/2606/</loc>
         <lastmod>2019-04-30T07:24:41.156Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://DongyeolLee.github.io/2018/03/15/Al/1991/</loc>
-        <lastmod>2019-04-30T07:24:41.155Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://DongyeolLee.github.io/2018/03/13/Al/2146/</loc>
-        <lastmod>2019-04-30T07:24:41.155Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -527,7 +511,23 @@
     </url>
 
     <url>
+        <loc>http://DongyeolLee.github.io/2018/03/15/Al/1991/</loc>
+        <lastmod>2019-04-30T07:24:41.155Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://DongyeolLee.github.io/2018/03/09/Al/2331/</loc>
+        <lastmod>2019-04-30T07:24:41.155Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/2018/03/13/Al/2146/</loc>
         <lastmod>2019-04-30T07:24:41.155Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -543,6 +543,14 @@
     </url>
 
     <url>
+        <loc>http://DongyeolLee.github.io/2018/03/27/Al/1783/</loc>
+        <lastmod>2019-04-30T07:24:41.154Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://DongyeolLee.github.io/2018/04/09/Al/1780/</loc>
         <lastmod>2019-04-30T07:24:41.154Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -551,7 +559,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/03/27/Al/1783/</loc>
+        <loc>http://DongyeolLee.github.io/2018/11/14/Al/1916/</loc>
         <lastmod>2019-04-30T07:24:41.154Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -583,14 +591,6 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/11/14/Al/1916/</loc>
-        <lastmod>2019-04-30T07:24:41.154Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://DongyeolLee.github.io/2018/03/08/Al/1707/</loc>
         <lastmod>2019-04-30T07:24:41.153Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -615,7 +615,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/12/04/Al/1759/</loc>
+        <loc>http://DongyeolLee.github.io/2018/05/29/Al/1764/</loc>
         <lastmod>2019-04-30T07:24:41.153Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -623,7 +623,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/05/29/Al/1764/</loc>
+        <loc>http://DongyeolLee.github.io/2018/12/04/Al/1759/</loc>
         <lastmod>2019-04-30T07:24:41.153Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -639,14 +639,6 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/08/14/Al/15685/</loc>
-        <lastmod>2019-04-30T07:24:41.152Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://DongyeolLee.github.io/2018/09/08/Al/1600/</loc>
         <lastmod>2019-04-30T07:24:41.152Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -655,7 +647,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/10/24/Al/16236/</loc>
+        <loc>http://DongyeolLee.github.io/2018/08/14/Al/15685/</loc>
         <lastmod>2019-04-30T07:24:41.152Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -672,6 +664,14 @@
 
     <url>
         <loc>http://DongyeolLee.github.io/2018/04/11/Al/1654/</loc>
+        <lastmod>2019-04-30T07:24:41.152Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/2018/10/24/Al/16236/</loc>
         <lastmod>2019-04-30T07:24:41.152Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -703,7 +703,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/04/13/Al/14890/</loc>
+        <loc>http://DongyeolLee.github.io/2018/04/13/Al/14891/</loc>
         <lastmod>2019-04-30T07:24:41.151Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -711,7 +711,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/04/13/Al/14891/</loc>
+        <loc>http://DongyeolLee.github.io/2018/04/13/Al/14890/</loc>
         <lastmod>2019-04-30T07:24:41.151Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -783,7 +783,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/04/11/Al/14501/</loc>
+        <loc>http://DongyeolLee.github.io/2018/04/12/Al/14502/</loc>
         <lastmod>2019-04-30T07:24:41.149Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -791,7 +791,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/04/12/Al/14502/</loc>
+        <loc>http://DongyeolLee.github.io/2018/04/11/Al/14501/</loc>
         <lastmod>2019-04-30T07:24:41.149Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -823,7 +823,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/09/03/Al/1339/</loc>
+        <loc>http://DongyeolLee.github.io/2018/04/10/Al/13458/</loc>
         <lastmod>2019-04-30T07:24:41.148Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -831,7 +831,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/04/10/Al/13458/</loc>
+        <loc>http://DongyeolLee.github.io/2018/09/03/Al/1339/</loc>
         <lastmod>2019-04-30T07:24:41.148Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -903,14 +903,6 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/03/02/Al/11576/</loc>
-        <lastmod>2019-04-30T07:24:41.146Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://DongyeolLee.github.io/2018/03/04/Al/11650/</loc>
         <lastmod>2019-04-30T07:24:41.146Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -927,7 +919,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/03/20/Al/11725/</loc>
+        <loc>http://DongyeolLee.github.io/2018/03/02/Al/11576/</loc>
         <lastmod>2019-04-30T07:24:41.146Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -943,15 +935,15 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/02/13/Al/10835/</loc>
-        <lastmod>2019-04-30T07:24:41.145Z</lastmod>
+        <loc>http://DongyeolLee.github.io/2018/03/20/Al/11725/</loc>
+        <lastmod>2019-04-30T07:24:41.146Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/02/20/Al/10844/</loc>
+        <loc>http://DongyeolLee.github.io/2018/02/13/Al/10835/</loc>
         <lastmod>2019-04-30T07:24:41.145Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -967,7 +959,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/05/15/Al/10971/</loc>
+        <loc>http://DongyeolLee.github.io/2018/02/20/Al/10844/</loc>
         <lastmod>2019-04-30T07:24:41.145Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -983,7 +975,7 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/2018/05/09/Al/10974/</loc>
+        <loc>http://DongyeolLee.github.io/2018/05/15/Al/10971/</loc>
         <lastmod>2019-04-30T07:24:41.145Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1015,7 +1007,23 @@
     </url>
 
     <url>
+        <loc>http://DongyeolLee.github.io/2018/05/09/Al/10974/</loc>
+        <lastmod>2019-04-30T07:24:41.145Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://DongyeolLee.github.io/2018/09/18/Al/1051/</loc>
+        <lastmod>2019-04-30T07:24:41.144Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/2018/08/06/Al/10826/</loc>
         <lastmod>2019-04-30T07:24:41.144Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1032,14 +1040,6 @@
 
     <url>
         <loc>http://DongyeolLee.github.io/2018/04/02/Al/10816/</loc>
-        <lastmod>2019-04-30T07:24:41.144Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://DongyeolLee.github.io/2018/08/06/Al/10826/</loc>
         <lastmod>2019-04-30T07:24:41.144Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
