@@ -126,15 +126,22 @@
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/categories/programming/</loc>
+        <loc>http://DongyeolLee.github.io/categories/programming/gradle/</loc>
         <lastmod>2019-12-15T04:22:35.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://DongyeolLee.github.io/categories/programming/gradle/</loc>
-        <lastmod>2019-12-15T04:22:35.293Z</lastmod>
+        <loc>http://DongyeolLee.github.io/categories/programming/</loc>
+        <lastmod>2020-10-18T07:19:10.798Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://DongyeolLee.github.io/categories/programming/database/</loc>
+        <lastmod>2020-10-18T07:19:10.798Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

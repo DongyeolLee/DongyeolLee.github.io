@@ -6,7 +6,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://DongyeolLee.github.io/"/>
-  <updated>2019-12-15T04:22:35.293Z</updated>
+  <updated>2020-10-18T07:19:10.798Z</updated>
   <id>http://DongyeolLee.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DB - Data Modeling</title>
+    <link href="http://DongyeolLee.github.io/2020/10/18/DB/Data-Modeling/"/>
+    <id>http://DongyeolLee.github.io/2020/10/18/DB/Data-Modeling/</id>
+    <published>2020-10-18T05:51:15.000Z</published>
+    <updated>2020-10-18T07:19:10.798Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>사내에서 진행된 DB 관련 교육을 듣고 이를 정리하려한다.</p><p><strong>Why should we get data modeling training</strong></p><p>설계도 없이 커다란 건물을 짓는다고 생각해보자. 과연 가능한 일인가? 물론 작은 건물이거나 텐트 같은 경우는 설계도가 없더라도 설치가 가능할 수도 있다.</p><p>하지만 복잡하고 규모있는 건물일수록 설계도가 중요하다. 그렇지 않으면 부실 공사로 건물이 무너지는 것은 당연하다.</p><p>Data Modeling도 같은 이유다.</p><p>Database를 설계할때 그 기초가 되는 것은 Data 사이의 관계이다. 여러 Data의 관계가 복잡하지 않고 간단하다면 손 쉽게 설계도(Modeling)없이도 Database를 구축할 수 있다.</p><p>하지만 건물과 마찬가지로 복잡한 Data의 관계를 조금 더 정확하고 관리하기 편하게 구축 하기 위해서는 Data Modeling이 필요하다.</p><p>많은 서비스들이 Database에 의존적이라 할 수 있다. Database의 속도가 느려 bottleneck이 된다면 서비스들의 영향을 끼칠 수 있다.</p><h1 id="본론"><a href="#본론" class="headerlink" title="본론"></a>본론</h1><h2 id="데이터-모델이란"><a href="#데이터-모델이란" class="headerlink" title="데이터 모델이란"></a>데이터 모델이란</h2><p>데이터 모델이란 무엇인가? 이는 쉽게 설명해서 기업의 비지니스 룰에 대한 설계를 <strong><code>약속된 표기법으로 표현하는 과정(ERD)</code></strong>이라고 할 수 있다.</p><p><img src="/images/Database/erd.png" width="500"></p><p>만약 데이터 모델을 정의하지 않고 여러 사내 팀에서 회원 가입 테이블을 만든다고 상상해보자.</p><p>어떤 팀은 이메일과 이름만 필요할 것이고 또 다른 팀은 이름과 핸드폰 번호만 필요할 수도 있다.</p><p>이럴때마다 기준을 정해두지 않으면 중구 난방 비슷한 테이블을 만들 수 있다. </p><p><strong><code>데이터 모델은 데이터의 설계도이며 정규화, 반정규화, 테이블 통합, 테이블 분할 등 여러가지 고려 문제를 고려해 유연하게 설계한다.</code></strong></p><h2 id="데이터-모델의-구성"><a href="#데이터-모델의-구성" class="headerlink" title="데이터 모델의 구성"></a>데이터 모델의 구성</h2><p>데이터 표기법에는 바커 표기법과 I/E 표기법이 존재한다. 현재 사내에서는 I/E 표기법을 중심으로 사용한다. 또 I/E를 지원하는 툴들이 더 많이 존재한다.</p><p><img src="/images/Database/ie.jpg" width="500"></p><p>I/E는 쉽게 Entity, Relationship, cardinality 이 3가지로 구성된다.</p><p>Entity는 집합을, relationship은 집합간에 관계, cardinality 속성을 의미한다.</p><p>좀 더 자세히 말하자면 Entity는 반드시 해당 업무에서 필요하고 관리하고자 하는 정보이자 유일한 식별자(PK)에 의해 식별이 가능한 정보이다.</p><p>Attribute는 엔티티가 갖는 속성을 의미하며 반드시 단일 값이 필요하다. 중복되는 값이 있다면 이는 정규화가 필요하다는 의미일 수 있다.</p><p><img src="/images/Database/emp.png" width="300"></p><p>Relationship은 entity들 간에 존재하는 업무 규정(관계)이며 일반적으로 일반적으로 RDBMS에서는 FK로 구현한다.</p><p><img src="/images/Database/rnc.png" width="300"></p><h2 id="데이터-모델링-절차"><a href="#데이터-모델링-절차" class="headerlink" title="데이터 모델링 절차"></a>데이터 모델링 절차</h2><p>많이 데이터 모델링은 배울 것은 많이 없다. 경험이 중요하다.</p><p>데이터 모델링을 위한 표현은 단순하다. 하지만 직접 해보려고 하면 막막할 따름이다.</p><p>데이터 모델링에는 정답은 없다. 그러나 설계한 데이터 모델의 각 요소들이 시스템에 어떤 영향을 미칠지 데이터가 향후에 유용하게 사용될 수 있는지 검토하여 최적의 데이터 모델을 설계해야 한다.</p><p>절차 또한 따로 존재하지 않지만 주로 step by step으로 설계한다.</p><p>초반에는 핵심만, 그리고 점점 확장하는 방식으로 처음부터 예외처리 생각하지 않는다. 이는 문제를 더 복잡하게 만들 수 있기 때문이다.</p><ul><li>Conceptual - 가볍게 entity를 스케치(핵심 엔티티 + 관계), 전체적인 그림을 그리는 것</li><li>Logical - Conceptual을 약속된 표기법으로 그리면서 attribute 추가 및 필요한 entity 추가</li><li>Physical - 데이터 베이스 종류에 맞게 도출</li></ul><h2 id="정규화와-성능"><a href="#정규화와-성능" class="headerlink" title="정규화와 성능"></a>정규화와 성능</h2><p>데이터의 일관성 보장을 위한 데이터 중복을 최소화하는 장치</p><p><img src="/images/Database/nomalization.png" width="300"></p><h2 id="비정규화와-성능"><a href="#비정규화와-성능" class="headerlink" title="비정규화와 성능"></a>비정규화와 성능</h2><p>정규화된 entity, attribute, relationship에 대해 시스템 성능, 개발 &amp; 운영의 단순화를 위해 중복, 통합, 분리 등을 수행하는 모델링 기법이다.</p><p><strong>정규화를 진행하다보니 오히려 빈번한 join과 같은 역효과가 발생할수도 있다</strong>. 이럴때 다시 반정규화를 진행한다.</p><h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>앞으로 교육이 몇회가 더 남아있지만 계속 정리를 해볼까한다.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;사내에서 진행된 DB 관련 교육을 듣고 이를 정리하려한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why should we 
+      
+    
+    </summary>
+    
+      <category term="programming" scheme="http://DongyeolLee.github.io/categories/programming/"/>
+    
+      <category term="database" scheme="http://DongyeolLee.github.io/categories/programming/database/"/>
+    
+    
+      <category term="db" scheme="http://DongyeolLee.github.io/tags/db/"/>
+    
+      <category term="modeling" scheme="http://DongyeolLee.github.io/tags/modeling/"/>
+    
+      <category term="data" scheme="http://DongyeolLee.github.io/tags/data/"/>
+    
+  </entry>
   
   <entry>
     <title>What is Gradle ?</title>
@@ -563,35 +595,6 @@
       
       
         &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1051&quot; target=&quot;_blank&quot; rel=&quot;no
-      
-    
-    </summary>
-    
-      <category term="computer science" scheme="http://DongyeolLee.github.io/categories/computer-science/"/>
-    
-      <category term="algorithms" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/"/>
-    
-      <category term="problems" scheme="http://DongyeolLee.github.io/categories/computer-science/algorithms/problems/"/>
-    
-    
-      <category term="algorithms" scheme="http://DongyeolLee.github.io/tags/algorithms/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>백준[9517] - 아이 러브 크로아티아</title>
-    <link href="http://DongyeolLee.github.io/2018/09/10/Al/9517/"/>
-    <id>http://DongyeolLee.github.io/2018/09/10/Al/9517/</id>
-    <published>2018-09-09T19:15:00.000Z</published>
-    <updated>2019-04-30T07:24:41.160Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h1><p><a href="https://www.acmicpc.net/problem/9517" target="_blank" rel="noopener"><strong><em>백준 9517 문제 보기</em></strong></a></p><h1 id="접근-방법"><a href="#접근-방법" class="headerlink" title="접근 방법"></a>접근 방법</h1><p>단순한 구현 문제이다. 문제에서 요구하는 조건에 맞춰 구현을 하면 정답을 출력할 수 있다.</p><h1 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h1><pre><code class="cpp">#include &ltiostream&gt#include &ltvector>using namespace std;int K, N, T, remain_time = 210;char Z;vector&ltpair&ltint, char>> arr;int main() {    cin >> K >> N;    for(int i = 0; i < N; i ++) {        cin >> T >> Z;        arr.push_back({ T, Z });    }    for(int i = 0; i < arr.size(); i ++) {        int time = arr[i].first;        char ans = arr[i].second;        if(ans == 'T') {            remain_time -= time;            if(remain_time < 0) {                int num =  K % 8 == 0? 8 : K % 8;                cout << num;                return 0;            }            else {                K ++;            }        }         else {            remain_time -= time;            if(remain_time < 0) {                int num =  K % 8 == 0? 8 : K % 8;                cout << num;                return 0;            }        }    }}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;문제&quot;&gt;&lt;a href=&quot;#문제&quot; class=&quot;headerlink&quot; title=&quot;문제&quot;&gt;&lt;/a&gt;문제&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/9517&quot; target=&quot;_blank&quot; rel=&quot;no
       
     
     </summary>
